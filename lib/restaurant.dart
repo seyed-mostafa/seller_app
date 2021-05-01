@@ -34,31 +34,31 @@ class restaurent {
 
 
 
-  void setName(name) {
+  void setName(String name) {
     this._name = name;
   }
 
-  void setDays(days) {
+  void setDays(String days) {
     this._days = days;
   }
 
-  void setHour(hour) {
+  void setHour(String hour) {
     this._hour = hour;
   }
 
-  void setAddress(address) {
+  void setAddress(Address address) {
     this._address = address;
   }
 
-  void setPhoneNumber(phoneNumber) {
+  void setPhoneNumber(String phoneNumber) {
     this._phoneNumber = phoneNumber;
   }
 
-  void setPassword(password) {
+  void setPassword(String password) {
     this._password = password;
   }
 
-  void setSendingRangeRadius(sendingRangeRadius) {
+  void setSendingRangeRadius(num sendingRangeRadius) {
     this._sendingRangeRadius = sendingRangeRadius;
   }
 
