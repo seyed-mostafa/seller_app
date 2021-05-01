@@ -1,7 +1,7 @@
-import 'package:enterigester/Entering.dart';
-import 'package:enterigester/SplashScreen.dart';
-import 'package:enterigester/theme.dart';
+
 import 'package:flutter/material.dart';
+import 'package:seller_app/theme.dart';
+import 'SplashScreen.dart';
 
 void main() {
   runApp(MyApp());

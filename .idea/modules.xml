@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/enterigester.iml" filepath="$PROJECT_DIR$/enterigester.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/enterigester_android.iml" filepath="$PROJECT_DIR$/android/enterigester_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/seller_app.iml" filepath="$PROJECT_DIR$/seller_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/seller_app_android.iml" filepath="$PROJECT_DIR$/android/seller_app_android.iml" />
     </modules>
   </component>
 </project>

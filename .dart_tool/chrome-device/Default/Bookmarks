@@ -3,7 +3,7 @@
    "roots": {
       "bookmark_bar": {
          "children": [  ],
-         "date_added": "13264085686292671",
+         "date_added": "13264330540484511",
          "date_modified": "0",
          "guid": "00000000-0000-4000-a000-000000000002",
          "id": "1",
@@ -13,7 +13,7 @@
       },
       "other": {
          "children": [  ],
-         "date_added": "13264085686292675",
+         "date_added": "13264330540484514",
          "date_modified": "0",
          "guid": "00000000-0000-4000-a000-000000000003",
          "id": "2",
@@ -23,7 +23,7 @@
       },
       "synced": {
          "children": [  ],
-         "date_added": "13264085686292676",
+         "date_added": "13264330540484518",
          "date_modified": "0",
          "guid": "00000000-0000-4000-a000-000000000004",
          "id": "3",
@@ -32,6 +32,6 @@
          "type": "folder"
       }
    },
-   "sync_metadata": "Ci4KDgiIgQISCCayih15AQAAEgAgASoYWk10NXlVbXMySFJEV1ErM2RhcUtLQT09EokBCAEShAEKHC9FS0xhVVV5TWRiS0VrMUJhMlVpbnlEbmY3ST0SJDYwODQyYmY2LTMxOTMtNTdiNy04ZGQ3LTAwMzE5MjdjODk2ORgAIAAoADCDvJ6P5i44t7qej+YuQLe6no/mLkocVStHR0l0WkVEcFpzSVNsT1VhSVR1SUxkTW5JPVoAZQAAAAASiQEIAhKEAQocekRWR3JydFpMZE0rNEJUeWJnK0hDT3JXZ3lvPRIkMWUyYTc5NzUtZTg4Ni01ZDFjLThkZmItYThjZTViZWY3MjFkGAAgACgAMIS8no/mLji3up6P5i5At7qej+YuShw1dXN5L2NwZnBpMUV0b0JIRGdYSXMwcWI0ckE9WgBlAAAAABKJAQgDEoQBChx5NVdFMjd1STZ2WC9EZUlTSEp6bmpNcXVXV3M9EiQyNzY5ZmQzNS0xZTlmLTU1NjMtYWZmMS02NWY2YzVjMTJmOGQYACAAKAAwiLyej+YuOLe6no/mLkC3up6P5i5KHDc5bCtMUkVVcGlhRXZERCtHNDNjcFhTdHdCYz1aAGUAAAAAGAAgseKq7JEvKAA=",
+   "sync_metadata": "Ci4KDgiIgQISCDh4/yZ5AQAAEgAgASoYakVRUDlQd3BxeTd3MjI3V0JBMnB5Zz09EokBCAEShAEKHC9FS0xhVVV5TWRiS0VrMUJhMlVpbnlEbmY3ST0SJDYwODQyYmY2LTMxOTMtNTdiNy04ZGQ3LTAwMzE5MjdjODk2ORgAIAAoADCDvJ6P5i44t7qej+YuQLe6no/mLkocVStHR0l0WkVEcFpzSVNsT1VhSVR1SUxkTW5JPVoAZQAAAAASiQEIAhKEAQocekRWR3JydFpMZE0rNEJUeWJnK0hDT3JXZ3lvPRIkMWUyYTc5NzUtZTg4Ni01ZDFjLThkZmItYThjZTViZWY3MjFkGAAgACgAMIS8no/mLji3up6P5i5At7qej+YuShw1dXN5L2NwZnBpMUV0b0JIRGdYSXMwcWI0ckE9WgBlAAAAABKJAQgDEoQBChx5NVdFMjd1STZ2WC9EZUlTSEp6bmpNcXVXV3M9EiQyNzY5ZmQzNS0xZTlmLTU1NjMtYWZmMS02NWY2YzVjMTJmOGQYACAAKAAwiLyej+YuOLe6no/mLkC3up6P5i5KHDc5bCtMUkVVcGlhRXZERCtHNDNjcFhTdHdCYz1aAGUAAAAAGAAghO/9t5IvKAA=",
    "version": 1
 }

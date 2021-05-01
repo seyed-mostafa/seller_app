@@ -1,8 +1,8 @@
 
-import 'package:enterigester/MainPanel.dart';
-import 'package:enterigester/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:seller_app/theme.dart';
+import 'MainPanel.dart';
 import 'Rigestering.dart';
 
 class Entering extends StatefulWidget {

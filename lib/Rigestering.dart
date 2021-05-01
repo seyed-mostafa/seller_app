@@ -1,7 +1,7 @@
 
-import 'package:enterigester/Entering.dart';
 import 'package:flutter/material.dart';
 
+import 'Entering.dart';
 import 'MultiChoice.dart';
 
 class Rigestring extends StatefulWidget {
