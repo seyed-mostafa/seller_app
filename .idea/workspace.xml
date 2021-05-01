@@ -19,7 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea081172-aaf3-4077-aad4-b24359589314" name="Default Changelist" comment="I rebuild project." />
+    <list default="true" id="ea081172-aaf3-4077-aad4-b24359589314" name="Default Changelist" comment="SplashScreen.dart added.">
+      <change afterPath="$PROJECT_DIR$/lib/Food.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Restaurant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/chrome-device/Default/Bookmarks" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/chrome-device/Default/Bookmarks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/4f2a58af27abc49ecf55570043bbf938.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/4f2a58af27abc49ecf55570043bbf938.cache.dill.track.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/MainPanel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/MainPanel.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +36,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1rvVd39FfR1ESf5LJljyjqm4hvJ" />
   <component name="ProjectViewState">

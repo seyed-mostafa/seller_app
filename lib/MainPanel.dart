@@ -11,7 +11,15 @@ class _MainPanelState extends State<MainPanel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Here is Restaurant Page"),
+        title: Text("Restaurant Name"),
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            FlatButton(onPressed: (){}, child: Text("Food Menu")),
+
+          ],
+        ),
       ),
     );
   }
