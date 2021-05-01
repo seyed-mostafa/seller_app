@@ -1,18 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:branch2" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc049789-8451-451d-bae8-80e118fdc666" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="3ea1d6cb-56de-49c5-a0e8-7eef1c3338be" name="Default Changelist" comment="front end of Entering page added." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1rrPDqeJu5hjsEBaGurYv032Wnx" />
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/abbasyazdanmehr/Registering.git" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1rnV3W2XOYso5ZprfLLvosMBRWv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -22,50 +77,176 @@
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ap_project_1400" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../zfinall/seller_app" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\university\term2\ap\projects\2.ApProject\4.Enter&amp;RigesterForRestaurantApp\enterigester\assets\images" />
+      <recent name="D:\university\term2\ap\projects\2.ApProject\4.Enter&amp;RigesterForRestaurantApp\enterigester\lib" />
+      <recent name="D:\university\term2\ap\projects\2.ApProject\4.Enter&amp;Rigester\enterigester\lib" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bc049789-8451-451d-bae8-80e118fdc666" name="Default Changelist" comment="" />
-      <created>1619731118896</created>
+      <changelist id="3ea1d6cb-56de-49c5-a0e8-7eef1c3338be" name="Default Changelist" comment="" />
+      <created>1619611641681</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1619731118896</updated>
+      <updated>1619611641681</updated>
     </task>
+    <task id="LOCAL-00001" summary="نوار دیباگ رو برداشتم (:">
+      <created>1619689934780</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619689934780</updated>
+    </task>
+    <task id="LOCAL-00002" summary="نوار دیباگ رو برداشتم (:">
+      <created>1619690058147</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619690058147</updated>
+    </task>
+    <task id="LOCAL-00003" summary="نوار دیباگ رو برداشتم (:">
+      <created>1619690094697</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619690094697</updated>
+    </task>
+    <task id="LOCAL-00004" summary="نوار دیباگ رو برداشتم (:">
+      <created>1619690165131</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619690165131</updated>
+    </task>
+    <task id="LOCAL-00005" summary="SplashScreen.dart added.">
+      <created>1619691411686</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619691411686</updated>
+    </task>
+    <task id="LOCAL-00006" summary="assets folder added.">
+      <created>1619694171949</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1619694171949</updated>
+    </task>
+    <task id="LOCAL-00007" summary="front end of Entering page added.">
+      <created>1619704390338</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1619704390338</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="branch2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="نوار دیباگ رو برداشتم (:" />
+    <MESSAGE value="SplashScreen.dart added." />
+    <MESSAGE value="assets folder added." />
+    <MESSAGE value="front end of Entering page added." />
+    <option name="LAST_COMMIT_MESSAGE" value="front end of Entering page added." />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="2014" y="200" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1619732397059">
-      <screen x="1920" y="53" width="1280" height="984" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1619694677350">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="2014" y="200" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.53.1280.984@1920.53.1280.984" timestamp="1619732397059" />
-    <state x="2289" y="335" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1619732395805">
-      <screen x="1920" y="53" width="1280" height="984" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1619694677350" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1619848615702">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="2289" y="335" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1536.824/1920.53.1280.984@1920.53.1280.984" timestamp="1619732395805" />
-    <state x="2321" y="390" key="FileChooserDialogImpl" timestamp="1619732609957">
-      <screen x="1920" y="53" width="1280" height="984" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1619848615702" />
+    <state width="1491" height="181" key="GridCell.Tab.0.bottom" timestamp="1619705460974">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="2321" y="390" key="FileChooserDialogImpl/0.0.1536.824/1920.53.1280.984@1920.53.1280.984" timestamp="1619732609957" />
-    <state width="1235" height="256" key="GridCell.Tab.0.bottom" timestamp="1619732612832">
-      <screen x="1920" y="53" width="1280" height="984" />
+    <state width="1491" height="181" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619705460974" />
+    <state width="1491" height="181" key="GridCell.Tab.0.center" timestamp="1619705460974">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1235" height="256" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.53.1280.984@1920.53.1280.984" timestamp="1619732612832" />
-    <state width="1235" height="256" key="GridCell.Tab.0.center" timestamp="1619732612832">
-      <screen x="1920" y="53" width="1280" height="984" />
+    <state width="1491" height="181" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619705460974" />
+    <state width="1491" height="181" key="GridCell.Tab.0.left" timestamp="1619705460974">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1235" height="256" key="GridCell.Tab.0.center/0.0.1536.824/1920.53.1280.984@1920.53.1280.984" timestamp="1619732612832" />
-    <state width="1235" height="256" key="GridCell.Tab.0.left" timestamp="1619732612832">
-      <screen x="1920" y="53" width="1280" height="984" />
+    <state width="1491" height="181" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619705460974" />
+    <state width="1491" height="181" key="GridCell.Tab.0.right" timestamp="1619705460974">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1235" height="256" key="GridCell.Tab.0.left/0.0.1536.824/1920.53.1280.984@1920.53.1280.984" timestamp="1619732612832" />
-    <state width="1235" height="256" key="GridCell.Tab.0.right" timestamp="1619732612832">
-      <screen x="1920" y="53" width="1280" height="984" />
+    <state width="1491" height="181" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619705460974" />
+    <state x="0" y="0" width="1536" height="711" key="SettingsEditor" timestamp="1619705430076">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1235" height="256" key="GridCell.Tab.0.right/0.0.1536.824/1920.53.1280.984@1920.53.1280.984" timestamp="1619732612832" />
+    <state x="0" y="0" width="1536" height="711" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1619705430076" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1619704492168">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619704492168" />
+    <state x="572" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1619704351802">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="572" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1619704351802" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1619636542214">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1619636542214" />
   </component>
 </project>

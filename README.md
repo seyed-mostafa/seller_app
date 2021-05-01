@@ -1,4 +1,4 @@
-# seller_app
+# enterigester
 
 A new Flutter application.
 
