@@ -1,6 +1,15 @@
 import 'Address.dart';
 import 'Food.dart';
 
+//  _name  =>                                                      نام رستوران
+// _phoneNumber =>                                          شماره تماس رستوران
+// _password =>                                کلمه عبور برای ورود به اپلیکیشن
+// _days =>                               روز های کاری رستوران به صورت یک رشته
+// _hour =>                                  ساعت کاری رستوران به ضورت یک رشته
+// _sendingRangeRadius =>                   شعاع محدوده ارسال غذا توسط رستوران
+// _address =>                       آدرس رستوران (به صورت مختصات )در کلاس خودش
+// List<Food> _menu =>                    منو رستوران به صورت لیستی از جنس غذا
+
 class restaurent {
   String _name, _phoneNumber, _password, _days, _hour;
   num _sendingRangeRadius;
