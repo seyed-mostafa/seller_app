@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:seller_app/app_bar.dart';
+import 'bottom_navigation.dart';
 
 class MainPanel extends StatefulWidget {
   @override
@@ -10,9 +12,10 @@ class _MainPanelState extends State<MainPanel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Here is Restaurant Page"),
-      ),
+      appBar: app_bar(),
+      bottomNavigationBar:bottom_navigation (),
+
+
     );
   }
 }
