@@ -14,8 +14,6 @@ class _MainPanelState extends State<MainPanel> {
     return Scaffold(
       appBar: app_bar(),
       bottomNavigationBar:bottom_navigation (),
-
-
     );
   }
 }

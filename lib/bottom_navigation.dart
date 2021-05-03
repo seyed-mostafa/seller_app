@@ -2,7 +2,8 @@
 //BottomNavigationBar with change color and animation
 
 import 'package:flutter/material.dart';
-import 'theme.dart';
+import 'package:seller_app/main_panel_seller.dart';
+import 'Classes/theme.dart';
 
 
 class bottom_navigation extends StatefulWidget {
@@ -17,6 +18,13 @@ class _bottom_navigationState extends State<bottom_navigation> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      if(_selectedIndex == 0){
+
+      }else if(_selectedIndex == 1){
+
+      }else if(_selectedIndex == 2){
+
+      }
     });
   }
 

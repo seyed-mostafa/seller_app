@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:seller_app/theme.dart';
+import 'package:seller_app/Classes/theme.dart';
 import 'main_panel_seller.dart';
 import 'Rigestering.dart';
 
