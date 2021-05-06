@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:seller_app/app_bar.dart';
+import 'package:seller_app/appBar.dart';
 import 'bottom_navigation.dart';
 
 class MainPanel extends StatefulWidget {
@@ -12,8 +12,8 @@ class _MainPanelState extends State<MainPanel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: app_bar(),
-      bottomNavigationBar:bottom_navigation (),
+      appBar: appBar(),
+      //bottomNavigationBar:bottom_navigation (),
     );
   }
 }

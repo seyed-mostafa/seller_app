@@ -1,14 +1,17 @@
 
 import 'package:flutter/material.dart';
-import 'package:seller_app/Menu.dart';
+import 'package:seller_app/Classes/Restaurant.dart';
+import 'package:seller_app/Classes/theme.dart';
+import 'package:seller_app/FoodMenu.dart';
+import 'package:seller_app/appBar.dart';
 
 import 'Classes/Food.dart';
 
 class AddFood extends StatefulWidget {
 
-  List<Food> foods = [];
+  List<Restaurant> restaurants = [];
 
-  AddFood(this.foods);
+  AddFood(this.restaurants);
 
   @override
   _AddFoodState createState() => _AddFoodState();
@@ -43,9 +46,7 @@ class _AddFoodState extends State<AddFood> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Add one Food"),
-      ),
+      appBar: appBar(),
       body: Container(
         height: double.maxFinite,
         child: SingleChildScrollView(
@@ -58,30 +59,73 @@ class _AddFoodState extends State<AddFood> {
                     padding: EdgeInsets.all(40),
                     child: Column(
                       children: [
-                        TextFormField(///Food Name
+                        TextFormField(//Food Name
+                          cursorColor: theme.black,
+                          decoration: InputDecoration(
+                              border: new OutlineInputBorder(
+                                borderRadius: const BorderRadius.all(
+                                  const Radius.circular(10),
+                                ),
+                                borderSide: new BorderSide(
+                                  color: theme.black,
+                                  width: 1.0,
+                                ),
+                              ),
+                              fillColor: theme.yellow,
+                              filled: true,
+                              icon: Icon(Icons.drive_file_rename_outline),
+                              labelText: "Food Name",
+                              labelStyle: TextStyle(fontSize: 18)
+                          ),
+                          onSaved: (String value) => _inputName = value,
                           validator: (String value){
                             if(value.isEmpty){
                               return "Name cannot be empty";
                             }
                             return null;
                           },
-                          onSaved: (String value) => _inputName = value,
-                          decoration: InputDecoration(
-                              icon: Icon(Icons.drive_file_rename_outline),
-                              labelText: "Food Name",
-                              labelStyle: TextStyle(fontSize: 18,)
-                          ),
                         ),
-                        TextFormField(///Food Description
+                        SizedBox(height: 10,),
+                        TextFormField(//Food Description
                           maxLines: 2,
-                          onSaved: (String value) => _inputDescription = value,
+                          cursorColor: theme.black,
                           decoration: InputDecoration(
+                              border: new OutlineInputBorder(
+                                borderRadius: const BorderRadius.all(
+                                  const Radius.circular(10),
+                                ),
+                                borderSide: new BorderSide(
+                                  color: theme.black,
+                                  width: 1.0,
+                                ),
+                              ),
+                              fillColor: theme.yellow,
+                              filled: true,
                               icon: Icon(Icons.drive_file_rename_outline),
                               labelText: "Description (optional)",
-                              labelStyle: TextStyle(fontSize: 18,)
+                              labelStyle: TextStyle(fontSize: 18)
                           ),
+                          onSaved: (String value) => _inputDescription = value,
                         ),
-                        TextFormField(///Food Price
+                        SizedBox(height: 10,),
+                        TextFormField(//Food Price
+                          decoration: InputDecoration(
+                              border: new OutlineInputBorder(
+                                borderRadius: const BorderRadius.all(
+                                  const Radius.circular(10),
+                                ),
+                                borderSide: new BorderSide(
+                                  color: theme.black,
+                                  width: 1.0,
+                                ),
+                              ),
+                              fillColor: theme.yellow,
+                              filled: true,
+                              icon: Icon(Icons.monetization_on),
+                              labelText: "Food Price",
+                              labelStyle: TextStyle(fontSize: 18)
+                          ),
+                          onSaved: (String value) => _inputPrice = value,
                           validator: (String value){
                             if(value.isEmpty){
                               return "Price cannot be empty";
@@ -90,12 +134,6 @@ class _AddFoodState extends State<AddFood> {
                             }
                             return null;
                           },
-                          onSaved: (String value) => _inputPrice = value,
-                          decoration: InputDecoration(
-                              icon: Icon(Icons.monetization_on_outlined),
-                              labelText: "Food Price",
-                              labelStyle: TextStyle(fontSize: 18,)
-                          ),
                         ),
                         SizedBox(height: 20,),
                         Row(
@@ -142,7 +180,7 @@ class _AddFoodState extends State<AddFood> {
                               print(_inputDescription);
                               print(_inputPrice);
                               print(_inputDiscount);
-                              widget.foods.add(Food(
+                              widget.restaurants[0].getMenu().add(Food(
                                   _inputName,
                                   _inputDescription,
                                   int.parse(_inputPrice),
@@ -152,7 +190,7 @@ class _AddFoodState extends State<AddFood> {
                                   TypeFood.Appetizer,
                                   _inputPath
                               ));
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>FoodMenu(widget.foods)));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>FoodMenu(widget.restaurants)));
                             }
                             setState(() {});
                           },

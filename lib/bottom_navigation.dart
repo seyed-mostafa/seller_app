@@ -1,29 +1,39 @@
 
 //BottomNavigationBar with change color and animation
 
+import 'dart:html';
+
 import 'package:flutter/material.dart';
-import 'package:seller_app/main_panel_seller.dart';
+import 'package:seller_app/Classes/Restaurant.dart';
+import 'package:seller_app/Comments.dart';
+import 'package:seller_app/FoodMenu.dart';
+import 'package:seller_app/Orders.dart';
 import 'Classes/theme.dart';
 
 
 class bottom_navigation extends StatefulWidget {
-  const bottom_navigation({Key key}) : super(key: key);
+
+  List<Restaurant> restaurants = [];
+
+  bottom_navigation(this.restaurants);
+
   @override
   _bottom_navigationState createState() => _bottom_navigationState();
 }
 class _bottom_navigationState extends State<bottom_navigation> {
-  int _selectedIndex = 0;
+  static int _selectedIndex = 0;
 
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      if(_selectedIndex == 0){
-
-      }else if(_selectedIndex == 1){
-
-      }else if(_selectedIndex == 2){
-
+      print(index);
+      if(_selectedIndex == 0){//foodMenu
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FoodMenu(widget.restaurants)));
+      }else if(_selectedIndex == 1){//Orders
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Orders(widget.restaurants)));
+      }else if(_selectedIndex == 2){//Comments
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Comments(widget.restaurants)));
       }
     });
   }

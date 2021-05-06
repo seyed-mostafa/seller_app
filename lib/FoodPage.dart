@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:seller_app/appBar.dart';
 import 'Classes/Food.dart';
 
 class FoodPage extends StatefulWidget {
@@ -22,9 +23,7 @@ class _FoodPageState extends State<FoodPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.foods[widget.currentIndex].getName()),
-      ),
+      appBar: appBar(),
       body: Container(
         child: SingleChildScrollView(
           child: Column(
@@ -54,6 +53,7 @@ class _FoodPageState extends State<FoodPage> {
                           fontWeight: FontWeight.bold
                       ),
                     ),
+                    SizedBox(height: 20,),
                     Text(widget.foods[widget.currentIndex].getPrice().toString()),
                   ],
                 ),

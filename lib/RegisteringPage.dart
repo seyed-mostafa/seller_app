@@ -1,15 +1,22 @@
 
+import 'dart:html';
 import 'package:flutter/material.dart';
-import 'Entering.dart';
+import 'package:seller_app/Classes/Restaurant.dart';
+import 'EnteringPage.dart';
 import 'MultiChoice.dart';
 
-class Rigestring extends StatefulWidget {
+class RegisteringPage extends StatefulWidget {
+
+  List<Restaurant> restaurants = [];
+
+  RegisteringPage(this.restaurants);
+
   @override
-  _RigestringState createState() => _RigestringState();
+  _RegisteringPageState createState() => _RegisteringPageState();
 }
 
 
-class _RigestringState extends State<Rigestring> {
+class _RegisteringPageState extends State<RegisteringPage> {
 
   final _formKey = GlobalKey<FormState>();
 
@@ -156,9 +163,18 @@ class _RigestringState extends State<Rigestring> {
                         print(inputAddress);
                         print(inputPhoneNumber);
                         print(inputPassword);
+                        widget.restaurants.add(
+                          Restaurant(
+                            inputName,
+                            null,
+                            inputPhoneNumber,
+                            inputPassword
+                          )
+                        );
+
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Entering()),
+                          MaterialPageRoute(builder: (context) => EnteringPage(widget.restaurants)),
                         );
                       }
                       setState(() {});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'Classes/theme.dart';
 
 
-AppBar app_bar(){
+AppBar appBar(){
   return  AppBar(
     backgroundColor:Colors.white ,
     title: Text('Foodina',style: TextStyle(color: theme.yellow,
