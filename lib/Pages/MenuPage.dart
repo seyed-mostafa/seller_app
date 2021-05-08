@@ -1,17 +1,17 @@
 
 import 'package:flutter/material.dart';
-import 'package:seller_app/Classes/Restaurant.dart';
+import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/appBar.dart';
 import 'package:seller_app/bottom_navigation.dart';
-import 'AddFood.dart';
-import 'Classes/Food.dart';
+import 'AddFoodPage.dart';
 import 'FoodPage.dart';
 
 class FoodMenu extends StatefulWidget {
 
-  List<Restaurant> restaurants = [] ;
+  List<Restaurant> restaurants = [];
+  int currentRestaurant;
 
-  FoodMenu(this.restaurants);
+  FoodMenu(this.restaurants, this.currentRestaurant);
 
   @override
   _FoodMenuState createState() => _FoodMenuState();
@@ -41,7 +41,6 @@ class _FoodMenuState extends State<FoodMenu> {
   String _inputName='', _inputDescription='',
       _inputPrice='', _inputDiscount='0', _inputPath='';
   bool _inputSizing=false,_inputAvailable=false,_inputIsDiscount=false;
-  TypeFood _inputTypeFood ;
   List<String> foodType = [];
   var _formKey = GlobalKey<FormState>();
 
@@ -73,7 +72,7 @@ class _FoodMenuState extends State<FoodMenu> {
                 Spacer(),
                 IconButton(
                     icon: Icon(
-                      widget.restaurants[0].getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
+                      widget.restaurants[widget.currentRestaurant].getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
                       color: widget.restaurants[0].getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
                     ),
                     onPressed: (){
@@ -93,7 +92,13 @@ class _FoodMenuState extends State<FoodMenu> {
             onPressed: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FoodPage(widget.restaurants[0].getMenu(), index),),
+                MaterialPageRoute(
+                  builder: (context) => FoodPage(
+                      widget.restaurants,
+                      widget.currentRestaurant,
+                      index
+                  ),
+                ),
               );
             },
           ),
@@ -103,7 +108,7 @@ class _FoodMenuState extends State<FoodMenu> {
 
     return Scaffold(
       appBar: appBar(),
-      bottomNavigationBar: bottom_navigation(widget.restaurants),
+      bottomNavigationBar: bottom_navigation(widget.restaurants, widget.currentRestaurant),
       body: Container(
           child: ListView(
             children: List.generate(widget.restaurants[0].getMenu().length, (index) => showFood(index)),
@@ -113,7 +118,7 @@ class _FoodMenuState extends State<FoodMenu> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: (){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood(widget.restaurants)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddFood(widget.restaurants, widget.currentRestaurant)));
         },
       ),
     );

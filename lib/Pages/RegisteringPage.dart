@@ -1,9 +1,9 @@
 
-import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:seller_app/Classes/Restaurant.dart';
+import 'package:seller_app/Objects/Restaurant.dart';
 import 'EnteringPage.dart';
-import 'MultiChoice.dart';
+import '../MultiChoice.dart';
+import 'dart:io';
 
 class RegisteringPage extends StatefulWidget {
 
@@ -14,7 +14,6 @@ class RegisteringPage extends StatefulWidget {
   @override
   _RegisteringPageState createState() => _RegisteringPageState();
 }
-
 
 class _RegisteringPageState extends State<RegisteringPage> {
 
@@ -50,6 +49,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           title: Center(child: Text("Registering Page")),
@@ -156,8 +156,8 @@ class _RegisteringPageState extends State<RegisteringPage> {
                   ),
                   SizedBox(height: 20,),
                   ElevatedButton(
-                    onPressed: () {
-                      if(_formKey.currentState.validate()){
+                    onPressed: () async {
+                      if(_formKey.currentState.validate()) {
                         _formKey.currentState.save();
                         print(inputName);
                         print(inputAddress);
@@ -171,7 +171,6 @@ class _RegisteringPageState extends State<RegisteringPage> {
                             inputPassword
                           )
                         );
-
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => EnteringPage(widget.restaurants)),

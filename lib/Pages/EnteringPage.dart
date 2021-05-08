@@ -1,10 +1,9 @@
 
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:seller_app/Classes/Restaurant.dart';
-import 'package:seller_app/Classes/theme.dart';
-import 'package:seller_app/FoodMenu.dart';
-import 'Classes/Food.dart';
-import 'main_panel_seller.dart';
+import 'package:seller_app/Objects/Restaurant.dart';
+import 'package:seller_app/Objects/theme.dart';
+import 'package:seller_app/Pages/MenuPage.dart';
 import 'RegisteringPage.dart';
 
 class EnteringPage extends StatefulWidget {
@@ -31,6 +30,7 @@ class _EnteringPageState extends State<EnteringPage> {
 
   //for first time don't show error of input (red container in top)
   bool flag = true;
+  File file = File("dataBase.txt");
 
   //for hide entering password
   bool hidden = true;
@@ -141,12 +141,14 @@ class _EnteringPageState extends State<EnteringPage> {
                         flag = false;
                         print(inputPhoneNumberEnter);
                         print(inputPasswordEnter);
-                        if(inputPhoneNumberEnter == phoneNumber && inputPasswordEnter == password){
+                        if(inputPhoneNumberEnter == phoneNumber &&
+                            inputPasswordEnter == password){
                           validUser=true;
-                          List<Food> foods = [];
+                          int currentRestaurant = 0;
+                          file.writeAsString("Registered\nthis is the index of restaurant");
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => FoodMenu(widget.restaurants)),
+                            MaterialPageRoute(builder: (context) => FoodMenu(widget.restaurants, currentRestaurant)),
                           );
                         }else{
                           validUser=false;

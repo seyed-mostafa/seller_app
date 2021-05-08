@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Classes/theme.dart';
+import 'package:seller_app/Objects/theme.dart';
 
 
 AppBar appBar(){

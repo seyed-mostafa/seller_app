@@ -11,6 +11,7 @@ import 'Food.dart';
 // List<Food> _menu =>                    منو رستوران به صورت لیستی از جنس غذا
 
 class Restaurant {
+
   static int _id=99243000;
   String _name, _phoneNumber, _password, _days, _hour;
   num _sendingRangeRadius;
@@ -32,6 +33,7 @@ class Restaurant {
   void addMenu(Food food){
     _menu.add(food);
   }
+
   int getId(){
     return _id;
   }
@@ -98,4 +100,5 @@ class Restaurant {
   String getHour() {
     return _hour;
   }
+
 }

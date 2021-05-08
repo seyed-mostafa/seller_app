@@ -1,17 +1,18 @@
 
 import 'package:flutter/material.dart';
-import 'package:seller_app/Classes/Restaurant.dart';
-import 'package:seller_app/Classes/theme.dart';
-import 'package:seller_app/FoodMenu.dart';
+import 'package:seller_app/Objects/Food.dart';
+import 'package:seller_app/Objects/Restaurant.dart';
+import 'package:seller_app/Objects/theme.dart';
+import 'package:seller_app/Pages/MenuPage.dart';
 import 'package:seller_app/appBar.dart';
 
-import 'Classes/Food.dart';
 
 class AddFood extends StatefulWidget {
 
   List<Restaurant> restaurants = [];
+  int currentRestaurant;
 
-  AddFood(this.restaurants);
+  AddFood(this.restaurants, this.currentRestaurant);
 
   @override
   _AddFoodState createState() => _AddFoodState();
@@ -190,7 +191,7 @@ class _AddFoodState extends State<AddFood> {
                                   TypeFood.Appetizer,
                                   _inputPath
                               ));
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>FoodMenu(widget.restaurants)));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>FoodMenu(widget.restaurants, widget.currentRestaurant)));
                             }
                             setState(() {});
                           },
