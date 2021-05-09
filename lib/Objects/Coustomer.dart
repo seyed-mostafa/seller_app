@@ -1,7 +1,7 @@
-import 'package:customer_app/Objects/Restaurant.dart';
+import 'Restaurant.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'Food.dart';
-import 'Restaurant.dart';
+
 
 
 class Customer{
