@@ -21,7 +21,7 @@ class AddFood extends StatefulWidget {
 class _AddFoodState extends State<AddFood> {
 
   String _inputName='', _inputDescription='',
-      _inputPrice='', _inputDiscount='0', _inputPath='';
+      _inputPrice='', _inputDiscount='0';
   bool _inputSizing=false,_inputAvailable=false,_inputIsDiscount=false;
   var _formKey = GlobalKey<FormState>();
 
@@ -189,7 +189,7 @@ class _AddFoodState extends State<AddFood> {
                                   true,
                                   true,
                                   TypeFood.Appetizer,
-                                  _inputPath
+
                               ));
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>FoodMenu(widget.restaurants, widget.currentRestaurant)));
                             }
