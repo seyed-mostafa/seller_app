@@ -4,6 +4,7 @@ import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/MenuPage.dart';
+import 'package:seller_app/Pages/nav.dart';
 import 'package:seller_app/appBar.dart';
 
 
@@ -189,9 +190,8 @@ class _AddFoodState extends State<AddFood> {
                                   true,
                                   true,
                                   TypeFood.Appetizer,
-                                  _inputPath
                               ));
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>FoodMenu(widget.restaurants, widget.currentRestaurant)));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav(widget.restaurants, widget.currentRestaurant)));
                             }
                             setState(() {});
                           },

@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/appBar.dart';
-import 'package:seller_app/bottom_navigation.dart';
 
 class Orders extends StatefulWidget {
 
@@ -17,11 +16,17 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
+
+  showOrder(index){
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(),
-      bottomNavigationBar: bottom_navigation(widget.restaurants, widget.currentRestaurant),
+    return Container(
+        child: ListView(
+          children: List.generate(widget.restaurants[widget.currentRestaurant].getMenu().length, (index) => showOrder(index)),
+        )
     );
   }
 }

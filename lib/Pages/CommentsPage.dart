@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/appBar.dart';
-import 'package:seller_app/bottom_navigation.dart';
 
 class CommentsPage extends StatefulWidget {
 
@@ -17,19 +16,17 @@ class CommentsPage extends StatefulWidget {
 }
 
 class _CommentsPageState extends State<CommentsPage> {
+
+  showComment(index){
+
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: appBar(),
-      bottomNavigationBar: bottom_navigation(widget.restaurants, widget.currentRestaurant),
-
-      body: Container(
-          child: ListView(
-            children: <Widget>[
-            ],
-          )
-      ),
+    return Container(
+      child: ListView(
+        children: List.generate(widget.restaurants[widget.currentRestaurant].getMenu().length, (index) => showComment(index)),
+    )
     );
   }
 }

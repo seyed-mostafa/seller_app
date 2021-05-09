@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/MenuPage.dart';
+import 'package:seller_app/Pages/nav.dart';
 import 'RegisteringPage.dart';
 
 class EnteringPage extends StatefulWidget {
@@ -148,7 +149,7 @@ class _EnteringPageState extends State<EnteringPage> {
                           file.writeAsString("Registered\nthis is the index of restaurant");
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => FoodMenu(widget.restaurants, currentRestaurant)),
+                            MaterialPageRoute(builder: (context) => Nav(widget.restaurants, 0)),
                           );
                         }else{
                           validUser=false;

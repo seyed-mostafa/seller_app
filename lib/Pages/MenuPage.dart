@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
-import 'package:seller_app/appBar.dart';
-import 'package:seller_app/bottom_navigation.dart';
 import 'AddFoodPage.dart';
 import 'FoodPage.dart';
 
@@ -106,21 +104,10 @@ class _FoodMenuState extends State<FoodMenu> {
       );
     }
 
-    return Scaffold(
-      appBar: appBar(),
-      bottomNavigationBar: bottom_navigation(widget.restaurants, widget.currentRestaurant),
-      body: Container(
-          child: ListView(
-            children: List.generate(widget.restaurants[0].getMenu().length, (index) => showFood(index)),
-          )
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AddFood(widget.restaurants, widget.currentRestaurant)));
-        },
-      ),
+    return Container(
+      child: ListView(
+        children: List.generate(widget.restaurants[widget.currentRestaurant].getMenu().length, (index) => showFood(index)),
+      )
     );
   }
 }
