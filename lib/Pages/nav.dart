@@ -39,7 +39,7 @@ class _NavState extends State<Nav> {
               child: TextButton(
                 child: Text("Add new Food", style: TextStyle(color: theme.yellow),),
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => AddFood(widget.restaurants, widget.currentRestaurant)));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood(widget.restaurants, widget.currentRestaurant)));
                 },
               ),
             )
