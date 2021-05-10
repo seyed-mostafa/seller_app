@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/Pages/MenuPage.dart';
+//import 'package:seller_app/Pages/MenuPage.dart';
 import 'package:seller_app/Pages/nav.dart';
 import 'RegisteringPage.dart';
 
