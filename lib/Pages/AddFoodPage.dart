@@ -47,7 +47,23 @@ class _AddFoodState extends State<AddFood> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: theme.yellow,),
+          onPressed: (){
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => Nav(widget.restaurants, widget.currentRestaurant)))
+            ;
+          },
+        ),
+        backgroundColor:Colors.white ,
+        title: Text('Foodina',style: TextStyle(color: theme.yellow,
+            fontSize: 30, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
+        centerTitle: true,
+        elevation: 10,
+        iconTheme: IconThemeData(color:theme.yellow),
+      ),
       body: Container(
         height: double.maxFinite,
         child: SingleChildScrollView(
