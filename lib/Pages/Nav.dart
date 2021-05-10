@@ -2,13 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/Pages/AddFoodPage.dart';
 import 'package:seller_app/Pages/CommentsPage.dart';
 import 'package:seller_app/Pages/MenuPage.dart';
 import 'package:seller_app/Pages/OrdersPage.dart';
 import 'package:seller_app/appBar.dart';
 
-import 'FoodPage.dart';
+
 
 class Nav extends StatefulWidget {
 
