@@ -37,74 +37,111 @@ class _FoodMenuState extends State<FoodMenu> {
     return true;
   }
 
-  String _inputName='', _inputDescription='',
-      _inputPrice='', _inputDiscount='0', _inputPath='';
-  bool _inputSizing=false,_inputAvailable=false,_inputIsDiscount=false;
   List<String> foodType = [];
-  var _formKey = GlobalKey<FormState>();
+
+  imageWidget(index){
+    return Stack(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height/3,
+          width: MediaQuery.of(context).size.width/3,
+          padding: EdgeInsets.fromLTRB(5, 10, 10, 10),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.asset(
+              'assets/images/'+(index+1).toString()+".jpg",
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        widget.restaurants[widget.currentRestaurant].
+        getMenu()[index].getDiscount() != 0 ?
+            Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(5)
+                ),
+                margin: EdgeInsets.fromLTRB(5, 10, 10, 10),
+                child: Text("${widget.restaurants[widget.currentRestaurant].
+                getMenu()[index].getDiscount()}%", style: TextStyle(color: Colors.white),),
+              ),
+            ):
+            Container()
+      ],
+
+    );
+  }
+
+  dataFoodWidget(index){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(widget.restaurants[widget.currentRestaurant].getMenu()[index].getName()),
+        Text(""),
+        Text("Price : ${widget.restaurants[widget.currentRestaurant].getMenu()[index].getPrice().toString()}"),
+      ],
+    );
+  }
+
+  iconWidget(index){
+    return Column(
+      children: [
+        IconButton(
+            icon: Icon(
+              widget.restaurants[widget.currentRestaurant].getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
+              color: widget.restaurants[0].getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
+            ),
+            onPressed: (){
+              widget.restaurants[0].getMenu()[index].setAvailable(!widget.restaurants[0].getMenu()[index].getAvailable());
+              setState(() {});
+            }
+        ),
+        IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: (){
+              widget.restaurants[0].getMenu().removeAt(index);
+              setState(() {});
+            }
+        )
+      ],
+    );
+  }
+
+  Widget showFood(index){
+    return Container(
+      padding: const EdgeInsets.all(2),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: FlatButton(
+          color: Colors.amber,
+          child: Row(
+            children: [
+              imageWidget(index),
+              dataFoodWidget(index),
+              Spacer(),
+              iconWidget(index),
+            ],
+          ),
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FoodPage(
+                    widget.restaurants,
+                    widget.currentRestaurant,
+                    index
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    Widget showFood(index){
-      return Container(
-        padding: const EdgeInsets.all(2),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: FlatButton(
-            color: Colors.amber,
-            child: Row(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height/3,
-                  width: MediaQuery.of(context).size.width/3,
-                  padding: EdgeInsets.fromLTRB(5, 10, 10, 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'assets/images/'+(index+1).toString()+".jpg",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Text("   " + widget.restaurants[0].getMenu()[index].getName()),
-                Spacer(),
-                IconButton(
-                    icon: Icon(
-                      widget.restaurants[widget.currentRestaurant].getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
-                      color: widget.restaurants[0].getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
-                    ),
-                    onPressed: (){
-                      widget.restaurants[0].getMenu()[index].setAvailable(!widget.restaurants[0].getMenu()[index].getAvailable());
-                      setState(() {});
-                    }
-                ),
-                IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: (){
-                      widget.restaurants[0].getMenu().removeAt(index);
-                      setState(() {});
-                    }
-                )
-              ],
-            ),
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FoodPage(
-                      widget.restaurants,
-                      widget.currentRestaurant,
-                      index
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      );
-    }
-
     return Stack(
       children: [
         Container(
