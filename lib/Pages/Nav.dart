@@ -27,29 +27,11 @@ class _NavState extends State<Nav> {
 
   showScreen(){
     if(_selectedIndex == 0){
-      return Stack(// Using Stack for adding Button in page bottom
-        children: [
-          FoodMenu(widget.restaurants, widget.currentRestaurant),
-          Positioned(
-            height: 50,
-            width: MediaQuery.of(context).size.width,
-            bottom: 0,
-            child: Container(
-              color: Colors.black,
-              child: TextButton(
-                child: Text("Add new Food", style: TextStyle(color: theme.yellow),),
-                onPressed: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood(widget.restaurants, widget.currentRestaurant)));
-                },
-              ),
-            )
-          )
-        ],
-      );
+      return FoodMenu(widget.restaurants, widget.currentRestaurant);
     }else if(_selectedIndex == 1){
-      Orders(widget.restaurants, widget.currentRestaurant);
+      return Orders(widget.restaurants, widget.currentRestaurant);
     }else if(_selectedIndex == 2){
-      CommentsPage(widget.restaurants, widget.currentRestaurant);
+      return CommentsPage(widget.restaurants, widget.currentRestaurant);
     }
   }
 
