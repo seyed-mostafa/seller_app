@@ -55,7 +55,7 @@ class _FoodMenuState extends State<FoodMenu> {
           ),
         ),
         widget.restaurants[widget.currentRestaurant].
-        getMenu()[index].getDiscount() != 0 ?
+        getMenu()[index].getDiscount() != null ?
             Center(
               child: Container(
                 decoration: BoxDecoration(
@@ -63,6 +63,7 @@ class _FoodMenuState extends State<FoodMenu> {
                   borderRadius: BorderRadius.circular(5)
                 ),
                 margin: EdgeInsets.fromLTRB(5, 10, 10, 10),
+
                 child: Text("${widget.restaurants[widget.currentRestaurant].
                 getMenu()[index].getDiscount()}%", style: TextStyle(color: Colors.white),),
               ),
