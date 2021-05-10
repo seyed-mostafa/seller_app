@@ -5,6 +5,7 @@ import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/CommentsPage.dart';
 import 'package:seller_app/Pages/MenuPage.dart';
 import 'package:seller_app/Pages/OrdersPage.dart';
+import 'package:seller_app/Pages/tabBar.dart';
 import 'package:seller_app/appBar.dart';
 
 
@@ -26,7 +27,7 @@ class _NavState extends State<Nav> {
 
   showScreen(){
     if(_selectedIndex == 0){
-      return FoodMenu(widget.restaurants, widget.currentRestaurant);
+      return tabBar(widget.restaurants, widget.currentRestaurant);
     }else if(_selectedIndex == 1){
       return Orders(widget.restaurants, widget.currentRestaurant);
     }else if(_selectedIndex == 2){
