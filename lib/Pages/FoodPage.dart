@@ -20,143 +20,163 @@ class FoodPage extends StatefulWidget {
 class _FoodPageState extends State<FoodPage> {
   int state = 1;
 
-
   @override
   Widget build(BuildContext context) {
-    DetailesOrReview(){
-      if(state==1){
+    DetailesOrReview() {
+      if (state == 1) {
         return Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/5,vertical: 15),
-          child:
-          Container(
-          color: Colors.orange,
-          child: Text(widget.restaurants[widget.currentRestaurant]
-              .getMenu()[widget.currentFood]
-              .getDescription(),style: TextStyle(color: theme.black,fontSize: 16),),
-          )
-      );
-
-      }else{
-        return ListView(
-          children: List.generate(
-              widget.restaurants[widget.currentRestaurant].getMenu()[widget.currentFood].getComment().length
-              , (index) => Text(widget.restaurants[widget.currentRestaurant].getMenu()[widget.currentFood].getComment()[index])),
-        );
-
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width / 6,
+                vertical: 15),
+            child: Container(
+              child: Container(
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                      color: Colors.white,
+                      spreadRadius: 10,
+                      blurRadius: 0.5,
+                      offset: Offset(0, 0))
+                ]),
+                child: Text(
+                  widget.restaurants[widget.currentRestaurant]
+                      .getMenu()[widget.currentFood]
+                      .getDescription(),
+                  style: TextStyle(color: theme.black, fontSize: 15),
+                ),
+              ),
+            ));
+      } else {
+        return Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width / 6,
+                vertical: 15),
+            child: Container(
+              child: Container(
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                      color: Colors.white,
+                      spreadRadius: 10,
+                      blurRadius: 0.5,
+                      offset: Offset(0, 0))
+                ]),
+                child: Text(widget.restaurants[widget.currentRestaurant]
+                    .getMenu()[widget.currentFood]
+                    .getComment()
+                    .elementAt(0)),
+              ),
+            ));
       }
     }
 
     foodData() {
-
-
-      return Container(
-        child: Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height / 3,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'assets/images/1.jpg',
-                fit: BoxFit.cover,
-              ),
+      return ListView(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height / 3,
+            width: MediaQuery.of(context).size.width,
+            child: Image.asset(
+              'assets/images/1.jpg',
+              fit: BoxFit.cover,
             ),
-            Container(
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width / 100,
+                vertical: 15),
+            child: Column(
+              children: [
+                Row(children: [
+                  Spacer(),
+                  Text(
+                    //name
+                    widget.restaurants[widget.currentRestaurant]
+                        .getMenu()[widget.currentFood]
+                        .getName(),
 
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/100,vertical: 15),
-              child: Column(
-                children: [
-                  Row(children: [
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
+                  Spacer(
+                    flex: 10,
+                  ),
+                  Text(
+                    widget.restaurants[widget.currentRestaurant]
+                            .getMenu()[widget.currentFood]
+                            .getPrice()
+                            .toString() +
+                        ' T',
+                    style: TextStyle(fontSize: 28),
+                  ),
+                  Spacer(),
+                ]),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
                     Spacer(),
                     Text(
-                      //name
-                      widget.restaurants[widget.currentRestaurant]
-                          .getMenu()[widget.currentFood]
-                          .getName(),
-
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      'by ',
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                    Text(
+                      widget.restaurants[widget.currentRestaurant].getName(),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                     Spacer(
                       flex: 10,
                     ),
-                    Text(
-                      widget.restaurants[widget.currentRestaurant]
-                              .getMenu()[widget.currentFood]
-                              .getPrice()
-                              .toString() +
-                          ' T',
-                      style: TextStyle(fontSize: 28),
-                    ),
+                    Text(''),
                     Spacer(),
-                  ]),
-                  SizedBox(
-                    height: 5,
-                  ),
-
-                  Row(
-                    children: [
-                      Spacer(),
-                      Text('by ',style: TextStyle(fontSize: 12,color: Colors.grey),),
-                      Text(widget.restaurants[widget.currentRestaurant]
-                          .getName(),
-
-                        style: TextStyle(fontSize:12,fontWeight: FontWeight.bold),
-                      ),
-                      Spacer(flex: 10,),
-                      Text(''),
-                      Spacer(),
-                    ],
-                  ),
-
-                ],
-              ),
-            ),
-
-            Padding(padding:EdgeInsets.all(20)),
-            Row(
-              children: [
-                Spacer(),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      state = 1;
-                    });
-                    print('Detailes ');
-                    print(state);
-                  },
-                  child: Text('Detailes',
-                      style: TextStyle(
-
-                          fontSize: 25,
-                          color: state == 1 ? theme.yellow : Colors.grey,)),
+                  ],
                 ),
-                Spacer(
-                  flex: 2,
-                ),
-                TextButton(
-                  onPressed: () {
-                    print('Review ');
-                    print(state);
-                    setState(() {
-                      state = 2;
-                    });
-                  },
-                  child: Text('Review',
-                      style: TextStyle(
-                          fontSize: 25,
-                          color: state == 2 ? theme.yellow : Colors.grey)),
-                ),
-                Spacer(),
               ],
             ),
-            DetailesOrReview(),
-            Spacer(),
-
-          ],
-        ),
+          ),
+          Padding(padding: EdgeInsets.all(20)),
+          Row(
+            children: [
+              Spacer(),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    state = 1;
+                  });
+                  print('Detailes ');
+                  print(state);
+                },
+                child: Text('Detailes',
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: state == 1 ? theme.yellow : Colors.grey,
+                    )),
+              ),
+              Spacer(
+                flex: 2,
+              ),
+              TextButton(
+                onPressed: () {
+                  print('Review ');
+                  print(state);
+                  setState(() {
+                    state = 2;
+                  });
+                },
+                child: Text('Review',
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: state == 2 ? theme.yellow : Colors.grey)),
+              ),
+              Spacer(),
+            ],
+          ),
+          DetailesOrReview(),
+          Spacer(),
+        ],
       );
     }
-
 
     return Scaffold(
       appBar: appBar(),
