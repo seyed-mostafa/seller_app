@@ -23,95 +23,6 @@ class _FoodPageState extends State<FoodPage> {
 
   @override
   Widget build(BuildContext context) {
-    bag() {
-      if (true) {
-        return Row(
-          children: [
-            Spacer(
-              flex: 3,
-            ),
-            IconButton(
-                icon: Icon(
-                  Icons.indeterminate_check_box_outlined,
-                  size: 30,
-                  color: theme.black,
-                ),
-                onPressed: () {
-                  print('mines');
-                }),
-            Spacer(),
-            TextButton(
-              onPressed: () {
-                print('add to bag');
-              },
-              child: Text('add to bag'),
-              style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  shadowColor: theme.black,
-                  backgroundColor: theme.yellow,
-                  textStyle: TextStyle(fontSize: 45, color: Colors.green)),
-            ),
-            Spacer(),
-            IconButton(
-                icon: Icon(
-                  Icons.add_box_outlined,
-                  size: 30,
-                  color: theme.yellow,
-                ),
-                onPressed: () {
-                  print('add');
-                }),
-            Spacer(
-              flex: 3,
-            ),
-          ],
-        );
-      } else {
-        return Row(
-          children: [
-            Spacer(
-              flex: 3,
-            ),
-            IconButton(
-                icon: Icon(
-                  Icons.indeterminate_check_box_outlined,
-                  size: 30,
-                  color: theme.black,
-                ),
-                onPressed: () {
-                  print('mines');
-                }),
-            Spacer(),
-            TextButton(
-              onPressed: () {
-                print('add to bag');
-              },
-              child: Text('1'),
-              style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  shadowColor: theme.black,
-                  backgroundColor: theme.yellow,
-                  textStyle: TextStyle(fontSize: 45, color: Colors.green)),
-            ),
-            Spacer(),
-            IconButton(
-                icon: Icon(
-                  Icons.add_box_outlined,
-                  size: 30,
-                  color: theme.yellow,
-                ),
-                onPressed: () {
-                  print('add');
-                }),
-            Spacer(
-              flex: 3,
-            ),
-          ],
-        );
-      }
-    }
-
-
     DetailesOrReview(){
       if(state==1){
         return Container(
@@ -151,32 +62,56 @@ class _FoodPageState extends State<FoodPage> {
               ),
             ),
             Container(
-              padding: EdgeInsets.all(20),
-              child: Row(children: [
-                Spacer(),
-                Text(
-                  //name
-                  widget.restaurants[widget.currentRestaurant]
-                      .getMenu()[widget.currentFood]
-                      .getName(),
 
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                ),
-                Spacer(
-                  flex: 10,
-                ),
-                Text(
-                  widget.restaurants[widget.currentRestaurant]
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/100,vertical: 15),
+              child: Column(
+                children: [
+                  Row(children: [
+                    Spacer(),
+                    Text(
+                      //name
+                      widget.restaurants[widget.currentRestaurant]
                           .getMenu()[widget.currentFood]
-                          .getPrice()
-                          .toString() +
-                      ' T',
-                  style: TextStyle(fontSize: 28),
-                ),
-                Spacer(),
-              ]),
+                          .getName(),
+
+                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                    Spacer(
+                      flex: 10,
+                    ),
+                    Text(
+                      widget.restaurants[widget.currentRestaurant]
+                              .getMenu()[widget.currentFood]
+                              .getPrice()
+                              .toString() +
+                          ' T',
+                      style: TextStyle(fontSize: 28),
+                    ),
+                    Spacer(),
+                  ]),
+                  SizedBox(
+                    height: 5,
+                  ),
+
+                  Row(
+                    children: [
+                      Spacer(),
+                      Text('by ',style: TextStyle(fontSize: 12,color: Colors.grey),),
+                      Text(widget.restaurants[widget.currentRestaurant]
+                          .getName(),
+
+                        style: TextStyle(fontSize:12,fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(flex: 10,),
+                      Text(''),
+                      Spacer(),
+                    ],
+                  ),
+
+                ],
+              ),
             ),
-            bag(),
+
             Padding(padding:EdgeInsets.all(20)),
             Row(
               children: [

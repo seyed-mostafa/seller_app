@@ -22,12 +22,31 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
   restaurants.add(restaurant1);
     //restaurants.add(Restaurant("name", null, "phoneNumber", "password"));
-  Food food20=Food('ghorme kharegy', 'description20', 8000,null , false, true, TypeFood.International);
-  Food food1=Food('ghorme', 'description1 \n sdsdsxswd\n sdwdwdhkouojojqox', 25000,null , false, true, TypeFood.PersianFood);
-  food1.setComment('comment');
+  List<Food> food=[
+  Food('ghorme kharegy', 'description20', 8000,null , false, true, TypeFood.International),
+  Food('ghorme', 'description1 \n sdsdsxswd\n sdwdwdhkouojojqox', 25000,null , false, true, TypeFood.PersianFood),
+  Food('makhsoos', 'description3', 25000,null , false, true, TypeFood.Pizza),
+  Food('sabzijat', 'description4', 25000,null , false, true, TypeFood.Pizza),
+  Food('hamberger', 'description5', 65000,20 , false, true, TypeFood.Sandwich),
+  Food('sosis', 'description6', 25000,null , false, true, TypeFood.Sandwich),
+  Food('ab', 'description7', 25000,null , false, true, TypeFood.Drinks),
+  Food('doogh', 'description8', 40000,52 , false, true, TypeFood.Drinks),
+  Food('bastany', 'description9', 25000,null , false, true, TypeFood.Dessert),
+  Food('jely', 'description10', 25000,null , false, true, TypeFood.Dessert),
+  Food('soop', 'description11', 25000,60 , false, true, TypeFood.Appetizer),
+  Food('fereny', 'description12', 25000,null , false, true, TypeFood.Appetizer),
+  Food('morgh sokhary', 'description13', 80000,null , false, true, TypeFood.Fried),
+  Food('gharch sorakhy', 'description14', 25000,null , false, true, TypeFood.Fried),
+  Food('Medium Rare', 'description15', 15000,null , false, true, TypeFood.Steaks),
+  Food('T-bone Steak', 'description16', 25000,20 , false, true, TypeFood.Steaks),
+  Food('nimroo', 'description17', 5000,null , false, true, TypeFood.Breakfast)
+  ];
 
-  restaurant1.addMenu(food1);
-  restaurant1.addMenu(food20);
+  for(Food food in food ){
+    restaurant1.addMenu(food);
+  }
+
+
     super.initState();
     Timer(
         Duration(seconds: 0),
