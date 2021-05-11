@@ -17,6 +17,7 @@ class Restaurant {
   num _sendingRangeRadius,_id;
   LatLng _address;
   List<Food> _menu = List.empty(growable: true);
+  List<TypeFood> _type;
 
   Restaurant(String name, LatLng address, String phoneNumber, String password) {
     _count++;
@@ -39,7 +40,13 @@ class Restaurant {
     return _id;
   }
 
+  void addTypeFood(TypeFood typeFood){
+    _type.add(typeFood);
+  }
 
+List<TypeFood> getTypeFoods(){
+    return _type;
+}
 
 
   void setName(String name) {
