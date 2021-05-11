@@ -1,5 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'Order.dart';
 import 'Food.dart';
+
 
 //  _name  =>                                                      نام رستوران
 // _phoneNumber =>                                          شماره تماس رستوران
@@ -10,22 +12,47 @@ import 'Food.dart';
 // _address =>                       آدرس رستوران (به صورت مختصات )در کلاس خودش
 // List<Food> _menu =>                    منو رستوران به صورت لیستی از جنس غذا
 
-class Restaurant {
+class Restaurant  {
 
   static int _count=99243000;
-  String _name, _phoneNumber, _password, _days, _hour;
+  String _name, _phoneNumber, _password, _days, _hour,_addressString;
   num _sendingRangeRadius,_id;
   LatLng _address;
   List<Food> _menu = List.empty(growable: true);
   List<TypeFood> _type;
+  List<Order> _orders= List.empty(growable: true);
 
-  Restaurant(String name, LatLng address, String phoneNumber, String password) {
+  Restaurant(String name, LatLng address, String phoneNumber, String password)  {
     _count++;
     _id=_count;
     this._name = name;
     this._address = address;
     this._password = password;
     this._phoneNumber = phoneNumber;
+  }
+
+  void addOrder(Order order){
+    _orders.add(order);
+    List <Order> done= List.empty(growable: true);
+    List <Order> undone= List.empty(growable: true);
+    for(Order ord in _orders){
+      if(ord.getStatus()==true){
+        done.add(ord);
+      }else{
+        undone.add(ord);
+      }
+    }
+    done.sort((a,b) => a.getTime().compareTo(b.getTime()) );
+    undone.sort((a,b) => a.getTime().compareTo(b.getTime()) );
+    _orders.clear();
+    done=done.reversed.toList();
+    undone=undone.reversed.toList();
+    undone+=done;
+    _orders+=undone;
+  }
+  
+  List<Order> getOrders(){
+    return _orders;
   }
 
   List<Food> getMenu() {
@@ -47,6 +74,12 @@ class Restaurant {
 List<TypeFood> getTypeFoods(){
     return _type;
 }
+  void setAddressString(String addressString){
+    this._addressString=addressString;
+  }
+  String getAddressString(){
+    return _addressString;
+  }
 
 
   void setName(String name) {

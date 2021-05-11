@@ -1,29 +1,36 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'Food.dart';
 import 'package:intl/intl.dart';
+import 'Restaurant.dart';
 
 
-class Order{
+class Order {
   String _customerName,_restaurentName;
-  int _id;
-  num _price=0;
+  int _id,_price=0;
+  bool _status=false;
   LatLng _customerAddress;
   static int _count=99246000;
   DateTime _time;
   Map <Food,int> _order=new Map();
 
 
-  Order(Map <Food,int> order){
+  Order(Map <Food,int> order) {
     this._order={...order};
     _count++;
     _id=_count;
     for(Food food in _order.keys){
       if(food.getDiscount()!=null)
-         _price+= (food.getPrice()*(100-food.getDiscount()))/100*_order[food];
+         _price+= ((food.getPrice()*(100-food.getDiscount()))/100*_order[food]).ceil();
       else
         _price+= (food.getPrice()*_order[food]);
     }
 
+  }
+  void setStatus(){
+    _status=!_status;
+  }
+  bool getStatus(){
+    return _status;
   }
   void setCustomerName(String name){
     _customerName=name;
@@ -35,7 +42,7 @@ class Order{
     _customerAddress=address;
   }
   void setTime(){
-    DateTime _time= DateTime.now();
+     _time= DateTime.now();
   }
 
 
@@ -51,8 +58,8 @@ class Order{
     return _restaurentName;
   }
 
-  String getTime() {
-    return DateFormat('kk:mm:ss \n EEE d MMM').format(_time);
+  DateTime getTime() {
+    return _time;
   }
 
   String getCustomerName(){
