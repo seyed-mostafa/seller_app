@@ -11,6 +11,7 @@ class FoodPage extends StatefulWidget {
   int currentRestaurant;
   int currentFood;
 
+
   FoodPage(this.restaurants, this.currentRestaurant, this.currentFood);
 
   @override
@@ -19,6 +20,7 @@ class FoodPage extends StatefulWidget {
 
 class _FoodPageState extends State<FoodPage> {
   int state = 1;
+  int like=0;
 
   @override
   Widget build(BuildContext context) {
@@ -74,13 +76,35 @@ class _FoodPageState extends State<FoodPage> {
       return ListView(
         children: [
           Container(
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+
+                ),
+                child: IconButton(
+                  icon: Icon(
+                     like%2==0? Icons.favorite_border:Icons.favorite,
+                    color: Colors.red,
+                    size: 38,
+                  ),
+                    onPressed: () {
+                      setState(() {
+                      like++;
+                      });
+                    }
+                )
+              ),
+            ),
             height: MediaQuery.of(context).size.height / 3,
             width: MediaQuery.of(context).size.width,
-            child: Image.asset(
-              'assets/images/1.jpg',
-              fit: BoxFit.cover,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/1.jpg'), fit: BoxFit.cover),
             ),
           ),
+
           Container(
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width / 100,

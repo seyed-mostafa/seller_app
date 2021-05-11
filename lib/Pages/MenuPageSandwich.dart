@@ -55,7 +55,7 @@ class _SandwichMenuState extends State<SandwichMenu> {
           ),
         ),
         widget.restaurants[widget.currentRestaurant].
-        getMenu()[index].getDiscount() != 0 ?
+        getMenu()[index].getDiscount() != null ?
         Center(
           child: Container(
             decoration: BoxDecoration(
