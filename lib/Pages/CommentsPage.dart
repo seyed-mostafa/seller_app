@@ -6,10 +6,9 @@ import 'package:seller_app/appBar.dart';
 
 class CommentsPage extends StatefulWidget {
 
-  List<Restaurant> restaurants = [];
-  int currentRestaurant;
+Restaurant currentRestaurant;
 
-  CommentsPage(this.restaurants, this.currentRestaurant);
+  CommentsPage( this.currentRestaurant);
 
   @override
   _CommentsPageState createState() => _CommentsPageState();
@@ -25,7 +24,7 @@ class _CommentsPageState extends State<CommentsPage> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView(
-        children: List.generate(widget.restaurants[widget.currentRestaurant].getMenu().length, (index) => showComment(index)),
+        children: List.generate(widget.currentRestaurant.getMenu().length, (index) => showComment(index)),
     )
     );
   }

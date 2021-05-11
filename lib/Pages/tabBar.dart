@@ -8,10 +8,9 @@ import 'package:seller_app/Pages/MenuPageSandwich.dart';
 
 class tabBar extends StatefulWidget {
 
-  List<Restaurant> restaurants = [];
-  int currentRestaurant;
+  Restaurant currentRestaurant;
 
-  tabBar(this.restaurants, this.currentRestaurant);
+  tabBar(this.currentRestaurant);
 
   @override
   _tabBarState createState() => _tabBarState();
@@ -41,9 +40,9 @@ class _tabBarState extends State<tabBar> {
         ),
         body: TabBarView(
           children: [
-            FoodMenu(widget.restaurants, widget.currentRestaurant),
-            PizzaMenu(widget.restaurants, widget.currentRestaurant),
-            SandwichMenu(widget.restaurants, widget.currentRestaurant)
+            FoodMenu( widget.currentRestaurant),
+            PizzaMenu( widget.currentRestaurant),
+            SandwichMenu( widget.currentRestaurant)
           ],
         ),
       ),

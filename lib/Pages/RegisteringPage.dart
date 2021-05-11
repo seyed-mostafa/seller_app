@@ -4,12 +4,13 @@ import 'package:seller_app/Objects/Restaurant.dart';
 import 'EnteringPage.dart';
 import '../MultiChoice.dart';
 import 'dart:io';
+import 'package:seller_app/Objects/Restaurant.dart';
 
 class RegisteringPage extends StatefulWidget {
 
-  List<Restaurant> restaurants = [];
+ Function change;
 
-  RegisteringPage(this.restaurants);
+  RegisteringPage(this.change);
 
   @override
   _RegisteringPageState createState() => _RegisteringPageState();
@@ -163,18 +164,8 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         print(inputAddress);
                         print(inputPhoneNumber);
                         print(inputPassword);
-                        widget.restaurants.add(
-                          Restaurant(
-                            inputName,
-                            null,
-                            inputPhoneNumber,
-                            inputPassword
-                          )
-                        );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => EnteringPage(widget.restaurants)),
-                        );
+                        widget.change(Restaurant(inputName,null,inputPhoneNumber,inputPassword));
+                        Navigator.pop(context,);
                       }
                       setState(() {});
                     },

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/CommentsPage.dart';
-import 'package:seller_app/Pages/MenuPage.dart';
 import 'package:seller_app/Pages/OrdersPage.dart';
 import 'package:seller_app/Pages/tabBar.dart';
 import 'package:seller_app/appBar.dart';
@@ -12,10 +11,8 @@ import 'package:seller_app/appBar.dart';
 
 class Nav extends StatefulWidget {
 
-  List<Restaurant> restaurants = [];
-  int currentRestaurant;
-
-  Nav(this.restaurants, this.currentRestaurant);
+  Restaurant currentRestaurant;
+  Nav(this.currentRestaurant);
 
   @override
   _NavState createState() => _NavState();
@@ -27,11 +24,11 @@ class _NavState extends State<Nav> {
 
   showScreen(){
     if(_selectedIndex == 0){
-      return tabBar(widget.restaurants, widget.currentRestaurant);
+      return tabBar( widget.currentRestaurant);
     }else if(_selectedIndex == 1){
-      return Orders(widget.restaurants, widget.currentRestaurant);
+      return Orders( widget.currentRestaurant);
     }else if(_selectedIndex == 2){
-      return CommentsPage(widget.restaurants, widget.currentRestaurant);
+      return CommentsPage( widget.currentRestaurant);
     }
   }
 

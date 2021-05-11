@@ -6,10 +6,9 @@ import 'package:seller_app/appBar.dart';
 
 class Orders extends StatefulWidget {
 
-  List<Restaurant> restaurants = [];
-  int currentRestaurant;
+Restaurant currentRestaurant;
 
-  Orders(this.restaurants, this.currentRestaurant);
+  Orders( this.currentRestaurant);
 
   @override
   _OrdersState createState() => _OrdersState();
@@ -25,7 +24,7 @@ class _OrdersState extends State<Orders> {
   Widget build(BuildContext context) {
     return Container(
         child: ListView(
-          children: List.generate(widget.restaurants[widget.currentRestaurant].getMenu().length, (index) => showOrder(index)),
+          children: List.generate(widget.currentRestaurant.getMenu().length, (index) => showOrder(index)),
         )
     );
   }

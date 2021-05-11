@@ -8,11 +8,10 @@ import 'AddFoodPage.dart';
 
 
 class FoodPage extends StatefulWidget {
-  List<Restaurant> restaurants = [];
-  int currentRestaurant;
+  Restaurant currentRestaurant;
   int currentFood;
 
-  FoodPage(this.restaurants, this.currentRestaurant, this.currentFood);
+  FoodPage( this.currentRestaurant, this.currentFood);
 
   @override
   _FoodPageState createState() => _FoodPageState();
@@ -41,7 +40,7 @@ class _FoodPageState extends State<FoodPage> {
                       offset: Offset(0, 0))
                 ]),
                 child: Text(
-                  widget.restaurants[widget.currentRestaurant]
+                  widget.currentRestaurant
                       .getMenu()[widget.currentFood]
                       .getDescription(),
                   style: TextStyle(color: theme.black, fontSize: 15),
@@ -64,7 +63,7 @@ class _FoodPageState extends State<FoodPage> {
                       offset: Offset(0, 0))
                 ]),
                 child: Text(
-                    widget.restaurants[widget.currentRestaurant]
+                widget.currentRestaurant
                         .getMenu()[widget.currentFood]
                         .getComment()
                         .elementAt(0),
@@ -95,7 +94,7 @@ class _FoodPageState extends State<FoodPage> {
                   Spacer(),
                   Text(
                     //name
-                    widget.restaurants[widget.currentRestaurant]
+                    widget.currentRestaurant
                         .getMenu()[widget.currentFood]
                         .getName(),
 
@@ -105,7 +104,7 @@ class _FoodPageState extends State<FoodPage> {
                     flex: 10,
                   ),
                   Text(
-                    widget.restaurants[widget.currentRestaurant]
+                    widget.currentRestaurant
                             .getMenu()[widget.currentFood]
                             .getPrice()
                             .toString() +
@@ -125,7 +124,7 @@ class _FoodPageState extends State<FoodPage> {
                       style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                     Text(
-                      widget.restaurants[widget.currentRestaurant].getName(),
+                      widget.currentRestaurant.getName(),
                       style:
                           TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                     ),
@@ -196,7 +195,7 @@ class _FoodPageState extends State<FoodPage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => AddFood(
-                                widget.restaurants, widget.currentRestaurant)));
+                                 widget.currentRestaurant)));
                   },
                 ),
               )),

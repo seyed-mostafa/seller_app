@@ -7,10 +7,9 @@ import 'FoodPage.dart';
 
 class FoodMenu extends StatefulWidget {
 
-  List<Restaurant> restaurants = [];
-  int currentRestaurant;
+  Restaurant currentRestaurant;
 
-  FoodMenu(this.restaurants, this.currentRestaurant);
+  FoodMenu(this.currentRestaurant);
 
   @override
   _FoodMenuState createState() => _FoodMenuState();
@@ -54,7 +53,7 @@ class _FoodMenuState extends State<FoodMenu> {
             ),
           ),
         ),
-        widget.restaurants[widget.currentRestaurant].
+        widget.currentRestaurant.
         getMenu()[index].getDiscount() != null ?
             Center(
               child: Container(
@@ -64,7 +63,7 @@ class _FoodMenuState extends State<FoodMenu> {
                 ),
                 margin: EdgeInsets.fromLTRB(5, 10, 10, 10),
 
-                child: Text("${widget.restaurants[widget.currentRestaurant].
+                child: Text("${widget.currentRestaurant.
                 getMenu()[index].getDiscount()}%", style: TextStyle(color: Colors.white),),
               ),
             ):
@@ -78,9 +77,9 @@ class _FoodMenuState extends State<FoodMenu> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.restaurants[widget.currentRestaurant].getMenu()[index].getName()),
+        Text(widget.currentRestaurant.getMenu()[index].getName()),
         Text(""),
-        Text("Price : ${widget.restaurants[widget.currentRestaurant].getMenu()[index].getPrice().toString()}"),
+        Text("Price : ${widget.currentRestaurant.getMenu()[index].getPrice().toString()}"),
       ],
     );
   }
@@ -90,18 +89,18 @@ class _FoodMenuState extends State<FoodMenu> {
       children: [
         IconButton(
             icon: Icon(
-              widget.restaurants[widget.currentRestaurant].getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
-              color: widget.restaurants[0].getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
+              widget.currentRestaurant.getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
+              color: widget.currentRestaurant.getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
             ),
             onPressed: (){
-              widget.restaurants[0].getMenu()[index].setAvailable(!widget.restaurants[0].getMenu()[index].getAvailable());
+              widget.currentRestaurant.getMenu()[index].setAvailable(!widget.currentRestaurant.getMenu()[index].getAvailable());
               setState(() {});
             }
         ),
         IconButton(
             icon: Icon(Icons.delete),
             onPressed: (){
-              widget.restaurants[0].getMenu().removeAt(index);
+              widget.currentRestaurant.getMenu().removeAt(index);
               setState(() {});
             }
         )
@@ -129,7 +128,6 @@ class _FoodMenuState extends State<FoodMenu> {
               context,
               MaterialPageRoute(
                 builder: (context) => FoodPage(
-                    widget.restaurants,
                     widget.currentRestaurant,
                     index
                 ),
@@ -147,7 +145,7 @@ class _FoodMenuState extends State<FoodMenu> {
       children: [
         Container(
           child: ListView(
-            children: List.generate(widget.restaurants[widget.currentRestaurant].getMenu().length, (index) => showFood(index)),
+            children: List.generate(widget.currentRestaurant.getMenu().length, (index) => showFood(index)),
           )
         ),
         Positioned(
@@ -159,7 +157,7 @@ class _FoodMenuState extends State<FoodMenu> {
               child: TextButton(
                 child: Text("Add new Food", style: TextStyle(color: theme.yellow),),
                 onPressed: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood(widget.restaurants, widget.currentRestaurant)));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood( widget.currentRestaurant)));
                 },
               ),
             )

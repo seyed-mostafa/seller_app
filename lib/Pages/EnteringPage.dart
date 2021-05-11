@@ -3,21 +3,28 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-//import 'package:seller_app/Pages/MenuPage.dart';
-import 'package:seller_app/Pages/nav.dart';
+import 'package:seller_app/Pages/Nav.dart';
 import 'RegisteringPage.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:seller_app/Objects/Food.dart';
 
 class EnteringPage extends StatefulWidget {
 
   List<Restaurant> restaurants = [];
 
-  EnteringPage(this.restaurants);
+
 
   @override
   _EnteringPageState createState() => _EnteringPageState();
 }
 
 class _EnteringPageState extends State<EnteringPage> {
+  List<Restaurant> restaurants = List.empty(growable: true);
+  change(Restaurant restaurant){
+    setState(() {
+    restaurants.add(restaurant);
+    });
+  }
 
   //fake Dates
   String password = "123";
@@ -149,7 +156,7 @@ class _EnteringPageState extends State<EnteringPage> {
                           file.writeAsString("Registered\nthis is the index of restaurant");
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => Nav(widget.restaurants, 0)),
+                            MaterialPageRoute(builder: (context) => Nav(widget.restaurants[currentRestaurant])),
                           );
                         }else{
                           validUser=false;
@@ -167,7 +174,7 @@ class _EnteringPageState extends State<EnteringPage> {
                         onPressed: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => RegisteringPage(widget.restaurants)),
+                            MaterialPageRoute(builder: (context) => RegisteringPage(change)),
                           );
                         },
                         child: Text("Sign up", style: TextStyle(fontSize: 18),)

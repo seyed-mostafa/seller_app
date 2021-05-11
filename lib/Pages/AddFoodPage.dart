@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/Pages/nav.dart';
+import 'package:seller_app/Pages/Nav.dart';
 import 'package:seller_app/appBar.dart';
 
 
 class AddFood extends StatefulWidget {
 
-  List<Restaurant> restaurants = [];
-  int currentRestaurant;
+Restaurant currentRestaurant;
 
-  AddFood(this.restaurants, this.currentRestaurant);
+  AddFood( this.currentRestaurant);
 
   @override
   _AddFoodState createState() => _AddFoodState();
@@ -53,7 +52,7 @@ class _AddFoodState extends State<AddFood> {
           onPressed: (){
             Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Nav(widget.restaurants, widget.currentRestaurant)))
+                MaterialPageRoute(builder: (context) => Nav( widget.currentRestaurant)))
             ;
           },
         ),
@@ -197,7 +196,7 @@ class _AddFoodState extends State<AddFood> {
                               print(_inputDescription);
                               print(_inputPrice);
                               print(_inputDiscount);
-                              widget.restaurants[0].getMenu().add(Food(
+                              widget.currentRestaurant.getMenu().add(Food(
                                   _inputName,
                                   _inputDescription,
                                   int.parse(_inputPrice),
@@ -206,7 +205,7 @@ class _AddFoodState extends State<AddFood> {
                                   true,
                                   TypeFood.Appetizer,
                               ));
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav(widget.restaurants, widget.currentRestaurant)));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav( widget.currentRestaurant)));
                             }
                             setState(() {});
                           },

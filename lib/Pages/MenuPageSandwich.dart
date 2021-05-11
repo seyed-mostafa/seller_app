@@ -7,10 +7,9 @@ import 'FoodPage.dart';
 
 class SandwichMenu extends StatefulWidget {
 
-  List<Restaurant> restaurants = [];
-  int currentRestaurant;
+ Restaurant currentRestaurant;
 
-  SandwichMenu(this.restaurants, this.currentRestaurant);
+  SandwichMenu( this.currentRestaurant);
 
   @override
   _SandwichMenuState createState() => _SandwichMenuState();
@@ -54,7 +53,7 @@ class _SandwichMenuState extends State<SandwichMenu> {
             ),
           ),
         ),
-        widget.restaurants[widget.currentRestaurant].
+        widget.currentRestaurant.
         getMenu()[index].getDiscount() != null ?
         Center(
           child: Container(
@@ -63,7 +62,7 @@ class _SandwichMenuState extends State<SandwichMenu> {
                 borderRadius: BorderRadius.circular(5)
             ),
             margin: EdgeInsets.fromLTRB(5, 10, 10, 10),
-            child: Text("${widget.restaurants[widget.currentRestaurant].
+            child: Text("${widget.currentRestaurant.
             getMenu()[index].getDiscount()}%", style: TextStyle(color: Colors.white),),
           ),
         ):
@@ -77,9 +76,9 @@ class _SandwichMenuState extends State<SandwichMenu> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.restaurants[widget.currentRestaurant].getMenu()[index].getName()),
+        Text(widget.currentRestaurant.getMenu()[index].getName()),
         Text(""),
-        Text("Price : ${widget.restaurants[widget.currentRestaurant].getMenu()[index].getPrice().toString()}"),
+        Text("Price : ${widget.currentRestaurant.getMenu()[index].getPrice().toString()}"),
       ],
     );
   }
@@ -89,18 +88,18 @@ class _SandwichMenuState extends State<SandwichMenu> {
       children: [
         IconButton(
             icon: Icon(
-              widget.restaurants[widget.currentRestaurant].getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
-              color: widget.restaurants[0].getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
+              widget.currentRestaurant.getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
+              color: widget.currentRestaurant.getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
             ),
             onPressed: (){
-              widget.restaurants[0].getMenu()[index].setAvailable(!widget.restaurants[0].getMenu()[index].getAvailable());
+              widget.currentRestaurant.getMenu()[index].setAvailable(!widget.currentRestaurant.getMenu()[index].getAvailable());
               setState(() {});
             }
         ),
         IconButton(
             icon: Icon(Icons.delete),
             onPressed: (){
-              widget.restaurants[0].getMenu().removeAt(index);
+              widget.currentRestaurant.getMenu().removeAt(index);
               setState(() {});
             }
         )
@@ -128,7 +127,6 @@ class _SandwichMenuState extends State<SandwichMenu> {
               context,
               MaterialPageRoute(
                 builder: (context) => FoodPage(
-                    widget.restaurants,
                     widget.currentRestaurant,
                     index
                 ),
@@ -143,8 +141,8 @@ class _SandwichMenuState extends State<SandwichMenu> {
   final myChildren = <Widget>[];
 
   void childrenReturner(){
-    for(int i = 0; i < widget.restaurants[widget.currentRestaurant].getMenu().length; i++)
-      if(widget.restaurants[widget.currentRestaurant].getMenu()[i].getTypeFood() == TypeFood.Pizza){
+    for(int i = 0; i < widget.currentRestaurant.getMenu().length; i++)
+      if(widget.currentRestaurant.getMenu()[i].getTypeFood() == TypeFood.Pizza){
         myChildren.add(showFood(i));
       }
     setState(() {
@@ -159,8 +157,8 @@ class _SandwichMenuState extends State<SandwichMenu> {
         Container(
             child: ListView(
               children: List.generate(
-                  widget.restaurants[widget.currentRestaurant].getMenu().length,
-                      (index) => widget.restaurants[widget.currentRestaurant].getMenu()[index].getTypeFood() == TypeFood.Sandwich ?
+                  widget.currentRestaurant.getMenu().length,
+                      (index) => widget.currentRestaurant.getMenu()[index].getTypeFood() == TypeFood.Sandwich ?
                   showFood(index) : Container()
               ),
             )
@@ -174,7 +172,7 @@ class _SandwichMenuState extends State<SandwichMenu> {
               child: TextButton(
                 child: Text("Add new Food", style: TextStyle(color: theme.yellow),),
                 onPressed: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood(widget.restaurants, widget.currentRestaurant)));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood(widget.currentRestaurant)));
                 },
               ),
             )
