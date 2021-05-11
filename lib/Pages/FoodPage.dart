@@ -4,13 +4,13 @@ import 'package:flutter/painting.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/appBar.dart';
-import 'nav.dart';
+import 'AddFoodPage.dart';
+
 
 class FoodPage extends StatefulWidget {
   List<Restaurant> restaurants = [];
   int currentRestaurant;
   int currentFood;
-
 
   FoodPage(this.restaurants, this.currentRestaurant, this.currentFood);
 
@@ -20,7 +20,7 @@ class FoodPage extends StatefulWidget {
 
 class _FoodPageState extends State<FoodPage> {
   int state = 1;
-  int like=0;
+  int like = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +63,12 @@ class _FoodPageState extends State<FoodPage> {
                       blurRadius: 0.5,
                       offset: Offset(0, 0))
                 ]),
-                child: Text(widget.restaurants[widget.currentRestaurant]
-                    .getMenu()[widget.currentFood]
-                    .getComment()
-                    .elementAt(0)),
+                child: Text(
+                    widget.restaurants[widget.currentRestaurant]
+                        .getMenu()[widget.currentFood]
+                        .getComment()
+                        .elementAt(0),
+                    style: TextStyle(color: theme.black, fontSize: 15)),
               ),
             ));
       }
@@ -76,35 +78,13 @@ class _FoodPageState extends State<FoodPage> {
       return ListView(
         children: [
           Container(
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-
-                ),
-                child: IconButton(
-                  icon: Icon(
-                     like%2==0? Icons.favorite_border:Icons.favorite,
-                    color: Colors.red,
-                    size: 38,
-                  ),
-                    onPressed: () {
-                      setState(() {
-                      like++;
-                      });
-                    }
-                )
-              ),
-            ),
             height: MediaQuery.of(context).size.height / 3,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/1.jpg'), fit: BoxFit.cover),
+            child: Image.asset(
+              'assets/images/1.jpg',
+              fit: BoxFit.cover,
             ),
           ),
-
           Container(
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width / 100,
@@ -168,8 +148,6 @@ class _FoodPageState extends State<FoodPage> {
                   setState(() {
                     state = 1;
                   });
-                  print('Detailes ');
-                  print(state);
                 },
                 child: Text('Detailes',
                     style: TextStyle(
@@ -182,8 +160,6 @@ class _FoodPageState extends State<FoodPage> {
               ),
               TextButton(
                 onPressed: () {
-                  print('Review ');
-                  print(state);
                   setState(() {
                     state = 2;
                   });
@@ -197,6 +173,33 @@ class _FoodPageState extends State<FoodPage> {
             ],
           ),
           DetailesOrReview(),
+          Spacer(),
+          Positioned(
+              height: 100,
+              width: MediaQuery.of(context).size.width,
+              bottom: 0,
+              child: Container(
+
+                color: theme.yellow,
+                height: 50,
+                child: TextButton(
+
+                  child: Text(
+                    "Edit ",
+                    style: TextStyle(
+                        color: theme.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddFood(
+                                widget.restaurants, widget.currentRestaurant)));
+                  },
+                ),
+              )),
           Spacer(),
         ],
       );
