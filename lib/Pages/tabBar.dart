@@ -1,10 +1,11 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
+import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/MenuPage.dart';
-import 'package:seller_app/Pages/MenuPagePizza.dart';
-import 'package:seller_app/Pages/MenuPageSandwich.dart';
+import 'package:seller_app/Pages/MenuType.dart';
 
 class tabBar extends StatefulWidget {
 
@@ -21,18 +22,30 @@ class _tabBarState extends State<tabBar> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 11,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 80,
+          toolbarHeight: 50,
           flexibleSpace: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TabBar(
+                labelColor: Colors.white,
+                indicatorColor: theme.yellow,
+                isScrollable: true,
                   tabs: [
-                    Tab(icon: Icon(Icons.all_inbox), text: "allFood",),
-                    Tab(icon: Icon(Icons.local_pizza), text: "pizza",),
-                    Tab(icon: Icon(Icons.fastfood), text: "sandwich",)
+                    Tab(child: Row(children: [Icon(Icons.all_inbox_sharp), Text(" All Food")],),),
+                    //if(widget.currentRestaurant.getTypeFoods().contains(TypeFood.Pizza))
+                    Tab(child: Row(children: [Icon(Icons.local_pizza), Text(" Pizza")],),),
+                    Tab(child: Row(children: [Icon(Icons.fastfood), Text(" Sandwich")],),),
+                    Tab(child: Row(children: [Icon(Icons.free_breakfast_outlined), Text(" Drinks")],),),
+                    Tab(child: Row(children: [Icon(Icons.food_bank_rounded), Text(" Persian Food")],),),
+                    Tab(child: Row(children: [Icon(Icons.no_food_outlined), Text(" Dessert")],),),
+                    Tab(child: Row(children: [Icon(Icons.fastfood_outlined), Text(" Appetizer")],),),
+                    Tab(child: Row(children: [Icon(Icons.local_fire_department_outlined), Text(" Fried")],),),
+                    Tab(child: Row(children: [Icon(Icons.set_meal), Text(" Steak")],),),
+                    Tab(child: Row(children: [Icon(Icons.breakfast_dining), Text(" Breakfast")],),),
+                    Tab(child: Row(children: [Icon(Icons.food_bank_rounded), Text(" International")],),),
                   ]
               )
             ],
@@ -41,8 +54,16 @@ class _tabBarState extends State<tabBar> {
         body: TabBarView(
           children: [
             FoodMenu( widget.currentRestaurant),
-            PizzaMenu( widget.currentRestaurant),
-            SandwichMenu( widget.currentRestaurant)
+            MenuType(widget.currentRestaurant, TypeFood.Pizza),
+            MenuType(widget.currentRestaurant, TypeFood.Sandwich),
+            MenuType(widget.currentRestaurant, TypeFood.Drinks),
+            MenuType(widget.currentRestaurant, TypeFood.PersianFood),
+            MenuType(widget.currentRestaurant, TypeFood.Dessert),
+            MenuType(widget.currentRestaurant, TypeFood.Appetizer),
+            MenuType(widget.currentRestaurant, TypeFood.Fried),
+            MenuType(widget.currentRestaurant, TypeFood.Steaks),
+            MenuType(widget.currentRestaurant, TypeFood.Breakfast),
+            MenuType(widget.currentRestaurant, TypeFood.International),
           ],
         ),
       ),

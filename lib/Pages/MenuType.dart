@@ -5,17 +5,18 @@ import 'package:seller_app/Objects/theme.dart';
 import 'AddFoodPage.dart';
 import 'FoodPage.dart';
 
-class PizzaMenu extends StatefulWidget {
+class MenuType extends StatefulWidget {
 
-Restaurant currentRestaurant;
+  Restaurant currentRestaurant;
+  TypeFood _typeFood;
 
-  PizzaMenu( this.currentRestaurant);
+  MenuType( this.currentRestaurant, this._typeFood);
 
   @override
-  _PizzaMenuState createState() => _PizzaMenuState();
+  _MenuTypeState createState() => _MenuTypeState();
 }
 
-class _PizzaMenuState extends State<PizzaMenu> {
+class _MenuTypeState extends State<MenuType> {
 
   bool isInteger(String string) {
     // Null or empty string is not a number
@@ -157,9 +158,9 @@ class _PizzaMenuState extends State<PizzaMenu> {
         Container(
             child: ListView(
               children: List.generate(
-                widget.currentRestaurant.getMenu().length,
-                (index) => widget.currentRestaurant.getMenu()[index].getTypeFood() == TypeFood.Pizza?
-                showFood(index) : Container()
+                  widget.currentRestaurant.getMenu().length,
+                      (index) => widget.currentRestaurant.getMenu()[index].getTypeFood() == widget._typeFood?
+                  showFood(index) : Container()
               ),
             )
         ),
