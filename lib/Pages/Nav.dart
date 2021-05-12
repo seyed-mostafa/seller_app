@@ -7,6 +7,8 @@ import 'package:seller_app/Pages/OrdersPage.dart';
 import 'package:seller_app/Pages/tabBar.dart';
 import 'package:seller_app/appBar.dart';
 
+import 'AddFoodPage.dart';
+
 
 
 class Nav extends StatefulWidget {
@@ -23,11 +25,34 @@ class _NavState extends State<Nav> {
   int _selectedIndex = 0;
 
   showScreen(){
-    if(_selectedIndex == 0){
-      return tabBar( widget.currentRestaurant);
-    }else if(_selectedIndex == 1){
+    if(_selectedIndex == 0){//Menu
+      return Stack(
+        children: [
+          tabBar( widget.currentRestaurant),
+
+          //add button
+          Positioned(
+              height: 50,
+              right: 10,
+              bottom: 10,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black,
+                ),
+                child: TextButton(
+                  child: Icon(Icons.add, color: theme.yellow,),
+                  onPressed: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood( widget.currentRestaurant)));
+                  },
+                ),
+              )
+          )
+        ],
+      );
+    }else if(_selectedIndex == 1){//Orders
       return Orders( widget.currentRestaurant);
-    }else if(_selectedIndex == 2){
+    }else if(_selectedIndex == 2){//Comments
       return CommentsPage( widget.currentRestaurant);
     }
   }

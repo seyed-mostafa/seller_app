@@ -163,20 +163,6 @@ class _PizzaMenuState extends State<PizzaMenu> {
               ),
             )
         ),
-        Positioned(
-            height: 50,
-            width: MediaQuery.of(context).size.width,
-            bottom: 0,
-            child: Container(
-              color: Colors.black,
-              child: TextButton(
-                child: Text("Add new Food", style: TextStyle(color: theme.yellow),),
-                onPressed: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood( widget.currentRestaurant)));
-                },
-              ),
-            )
-        )
       ],
     );
   }
