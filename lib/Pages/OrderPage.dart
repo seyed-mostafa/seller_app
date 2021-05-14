@@ -24,6 +24,25 @@ class _OrderPageState extends State<OrderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(), 
+      body: Container(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(padding: EdgeInsets.symmetric(vertical: ,horizontal: 15)),
+                Text('Ordered by ${widget.currentRestaurant.getOrders()[widget.index].getCustomerName()}'),
+                Column(
+                  children: [
+                    Text('Order Date '),
+                    Text('Delivery Date '),
+                  ],
+                )
+              ],
+
+            )
+          ],
+        ),
+      ),
     );
   }
 }
