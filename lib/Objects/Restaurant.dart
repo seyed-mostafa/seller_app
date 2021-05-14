@@ -33,6 +33,10 @@ class Restaurant  {
 
   void addOrder(Order order){
     _orders.add(order);
+    this.arrange();
+  }
+
+  void arrange(){
     List <Order> done= List.empty(growable: true);
     List <Order> undone= List.empty(growable: true);
     for(Order ord in _orders){

@@ -6,6 +6,10 @@ import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/appBar.dart';
 import 'package:seller_app/Objects/Order.dart';
 import 'package:intl/intl.dart';
+import 'Nav.dart';
+import 'package:flutter_switch/flutter_switch.dart';
+
+import 'OrderPage.dart';
 
 class Orders extends StatefulWidget {
   Restaurant currentRestaurant;
@@ -17,17 +21,58 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
+
+  TextStyle _style=TextStyle(fontSize: 11);
+
+  name_date(index){
+    return Container(
+      width: 60,
+      padding: EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          RichText(
+            text: TextSpan(
+                text: 'by ',
+                style: TextStyle(fontSize: 10, color: Colors.grey[800]),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: widget.currentRestaurant
+                        .getOrders()[index]
+                        .getCustomerName(),
+                    style: TextStyle(color: Colors.black, fontSize: 11),
+                  )
+                ]),
+          ),
+          //Padding(padding: EdgeInsets.symmetric(vertical: 1,horizontal: 0)),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
+            child: Container(
+              child: Text(DateFormat('EEE d MMM\nkk:mm').format(widget
+                  .currentRestaurant
+                  .getOrders()[index]
+                  .getTime())),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   detail1(index) {
+    double _width=100;
     Iterable<Food> keys =
         widget.currentRestaurant.getOrders()[index].getOrder().keys;
     switch (widget.currentRestaurant.getOrders()[index].getOrder().length) {
       case 1:
         {
           return Container(
+            width: _width,
             child: Column(
               children: [
                 Row(children: [
-                  Text('${keys.elementAt(0).getName()}   '),
+                  Text('${keys.elementAt(0).getName()}   ',
+                  style:_style,),
                 ]),
               ],
             ),
@@ -36,13 +81,16 @@ class _OrdersState extends State<Orders> {
         break;
         case 2:{
           return Container(
+            width: _width,
             child: Column(
               children: [
                 Row(children: [
-                  Text('${keys.elementAt(0).getName()}   '),
+                  Text('${keys.elementAt(0).getName()}   ',
+                    style:_style,),
                 ]),
                 Row(children: [
-                  Text('${keys.elementAt(1).getName()}   '),
+                  Text('${keys.elementAt(1).getName()}   ',
+                    style:_style,),
                 ]),
               ],
             ),
@@ -50,16 +98,20 @@ class _OrdersState extends State<Orders> {
         }
         case 3:{
           return Container(
+            width: _width,
             child: Column(
               children: [
                 Row(children: [
-                  Text('${keys.elementAt(0).getName()}   '),
+                  Text('${keys.elementAt(0).getName()}   ',
+                    style:_style,),
                 ]),
                 Row(children: [
-                  Text('${keys.elementAt(1).getName()}   '),
+                  Text('${keys.elementAt(1).getName()}   ',
+                    style:_style,),
                 ]),
                 Row(children: [
-                  Text('${keys.elementAt(2).getName()}   '),
+                  Text('${keys.elementAt(2).getName()}   ',
+                    style:_style,),
                 ]),
               ],
             ),
@@ -67,16 +119,20 @@ class _OrdersState extends State<Orders> {
       }
         default:{
           return Container(
+            width: _width,
             child: Column(
               children: [
                 Row(children: [
-                  Text('${keys.elementAt(0).getName()}   '),
+                  Text('${keys.elementAt(0).getName()}   ',
+                    style:_style,),
                 ]),
                 Row(children: [
-                  Text('${keys.elementAt(1).getName()}   '),
+                  Text('${keys.elementAt(1).getName()}   ',
+                    style:_style,),
                 ]),
                 Row(children: [
-                  Text('and so more'),
+                  Text('and so more',
+                    style:_style,),
                 ]),
               ],
             ),
@@ -85,21 +141,23 @@ class _OrdersState extends State<Orders> {
     }
   }
 
-
   detail2(index) {
+    double _width=20;
     Iterable<Food> keys =
         widget.currentRestaurant.getOrders()[index].getOrder().keys;
     switch (widget.currentRestaurant.getOrders()[index].getOrder().length) {
       case 1:
         {
           return Container(
+            width: _width,
             child: Column(
               children: [
                 Row(children: [
                   Text(widget.currentRestaurant
                       .getOrders()[index]
                       .getOrder()[keys.elementAt(0)]
-                      .toString())
+                      .toString(),
+                    style:_style)
                 ]),
               ],
             ),
@@ -108,19 +166,22 @@ class _OrdersState extends State<Orders> {
         break;
       case 2:{
         return Container(
+          width: _width,
           child: Column(
             children: [
               Row(children: [
                 Text(widget.currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(0)]
-                    .toString())
+                    .toString(),
+                    style:_style)
               ]),
               Row(children: [
                 Text(widget.currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(1)]
-                    .toString())
+                    .toString(),
+                    style:_style)
               ]),
             ],
           ),
@@ -128,25 +189,29 @@ class _OrdersState extends State<Orders> {
       }
       case 3:{
         return Container(
+          width: _width,
           child: Column(
             children: [
               Row(children: [
                 Text(widget.currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(0)]
-                    .toString())
+                    .toString(),
+                    style:_style)
               ]),
               Row(children: [
                 Text(widget.currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(1)]
-                    .toString())
+                    .toString(),
+                    style:_style)
               ]),
               Row(children: [
                 Text(widget.currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(2)]
-                    .toString())
+                    .toString(),
+                    style:_style)
               ]),
             ],
           ),
@@ -154,19 +219,22 @@ class _OrdersState extends State<Orders> {
       }
       default:{
         return Container(
+          width: _width,
           child: Column(
             children: [
               Row(children: [
                 Text(widget.currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(0)]
-                    .toString())
+                    .toString(),
+                    style:_style)
               ]),
               Row(children: [
                 Text(widget.currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(1)]
-                    .toString())
+                    .toString(),
+                    style:_style)
               ]),
             ],
           ),
@@ -176,18 +244,47 @@ class _OrdersState extends State<Orders> {
     }
   }
 
-  detail3(){
+  price(index){
+    bool _bool=widget.currentRestaurant.getOrders()[index].getStatus();
     return Container(
-      child: SizedBox(
-        height: 40,
+      child: Column(
+        children: [
+          Text(widget.currentRestaurant
+              .getOrders()[index]
+              .getPrice()
+              .toString() +
+              'T'),
+          SizedBox(height: 10,),
+           FlutterSwitch(
+            height: 20.0,
+            width: 40.0,
+            padding: 4.0,
+            toggleSize: 15.0,
+            borderRadius: 10.0,
+            inactiveColor: theme.black,
+            activeColor: theme.yellow,
+            value:widget.currentRestaurant.getOrders()[index].getStatus(),
+            onToggle: (value) {
+              setState(() {
+                widget.currentRestaurant.getOrders()[index].setStatus();
+                widget.currentRestaurant.arrange();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Nav(widget.currentRestaurant)
+                    ),
+                );
+              }
+              );
+            },
+          ),
+        ],
       ),
     );
   }
 
+
   showOrder(index) {
-    int detailNumber =
-        widget.currentRestaurant.getOrders()[index].getOrder().length;
-    widget.currentRestaurant.getOrders()[index].setTime();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       child: ClipRRect(
@@ -198,66 +295,24 @@ class _OrdersState extends State<Orders> {
               : theme.yellow,
           child: Row(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                        text: 'by ',
-                        style: TextStyle(fontSize: 10, color: Colors.grey[800]),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: widget.currentRestaurant
-                                .getOrders()[index]
-                                .getCustomerName(),
-                            style: TextStyle(color: Colors.black, fontSize: 12),
-                          )
-                        ]),
-                  ),
-                  //Padding(padding: EdgeInsets.symmetric(vertical: 1,horizontal: 0)),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
-                    child: Container(
-                      child: Text(DateFormat('EEE d MMM\nkk:mm').format(widget
-                          .currentRestaurant
-                          .getOrders()[index]
-                          .getTime())),
-                    ),
-                  ),
-                ],
-              ),
-              Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [detail1(index)],
-              ),
-              Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [detail2(index)],
-              ),
-              Spacer(),
-              Column(
-                children: [
-                  Text(widget.currentRestaurant
-                          .getOrders()[index]
-                          .getPrice()
-                          .toString() +
-                      'T'),
-                ],
-              )
+              name_date(index),
+              Spacer(flex: 10,),
+              detail1(index),
+              detail2(index),
+              Spacer(flex: 10,),
+              price(index),
             ],
           ),
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => FoodPage(
-            //         widget.currentRestaurant,
-            //         index
-            //     ),
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OrderPage(
+                    widget.currentRestaurant,
+                    index
+                ),
+              ),
+            );
           },
         ),
       ),
@@ -273,3 +328,5 @@ class _OrdersState extends State<Orders> {
     ));
   }
 }
+
+
