@@ -199,6 +199,7 @@ class _OrdersState extends State<Orders> {
           child: Row(
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RichText(
                     text: TextSpan(
@@ -227,10 +228,12 @@ class _OrdersState extends State<Orders> {
               ),
               Spacer(),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [detail1(index)],
               ),
               Spacer(),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [detail2(index)],
               ),
               Spacer(),
