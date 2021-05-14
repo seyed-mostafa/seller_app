@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
+import 'package:seller_app/Objects/theme.dart';
+import 'package:seller_app/appBar.dart';
 import 'EnteringPage.dart';
 import '../MultiChoice.dart';
 import 'dart:io';
@@ -52,9 +54,8 @@ class _RegisteringPageState extends State<RegisteringPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text("Registering Page")),
-        ),
+        backgroundColor: theme.yellow,
+        appBar: appBar(),
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(50),
@@ -63,6 +64,25 @@ class _RegisteringPageState extends State<RegisteringPage> {
               child: Column(
                 children: [
                   TextFormField(
+                    cursorColor: theme.black,
+                    autofocus: true,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                        border: new OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            const Radius.circular(10),
+                          ),
+                          borderSide: new BorderSide(
+                            color: theme.black,
+                            width: 1.0,
+                          ),
+                        ),
+                        fillColor: theme.yellow,
+                        filled: true,
+                        icon: Icon(Icons.food_bank_rounded),
+                        labelText: "Restaurant Name",
+                        labelStyle: TextStyle(fontSize: 18,)
+                    ),
                     validator: (String value){
                       if(value.isEmpty){
                         return "Name cannot be empty";
@@ -70,13 +90,34 @@ class _RegisteringPageState extends State<RegisteringPage> {
                       return null;
                     },
                     onSaved: (String value) => inputName = value,
+                  ),
+                  SizedBox(height: 20,),
+                  TextFormField(
+                    cursorColor: theme.black,
+                    autofocus: true,
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                        icon: Icon(Icons.drive_file_rename_outline),
-                        labelText: "Restoran Name",
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.map),
+                          onPressed: (){
+                            //Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
+                          },
+                        ),
+                        border: new OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            const Radius.circular(10),
+                          ),
+                          borderSide: new BorderSide(
+                            color: theme.black,
+                            width: 1.0,
+                          ),
+                        ),
+                        fillColor: theme.yellow,
+                        filled: true,
+                        icon: Icon(Icons.home_work),
+                        labelText: "Address",
                         labelStyle: TextStyle(fontSize: 18,)
                     ),
-                  ),
-                  TextFormField(
                     validator: (String value){
                       if(value.isEmpty){
                         return "Address cannot be empty";
@@ -84,14 +125,29 @@ class _RegisteringPageState extends State<RegisteringPage> {
                       return null;
                     },
                     onSaved: (String value) => inputAddress = value,
+                  ),
+                  SizedBox(height: 20,),
+                  TextFormField(
+                    cursorColor: theme.black,
+                    autofocus: true,
+                    style: TextStyle(color: Colors.white),
+                    autovalidate: true,
                     decoration: InputDecoration(
-                        icon: Icon(Icons.home),
-                        labelText: "Address",
+                        border: new OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            const Radius.circular(10),
+                          ),
+                          borderSide: new BorderSide(
+                            color: theme.black,
+                            width: 1.0,
+                          ),
+                        ),
+                        fillColor: theme.yellow,
+                        filled: true,
+                        icon: Icon(Icons.phone),
+                        labelText: "Phone Number",
                         labelStyle: TextStyle(fontSize: 18,)
                     ),
-                  ),
-                  TextFormField(
-                    autovalidate: true,
                     validator: (String value){
                       if(value.length != 8 ||
                           !isInteger(value) ||
@@ -101,14 +157,38 @@ class _RegisteringPageState extends State<RegisteringPage> {
                       return null;
                     },
                     onSaved: (String value) => inputPhoneNumber = value,
+                  ),
+                  SizedBox(height: 20,),
+                  TextFormField(
+                    cursorColor: theme.black,
+                    autofocus: true,
+                    style: TextStyle(color: Colors.white),
+                    obscureText: hidden,
                     decoration: InputDecoration(
-                        icon: Icon(Icons.phone),
-                        labelText: "Phone number",
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                              !hidden?Icons.visibility:Icons.visibility_off
+                          ),
+                          onPressed: (){
+                            hidden = !hidden;
+                            setState(() {});
+                          },
+                        ),
+                        border: new OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            const Radius.circular(10),
+                          ),
+                          borderSide: new BorderSide(
+                            color: theme.black,
+                            width: 1.0,
+                          ),
+                        ),
+                        fillColor: theme.yellow,
+                        filled: true,
+                        icon: Icon(Icons.vpn_key),
+                        labelText: "Password",
                         labelStyle: TextStyle(fontSize: 18,)
                     ),
-                  ),
-                  TextFormField(
-                    obscureText: hidden,
                     onChanged: (String value){
                       password = value;
                       setState(() {
@@ -121,23 +201,14 @@ class _RegisteringPageState extends State<RegisteringPage> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                            !hidden?Icons.visibility:Icons.visibility_off
-                        ),
-                        onPressed: (){
-                          hidden = !hidden;
-                          setState(() {});
-                        },
-                      ),
-                      icon: Icon(Icons.vpn_key_sharp),
-                      labelText: "Password",
-                      labelStyle: TextStyle(fontSize: 18,),
-                    ),
                   ),
                   SizedBox(height: 20,),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        onPrimary: theme.yellow,
+                        primary: theme.black,
+                        padding: EdgeInsets.all(20)
+                    ),
                       child: Text("Click to choose your foodType"),
                       onPressed: () async {
                         foodType = await showDialog(
@@ -145,11 +216,16 @@ class _RegisteringPageState extends State<RegisteringPage> {
                             builder: (_) => MultiSelectDialog(
                                 question: Text('Select Your FoodType :'),
                                 answers: [
-                                  'traditional',
-                                  'Chocolate',
-                                  'Ice cream',
-                                  'juice',
-                                  'drinking'
+                                  'Pizza',
+                                  'Sandwich',
+                                  'Drinks',
+                                  'Persian Food',
+                                  'Dessert',
+                                  'Appetizer',
+                                  'Fried',
+                                  'Steaks',
+                                  'Breakfast',
+                                  'International'
                                 ])
                             )??[];
                         print(foodType);
@@ -157,6 +233,11 @@ class _RegisteringPageState extends State<RegisteringPage> {
                   ),
                   SizedBox(height: 20,),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        onPrimary: theme.yellow,
+                        primary: theme.black,
+                        padding: EdgeInsets.all(20)
+                    ),
                     onPressed: () async {
                       if(_formKey.currentState.validate()) {
                         _formKey.currentState.save();
@@ -169,7 +250,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                       }
                       setState(() {});
                     },
-                    child: Text("Enter"),
+                    child: Text("Register"),
                   ),
                 ],
               ),

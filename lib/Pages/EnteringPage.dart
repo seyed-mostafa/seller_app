@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Nav.dart';
+import 'package:seller_app/appBar.dart';
 import 'RegisteringPage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:seller_app/Objects/Food.dart';
@@ -46,12 +47,7 @@ class _EnteringPageState extends State<EnteringPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Center(
-              child: Text("Entering page", style: TextStyle(color: theme.yellow),)
-          ),
-          backgroundColor: theme.black,
-        ),
+        appBar: appBar(),
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height,
@@ -72,7 +68,7 @@ class _EnteringPageState extends State<EnteringPage> {
                 ),
                 SizedBox(height: 20,),
                 validUser||flag ?
-                Container(height: 0,):
+                Container(height: 40,):
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.red,
