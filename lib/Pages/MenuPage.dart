@@ -124,7 +124,7 @@ class _FoodMenuState extends State<FoodMenu> {
             ],
           ),
           onPressed: (){
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => FoodPage(

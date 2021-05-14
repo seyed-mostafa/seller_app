@@ -8,9 +8,6 @@ import 'package:intl/intl.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/Food.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import "C:\Users\LENOVO\Desktop\ap_project_1400\ap_project_1400\lib\theme_lib.dart";
-
-import "C:/Users/LENOVO/Desktop/ap_project_1400/ap_project_1400/lib/theme_lib.dart";
 
 
 void main() {
