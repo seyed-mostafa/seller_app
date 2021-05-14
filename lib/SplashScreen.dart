@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Order.dart';
 
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -103,14 +104,14 @@ class _SplashScreenState extends State<SplashScreen> {
     restaurant1.setSendingRangeRadius(2000);
     restaurant1.setAddressString('meidan hafthooz,kenar pasaj golbarg');
     
-    Order order1=Order({food1:2,food4:1,food13:5});
+    Order order1=Order({food1:2,food4:1,food13:5,food20:1});
     Order order2=Order({food3:1,food6:1,food5:9});
     Order order3=Order({food5:1,food7:1,food13:3});
     Order order4=Order({food15:4,food10:1,food13:3});
     Order order5=Order({food18:2,food9:1,food19:4});
-    Order order6=Order({food19:1,food2:5,food11:2});
+    Order order6=Order({food19:1,food2:5,food11:2,food16:3});
     Order order7=Order({food18:2,food4:1});
-    Order order8=Order({food2:1,food4:1,food7:1});
+    Order order8=Order({food2:1,food4:1,food7:1,food6:2});
     Order order9=Order({food15:1,food5:2,food8:3});
     Order order10=Order({food14:4,food4:1,food10:2});
     Order order11=Order({food9:3,food10:5,food8:1});
