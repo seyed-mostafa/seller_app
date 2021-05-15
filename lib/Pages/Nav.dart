@@ -5,6 +5,7 @@ import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/CommentsPage.dart';
 import 'package:seller_app/Pages/OrdersPage.dart';
 import 'package:seller_app/Pages/tabBar.dart';
+import 'package:seller_app/Pages/tabBarOrders.dart';
 import 'package:seller_app/appBar.dart';
 
 import 'AddFoodPage.dart';
@@ -51,7 +52,7 @@ class _NavState extends State<Nav> {
         ],
       );
     }else if(_selectedIndex == 1){//Orders
-      return Orders( widget.currentRestaurant);
+      return tabBarOrders( widget.currentRestaurant);
     }else if(_selectedIndex == 2){//Comments
       return CommentsPage( widget.currentRestaurant);
     }
@@ -65,8 +66,43 @@ class _NavState extends State<Nav> {
 
   @override
   Widget build(BuildContext context) {
+
+    Widget drawerTitleWidget(){
+      return Container(
+        height: 90,
+        color: theme.black,
+        child: Center(
+            child: Text(
+              "Foodina",
+              style: TextStyle(color: theme.yellow, fontSize: 30),
+            )
+        ),
+      );
+    }
+
+    Widget ConnectUs(){
+      return Container(
+        color: Colors.red,
+        child: TextButton(
+            onPressed: (){
+
+            },
+            child: Text("We will happy if connect to us")
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: appBar(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            drawerTitleWidget(),
+            SizedBox(height: 50,),
+            ConnectUs(),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: theme.black,
         items:
