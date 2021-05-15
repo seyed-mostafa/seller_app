@@ -78,6 +78,11 @@ class Food extends Restaurant{
   num getPrice(){
     return _price ;
   }
+  int getPriceWithDiscount(){
+    if(_discount==null)
+     return _price ;
+    return (_price*_discount/100).ceil();
+  }
   num getDiscount(){
     return _discount ;
   }

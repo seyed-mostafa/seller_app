@@ -1,27 +1,53 @@
 
 import 'package:flutter/material.dart';
-import 'package:seller_app/Objects/Restaurant.dart';
-import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/appBar.dart';
-import 'package:seller_app/Objects/Order.dart';
-import 'package:intl/intl.dart';
-import 'package:seller_app/Objects/Restaurant.dart';
-import 'package:seller_app/Objects/Food.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+void main() => runApp(const MyApp());
 
-void main() {
-  DateTime now = DateTime.now();
-  String formattedDate = DateFormat('kk:mm:ss \n EEE d MMM').format(now);
-  print(formattedDate);
-  List <int> done= List.empty(growable: true);
-  List <int> undone= List.empty(growable: true);
-  List <int> undone1= List.empty(growable: true);
-  done=[1,2,3];
-  undone=[4,5,6];
-  undone1=[7,8,9];
-  undone+=undone1;
-  print(undone);
-  done=[...undone];
-  print(done);
+class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
+  static const String _title = 'Flutter Code Sample';
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: _title,
+      home: Scaffold(
+        appBar: AppBar(title: const Text(_title)),
+        body: const MyStatefulWidget(),
+      ),
+    );
+  }
 }
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key key}) : super(key: key);
+
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  static const int numItems = 10;
+  //List<bool> selected = List<bool>.generate(numItems, (int index) => false);
+
+  List arr = [11, 22, 33, 44, 55];
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: DataTable(
+          columns: const <DataColumn>[
+            DataColumn(
+              label: Text('Number'),
+            ),
+          ],
+          rows: arr
+              .map((e) => DataRow(cells: <DataCell>[DataCell(Text('Row $e'))]))
+              .toList()),
+    );
+  }
+}
+// arr .map((e) => DataRow(cells: <DataCell>[DataCell(Text('Row $e'))]))
+// .toList()),

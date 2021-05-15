@@ -128,17 +128,29 @@ class _SplashScreenState extends State<SplashScreen> {
     order10.setCustomerName('Noora Noori');
     order11.setCustomerName('Pari Varparide');
 
+    order1.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order2.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order3.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order4.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order6.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order5.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order7.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order8.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order9.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order10.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+    order11.setCustomerAddressString('golbarg,kh kerman,pelak 34,vahed 2,salam bar hame daram talash mikonam ke matn ziadi benevisam :)');
+
     order1.setCustomerAddress(LatLng(34.717676891099835, 51.331243399093914));
     order2.setCustomerAddress(LatLng(35.717676891099835, 25.331243399093914));
     order3.setCustomerAddress(LatLng(33.717676891099835, 25.331243399093914));
     order4.setCustomerAddress(LatLng(32.717676891099835, 25.331243399093914));
     order5.setCustomerAddress(LatLng(31.717676891099835, 25.331243399093914));
     order6.setCustomerAddress(LatLng(35.717676891099835, 26.331243399093914));
-    order7.setCustomerAddress(LatLng(35.717676891099835, 29.331243399093914));
+    order7.setCustomerAddress(LatLng(35.731750523607964, 51.47188366660937));
     order8.setCustomerAddress(LatLng(35.717676891099835, 20.331243399093914));
     order9.setCustomerAddress(LatLng(36.717676891099835, 25.331243399093914));
     order10.setCustomerAddress( LatLng(36.717676891099835, 24.331243399093914));
-    order11.setCustomerAddress( LatLng(36.717676891099835, 23.331243399093914));
+    order11.setCustomerAddress( LatLng(35.731750523607964, 51.47188366660937));
 
 
     order1.setStatus();
@@ -150,17 +162,17 @@ class _SplashScreenState extends State<SplashScreen> {
     order2.setStatus();
     order6.setStatus();
 
-    order1.setTime();
-    order2.setTime();
-    order3.setTime();
-    order4.setTime();
-    order5.setTime();
-    order6.setTime();
-    order7.setTime();
-    order8.setTime();
-    order9.setTime();
-    order10.setTime();
-    order11.setTime();
+    order1.setOrderTime();
+    order2.setOrderTime();
+    order3.setOrderTime();
+    order4.setOrderTime();
+    order5.setOrderTime();
+    order6.setOrderTime();
+    order7.setOrderTime();
+    order8.setOrderTime();
+    order9.setOrderTime();
+    order10.setOrderTime();
+    order11.setOrderTime();
 
     List orders=[
       order11,order10,order9,order8,order7,order6,order5,order4,order3,order2,order1

@@ -5,12 +5,12 @@ import 'Restaurant.dart';
 
 
 class Order {
-  String _customerName,_restaurentName;
+  String _customerName,_restaurentName,_customerAddressString;
   int _id,_price=0;
   bool _status=false;
   LatLng _customerAddress;
   static int _count=99246000;
-  DateTime _time;
+  DateTime _orderTime,_deliveryTime;
   Map <Food,int> _order=new Map();
 
 
@@ -26,8 +26,17 @@ class Order {
     }
 
   }
+  void setCustomerAddressString(String customerAddressString){
+    this._customerAddressString=customerAddressString;
+  }
+  String getCustomerAddressString(){
+    return _customerAddressString;
+  }
   void setStatus(){
     _status=!_status;
+    if (_status) {
+      setDeliveryTime();
+    }
   }
   bool getStatus(){
     return _status;
@@ -41,12 +50,18 @@ class Order {
   void setCustomerAddress(LatLng address){
     _customerAddress=address;
   }
-  void setTime(){
-     _time= DateTime.now();
+  void setOrderTime(){
+     _orderTime= DateTime.now();
+  }
+  void setDeliveryTime(){
+    _deliveryTime= DateTime.now();
+  }
+  DateTime getDeliveryTime() {
+    return _deliveryTime;
   }
 
 
-  num getPrice(){
+  int getPrice(){
     return _price;
   }
 
@@ -58,8 +73,8 @@ class Order {
     return _restaurentName;
   }
 
-  DateTime getTime() {
-    return _time;
+  DateTime getOrderTime() {
+    return _orderTime;
   }
 
   String getCustomerName(){

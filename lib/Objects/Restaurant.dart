@@ -46,8 +46,8 @@ class Restaurant  {
         undone.add(ord);
       }
     }
-    done.sort((a,b) => a.getTime().compareTo(b.getTime()) );
-    undone.sort((a,b) => a.getTime().compareTo(b.getTime()) );
+    done.sort((a,b) => a.getOrderTime().compareTo(b.getOrderTime()) );
+    undone.sort((a,b) => a.getOrderTime().compareTo(b.getOrderTime()) );
     _orders.clear();
     done=done.reversed.toList();
     undone=undone.reversed.toList();

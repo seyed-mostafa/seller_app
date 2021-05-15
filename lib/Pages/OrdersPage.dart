@@ -51,7 +51,7 @@ class _OrdersState extends State<Orders> {
               child: Text(DateFormat('EEE d MMM\nkk:mm').format(widget
                   .currentRestaurant
                   .getOrders()[index]
-                  .getTime())),
+                  .getOrderTime())),
             ),
           ),
         ],
