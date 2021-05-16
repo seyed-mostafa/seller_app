@@ -286,8 +286,7 @@ class _FoodPageState extends State<FoodPage> {
                 child: Text(
                     widget.currentRestaurant
                         .getMenu()[widget.currentFood]
-                        .getComment()
-                        .elementAt(0),
+                        .getComment(),
                     style: TextStyle(color: theme.black, fontSize: 15)),
               ),
             ));

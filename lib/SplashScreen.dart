@@ -62,7 +62,6 @@ class _SplashScreenState extends State<SplashScreen> {
         true, TypeFood.International);
     Food food20 = Food('ghorme kharegy', 'description20', 8000, null, false,
         true, TypeFood.International);
-    food1.setComment('comment');
 
     List<Food> food = [
       food20,
@@ -93,11 +92,22 @@ class _SplashScreenState extends State<SplashScreen> {
     }
     for (Food food in food) {
       food.setComment(
-          'A list is an indexable collection of objects with a length. The indexes start from zero. It is possible to create growable or fixed-length lists. By default, we create growable lists with [].It is generally not allowed to modify the lists length (adding or removing elements) while an operation on the list is being performed, for example during a call to forEach or sort. Also, trying to change the length of a list during iteration leads to ConcurrentModificationError.');
+          'A list is an indexable collection of objects with a length. The indexes start '
+              'from zero. It is possible to create growable or fixed-length lists. By default,'
+              ' we create growable lists with [].It is generally not allowed to modify the lists '
+              'length (adding or removing elements) while an operation on the list is being '
+              'performed, for example during a call to forEach or sort. Also, trying to change '
+              'the length of a list during iteration leads to ConcurrentModificationError.');
     }
     for (Food food in food) {
       food.setDescription(
-          'The Map is an object that is used to represents a set of values as key-value pairs. In Map, both keys and values can be of any type of object, it is not necessary that the keys and values both of the same type.. In Map, each key can only occurs once, but the same value can be used multiple times. In Map, each of the value is associated with a unique key, and this key is used to accessed corresponding Map value. The Map can be defined by using curly braces ({ }) and values can be assigned and accessed using square braces ([]).');
+          'The Map is an object that is used to represents a set of values as key-value pairs. '
+              'In Map, both keys and values can be of any type of object, it is not necessary '
+              'that the keys and values both of the same type.. In Map, each key can only occurs '
+              'once, but the same value can be used multiple times. In Map, each of the value '
+              'is associated with a unique key, and this key is used to accessed corresponding '
+              'Map value. The Map can be defined by using curly braces ({ }) and values '
+              'can be assigned and accessed using square braces ([]).');
     }
     restaurant1.setDays('tamam ayyam hafteh');
     restaurant1.setHour('as saat 13 ta 23');

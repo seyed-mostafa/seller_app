@@ -1,5 +1,7 @@
 
 
+import 'package:seller_app/Objects/Comment.dart';
+
 import 'Restaurant.dart';
 
 class Food extends Restaurant{
@@ -7,9 +9,8 @@ class Food extends Restaurant{
   num _discount, _price;
   bool _sizing, _available;
   TypeFood _typeFood;
-  List<String> _comments = List.empty(growable: true);
   var _score = {"behdasht":null,"soratPeik":null,"garmiGhaza":null,"gheimat":null,"keifiat":null};
-
+  String _com;
 
 
    Food(String name, String description,num price,num discount,bool sizing,bool available,TypeFood typeFood) : super('', null, '', '')  {
@@ -22,6 +23,13 @@ class Food extends Restaurant{
     this._sizing = sizing;
     this._available = available;
     this._typeFood = typeFood;
+  }
+
+  void setComment(String com){
+     _com=com;
+  }
+  String getComment(){
+     return _com;
   }
 
 
@@ -47,9 +55,6 @@ class Food extends Restaurant{
   }
   void setTypeFood(TypeFood typeFood){
     this._typeFood = typeFood;
-  }
-  void setComment(String comment){
-    this._comments.add(comment);
   }
   void setScore(int behdasht,int soratPeik,int garmiGhaza,int gheimat,int keifiat){
     if (_score["behdasht"]==null) {
@@ -94,9 +99,6 @@ class Food extends Restaurant{
   }
   TypeFood getTypeFood(){
     return _typeFood ;
-  }
-  List<String> getComment(){
-    return _comments;
   }
   double getScore(){
     double score=0;
