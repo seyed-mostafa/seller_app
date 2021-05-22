@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:seller_app/Objects/Comment.dart';
 import 'package:seller_app/Pages/Nav.dart';
 import 'Objects/Restaurant.dart';
 import 'Pages/EnteringPage.dart';
@@ -192,7 +193,15 @@ class _SplashScreenState extends State<SplashScreen> {
       order.setRestaurentName(restaurant1.getName());
       restaurant1.addOrder(order);
     }
-
+    Comment comment=new Comment("ai khoda");
+    comment.setCustomerName("Abbas");
+    comment.setRestaurantName('akbar jooje');
+    Comment comment2=new Comment("man dige rad dadam");
+    comment2.setReply("khob be darak :)");
+    comment2.setCustomerName("Mostafa");
+    comment.setRestaurantName('akbar jooje');
+    restaurant1.addComment(comment);
+    restaurant1.addComment(comment2);
 
     super.initState();
     Timer(

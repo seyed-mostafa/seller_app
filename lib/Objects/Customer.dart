@@ -1,3 +1,5 @@
+
+import 'Comment.dart';
 import 'Restaurant.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'Food.dart';
@@ -7,11 +9,12 @@ import 'Food.dart';
 class Customer{
 String _firstName,_lastName,_phoneNumber,_password;
 num _wallet=0;
-Map <Food,int> _shoppingCart =new Map();
 List<LatLng> _address = List.empty(growable: true);
-List<Food> _previosOrders = List.empty(growable: true); /////   احتمالا باید تغییر کنه
-List<String> _comment = List.empty(growable: true);    //        ///     باید علاوه بر نظر ، غذا هم ثبت بشه :|
+List<Comment> _comments = List.empty(growable: true);
 List<Restaurant> _favoriteRestaurent = List.empty(growable: true);
+
+Map <Food,int> _shoppingCart =new Map();
+List<Food> _previosOrders = List.empty(growable: true); /////   احتمالا باید تغییر کنه
 
 
 
@@ -48,8 +51,8 @@ void addAdres(LatLng address) {
 void addPreviosOrders(Food food) {
   this._previosOrders.add(food);
 }
-void addComment(String comment) {
-  this._comment.add(comment);
+void addComment(Comment comment) {
+  _comments.add(comment);
 }
 void addFavoriteRestaurent(Restaurant favoriteRestaurent) {
   this._favoriteRestaurent.add(favoriteRestaurent);
@@ -84,8 +87,8 @@ List<LatLng> getAdres() {
 List<Food> getPreviosOrders() {
   return _previosOrders;
 }
-List<String> getComment() {
-  return _comment;
+List<Comment> getComment() {
+  return _comments;
 }
 List<Restaurant> getFavoriteRestaurent() {
   return _favoriteRestaurent;
@@ -94,7 +97,7 @@ Map<Food,int> getShoppingCart() {
   return _shoppingCart;
 }
 
-void setShoppingCartClear() {               //سبد خرید با این تابع خلی میشه
+void setShoppingCartClear() {               //سبد خرید با این تابع خالی میشه
    _shoppingCart.clear();                   //پس قبلش باید با تابع بالاییش، سبد خرید رو بگیریم و برای کلاس سفارشات بفرستیم
 }
 

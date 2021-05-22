@@ -167,7 +167,7 @@ class _SellingCalculateState extends State<SellingCalculate> {
                       "Total online sales : ${widget.currentRestaurent.getOnlineSalessum(status)}000"),
             SizedBox(width: 5,height: 5),
             Text("Total sale : ${widget.currentRestaurent.getTotalSalessum(status)}000",
-                    style: TextStyle(color: theme.red3,fontWeight:FontWeight.w500,fontSize: 18)),
+                    style: TextStyle(color: theme.red2,fontWeight:FontWeight.w500,fontSize: 18)),
         ],
       ),
     );

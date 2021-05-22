@@ -23,9 +23,7 @@ class Restaurant  {
   List<TypeFood> _type;
   List<Order> _orders= List.empty(growable: true);
   List<Comment> _comments= List.empty(growable: true);
-  List <int> cashsales= List.empty(growable: true);
-  List<int> onlinesales= List.empty(growable: true);
-  List<int> totalsales= List.empty(growable: true);
+
 
 
   Restaurant(String name, LatLng address, String phoneNumber, String password)  {
@@ -37,6 +35,11 @@ class Restaurant  {
     this._phoneNumber = phoneNumber;
   }
 
+//////////////////////////////////////////////                            اینا چرت و پرته بعدا باید درست بشه
+
+  List <int> cashsales= List.empty(growable: true);
+  List<int> onlinesales= List.empty(growable: true);
+  List<int> totalsales= List.empty(growable: true);
   void setcashSales(int sale){
     cashsales.add(sale);
   }
@@ -80,10 +83,13 @@ class Restaurant  {
     return sum;
   }
 
-  void addComment(){
-    for(int i=0;;i++){
-      this.getMenu()[i];
-    }
+  ///////////////////////////////////////////                                تا اینجا
+
+  void addComment(Comment comment){
+    _comments.add(comment);
+  }
+  List<Comment> getComments(){
+    return _comments;
   }
 
   void addOrder(Order order){
