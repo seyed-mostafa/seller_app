@@ -32,8 +32,8 @@ class _tabBarOrdersState extends State<tabBarOrders> {
                   labelColor: Colors.white,
                   indicatorColor: theme.yellow,
                   tabs: [
-                    Tab(child: Row(children: [Icon(Icons.calculate), Text(" Selling Calculate")],),),
                     Tab(child: Row(children: [Icon(Icons.people), Text(" Orders")],),),
+                    Tab(child: Row(children: [Icon(Icons.calculate), Text(" Selling & Satisfaction")],),),
                   ]
               )
             ],
@@ -41,8 +41,8 @@ class _tabBarOrdersState extends State<tabBarOrders> {
         ),
         body: TabBarView(
           children: [
-            SellingCalculate(widget.currentRestaurant),
             Orders(widget.currentRestaurant),
+            SellingCalculate(widget.currentRestaurant),
           ],
         ),
       ),

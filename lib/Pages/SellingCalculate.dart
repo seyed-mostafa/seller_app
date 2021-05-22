@@ -43,7 +43,6 @@ class _SellingCalculateState extends State<SellingCalculate> {
           widget.currentRestaurent.getcashSales()[i],
           widget.currentRestaurent.getTotalSales()[i]);
     }
-
     return chartData30;
   }
 
@@ -176,32 +175,40 @@ class _SellingCalculateState extends State<SellingCalculate> {
 
   circlechart() {
     chartData=chartData7();
-    return Container(
-      color: theme.cream,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(50),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(topRight: Radius.circular(50),topLeft: Radius.circular(50)),
+        color: theme.cream,
+          boxShadow:[
+            BoxShadow(
+              color: Colors.black45,
+              spreadRadius: 0.001,
+              blurRadius: 15,
+            )
+          ]
+        ),
+        child: SfCircularChart(
+            legend: Legend(isVisible: true),
+            title: ChartTitle(
+              text:"Customer satisfaction",
+              textStyle: TextStyle(color: theme.yellow,fontSize: 23,fontWeight: FontWeight.bold,),
+            ),
+            series: <PieSeries<ChartData, String>>[
+              // Render pie chart
+              PieSeries<ChartData, String>(
+                  explode: true,
+                  explodeIndex: 0,
+                  dataSource: chartData,
+                  xValueMapper: (ChartData data, _) => data.x,
+                  yValueMapper: (ChartData data, _) => data.y,
+                  dataLabelMapper: (ChartData data, _) => data.z,
+                  pointColorMapper: (ChartData data, _) => data.color,
+                  dataLabelSettings:DataLabelSettings(isVisible : true,)
 
-        child: Container(
-          child: SfCircularChart(
-              legend: Legend(isVisible: true),
-              title: ChartTitle(
-                text:"Customer satisfaction",
-              ),
-              series: <PieSeries<ChartData, String>>[
-                // Render pie chart
-                PieSeries<ChartData, String>(
-                    explode: true,
-                    explodeIndex: 0,
-                    dataSource: chartData,
-                    xValueMapper: (ChartData data, _) => data.x,
-                    yValueMapper: (ChartData data, _) => data.y,
-                    dataLabelMapper: (ChartData data, _) => data.z,
-                    pointColorMapper: (ChartData data, _) => data.color,
-                    dataLabelSettings:DataLabelSettings(isVisible : true,)
-
-                )
-              ]
-          ),
+              )
+            ]
         ),
       ),
     );
