@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'SplashScreen.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
-import 'package:seller_app/Objects/Coustomer.dart';
+import 'package:seller_app/Objects/Customer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:seller_app/Objects/Food.dart';
 

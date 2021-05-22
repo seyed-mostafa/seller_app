@@ -1,11 +1,7 @@
 
-
 import 'package:flutter/material.dart';
-import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/Pages/MenuPage.dart';
-import 'package:seller_app/Pages/MenuType.dart';
 import 'package:seller_app/Pages/SellingCalculate.dart';
 
 import 'OrdersPage.dart';
@@ -36,8 +32,8 @@ class _tabBarOrdersState extends State<tabBarOrders> {
                   labelColor: Colors.white,
                   indicatorColor: theme.yellow,
                   tabs: [
+                    Tab(child: Row(children: [Icon(Icons.calculate), Text(" Selling Calculate")],),),
                     Tab(child: Row(children: [Icon(Icons.people), Text(" Orders")],),),
-                    Tab(child: Row(children: [Icon(Icons.calculate), Text(" Selling Calculate")],),)
                   ]
               )
             ],
@@ -45,8 +41,8 @@ class _tabBarOrdersState extends State<tabBarOrders> {
         ),
         body: TabBarView(
           children: [
+            SellingCalculate(widget.currentRestaurant),
             Orders(widget.currentRestaurant),
-            SellingCalculate(widget.currentRestaurant)
           ],
         ),
       ),

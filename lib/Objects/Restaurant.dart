@@ -23,6 +23,10 @@ class Restaurant  {
   List<TypeFood> _type;
   List<Order> _orders= List.empty(growable: true);
   List<Comment> _comments= List.empty(growable: true);
+  List <int> cashsales= List.empty(growable: true);
+  List<int> onlinesales= List.empty(growable: true);
+  List<int> totalsales= List.empty(growable: true);
+
 
   Restaurant(String name, LatLng address, String phoneNumber, String password)  {
     _count++;
@@ -31,6 +35,49 @@ class Restaurant  {
     this._address = address;
     this._password = password;
     this._phoneNumber = phoneNumber;
+  }
+
+  void setcashSales(int sale){
+    cashsales.add(sale);
+  }
+  void setonlineSales(int sale){
+    onlinesales.add(sale);
+  }
+  List getOnlineSales(){
+    return onlinesales;
+  }
+
+  List getcashSales(){
+    return cashsales;
+  }
+
+  List getTotalSales(){
+    for(int i=0;i<30;i++)
+      totalsales.add(cashsales[i]+onlinesales[i]);
+    return totalsales;
+  }
+
+  int getOnlineSalessum(int i){
+    int sum=0;
+    for(i=30-i; i<onlinesales.length;i++)
+      sum+=onlinesales[i];
+    return sum;
+  }
+
+  int getcashSalessum(int i){
+    int sum=0;
+    for(i=30-i ; i<cashsales.length;i++)
+      sum+=cashsales[i];
+    return sum;
+  }
+
+  int getTotalSalessum(int i){
+     int sum=0;
+     for( i=30-i; i<onlinesales.length;i++) {
+       sum += onlinesales[i];
+       sum += cashsales[i];
+     }
+    return sum;
   }
 
   void addComment(){
