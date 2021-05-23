@@ -51,9 +51,9 @@ class _NavState extends State<Nav> {
           )
         ],
       );
-    }else if(_selectedIndex == 2){//Orders
+    }else if(_selectedIndex == 1){//Orders
       return tabBarOrders( widget.currentRestaurant);
-    }else if(_selectedIndex == 1){//Comments
+    }else if(_selectedIndex == 2){//Comments
       return CommentsPage( widget.currentRestaurant);
     }
   }

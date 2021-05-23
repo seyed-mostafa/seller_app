@@ -97,7 +97,9 @@ class _CommentsPageState extends State<CommentsPage> {
             width:  MediaQuery.of(context).size.width / 2,
             height: 50,
             child: TextFormField(//Food Name
-              initialValue: 'Reply...',
+              decoration: InputDecoration(
+                hintText: 'Reply...'
+              ),
               style: TextStyle(color: Colors.grey[600],fontSize: 10),
               cursorColor: theme.black,
               onChanged: (value){
