@@ -47,7 +47,6 @@ class _FoodPageState extends State<FoodPage> {
       if (number == null) {
         return false;
       }
-
       return true;
     }
 

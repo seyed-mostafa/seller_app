@@ -1,4 +1,3 @@
-
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -8,16 +7,61 @@ import 'Objects/Customer.dart';
 import 'Objects/Restaurant.dart';
 
 
-
 void main() {
-  Restaurant restaurant3 = new Restaurant('Reihoon', LatLng(33.717676891099835, 25.331243399093914), '09123456782', '123');
-  Customer customer1 = new Customer('Ali', 'Alavi', '09123456790', '123');
-  Comment comment=new Comment("salam . alan saat 2:21 shabe ke daram in comment ro minivisam:)");
-  restaurant3.addComment(comment);
-  comment.setRestaurantName("Reihoon");
-  customer1.addComment(comment);
-  print(comment.getComment());
+runApp(MyApp());
+}
+class MyApp extends StatefulWidget {
+  const MyApp({Key key}) : super(key: key);
 
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+  bool _isEditingText = false;
+  TextEditingController _editingController;
+  String initialText = "Initial Text";
+Widget _editTitleTextField() {
+  if (_isEditingText) return Center(child: TextField(
+    onSubmitted: (newValue) {
+      setState(() {
+        initialText = newValue;
+        _isEditingText = false;
+      });
+    }, autofocus: true, controller: _editingController,),);
+  return InkWell(onTap: ()
+  {
+    setState(() {
+      _isEditingText = true;
+    });
+  }, child: Text( initialText, style: TextStyle( color: Colors.black, fontSize: 18.0, )
+  ),
+  );
+}
+  @override
+  void initState() {
+    super.initState();
+    _editingController = TextEditingController(text: initialText);
+  }
+  @override
+  void dispose() {
+    _editingController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("'Editable Text"),
+        ),
+        body: Center(
+          child: _editTitleTextField(),
+        ),
+      ),
+    );
+  }
 }
 

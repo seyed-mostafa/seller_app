@@ -194,14 +194,40 @@ class _SplashScreenState extends State<SplashScreen> {
       restaurant1.addOrder(order);
     }
     Comment comment=new Comment("ai khoda");
-    comment.setCustomerName("Abbas");
-    comment.setRestaurantName('akbar jooje');
     Comment comment2=new Comment("man dige rad dadam");
-    comment2.setReply("khob be darak :)");
+    Comment comment3=new Comment("as dast in flutter");
+    Comment comment4=new Comment("ki bood migoft konkor ro bedin dige daneshgah rahate?");
+    Comment comment5=new Comment("khoda azab shab aval ghabresh ro ziad kone ");
+    Comment comment6=new Comment("khob dige dar mored chi benevisam");
+    Comment comment7=new Comment("fek konam baray comment ha bas bashe");
+    Comment comment8=new Comment("pas fellan khodahaffez :)))");
+    comment.setCustomerName("Abbas");
     comment2.setCustomerName("Mostafa");
+    comment3.setCustomerName("Ali");
+    comment4.setCustomerName("Hasan");
+    comment5.setCustomerName("Abbas");
+    comment6.setCustomerName("Mostafa");
+    comment7.setCustomerName("Ali");
+    comment8.setCustomerName("Hasan");
+
     comment.setRestaurantName('akbar jooje');
+    comment2.setRestaurantName('akbar jooje');
+    comment3.setRestaurantName('akbar jooje');
+    comment4.setRestaurantName('akbar jooje');
+    comment5.setRestaurantName('akbar jooje');
+    comment6.setRestaurantName('akbar jooje');
+    comment7.setRestaurantName('akbar jooje');
+    comment8.setRestaurantName('akbar jooje');
+    comment2.setReply("khob be darak :|");
+
     restaurant1.addComment(comment);
     restaurant1.addComment(comment2);
+    restaurant1.addComment(comment3);
+    restaurant1.addComment(comment4);
+    restaurant1.addComment(comment5);
+    restaurant1.addComment(comment6);
+    restaurant1.addComment(comment7);
+    restaurant1.addComment(comment8);
 
     super.initState();
     Timer(
