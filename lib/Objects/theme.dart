@@ -11,5 +11,6 @@ class theme{
   static Color red2=Color(0xfff00001);
   static Color yellow2=Color(0xffffCE48);
   static Color cream=Color(0xfff4edda);
+  static Color white =Color(0xfffafafa);
 
 }
