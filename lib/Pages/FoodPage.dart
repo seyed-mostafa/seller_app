@@ -242,7 +242,7 @@ class _FoodPageState extends State<FoodPage> {
                 child: TextFormField(//Food Description
                   initialValue: widget.currentRestaurant.
                     getMenu()[widget.currentFood].getDescription(),
-                  maxLines: 8,
+                  maxLines: 20,
                   cursorColor: theme.black,
                   decoration: InputDecoration(
                     border: new OutlineInputBorder(

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
+import 'package:seller_app/Pages/Map.dart';
 import 'package:seller_app/appBar.dart';
 import 'EnteringPage.dart';
 import '../MultiChoice.dart';
@@ -101,7 +102,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         suffixIcon: IconButton(
                           icon: Icon(Icons.map),
                           onPressed: (){
-                            //Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
                           },
                         ),
                         border: new OutlineInputBorder(
@@ -132,12 +133,6 @@ class _RegisteringPageState extends State<RegisteringPage> {
                     cursorColor: theme.black,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.map),
-                          onPressed: (){
-                            //Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
-                          },
-                        ),
                         border: new OutlineInputBorder(
                           borderRadius: const BorderRadius.all(
                             const Radius.circular(10),
@@ -149,7 +144,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         ),
                         fillColor: theme.yellow,
                         filled: true,
-                        icon: Icon(Icons.home_work),
+                        icon: Icon(Icons.cast_sharp),
                         labelText: "Range",
                         labelStyle: TextStyle(fontSize: 18,)
                     ),

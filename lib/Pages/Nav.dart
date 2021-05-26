@@ -29,7 +29,7 @@ class _NavState extends State<Nav> {
     if(_selectedIndex == 0){//Menu
       return Stack(
         children: [
-          tabBar( widget.currentRestaurant),
+          RestaurantMenu( widget.currentRestaurant),
 
           //add button
           Positioned(

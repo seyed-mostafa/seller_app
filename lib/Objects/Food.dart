@@ -123,5 +123,5 @@ enum TypeFood{
   ,Steaks
   ,Breakfast
   ,International
-
+  ,all
 }
