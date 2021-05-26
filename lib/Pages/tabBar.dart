@@ -264,9 +264,13 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
               children: [
                 icon,
                 typeFood != TypeFood.all ? Text("  " + typeFood.toString().substring(9),
-                    style: TextStyle(fontSize: _size.width * 0.03)
+                    style: TextStyle(fontSize: _size.width * 0.03,
+                    color: theme.black
+                    )
                 ):Text("  " + "AllFood",
-                  style: TextStyle(fontSize: _size.width * 0.03),
+                  style: TextStyle(fontSize: _size.width * 0.03,
+                  color: theme.black
+                  ),
                 )
               ],
             ),
@@ -287,17 +291,17 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
             scrollDirection: Axis.horizontal,
             children: [
               //here null means all type
-              typeWidget(TypeFood.all, Icon(Icons.assignment_turned_in_rounded)),
-              typeWidget(TypeFood.Pizza, Icon(FontAwesomeIcons.pizzaSlice)),
-              typeWidget(TypeFood.Sandwich, Icon(FontAwesomeIcons.hotdog,)),
-              typeWidget(TypeFood.Drinks, Icon(FontAwesomeIcons.cocktail)),
-              typeWidget(TypeFood.PersianFood, Icon(Icons.food_bank)),
-              typeWidget(TypeFood.Dessert, Icon(Icons.no_food)),
-              typeWidget(TypeFood.Appetizer, Icon(Icons.fastfood)),
-              typeWidget(TypeFood.Fried, Icon(Icons.local_fire_department)),
-              typeWidget(TypeFood.Steaks, Icon(Icons.set_meal)),
-              typeWidget(TypeFood.Breakfast, Icon(Icons.breakfast_dining)),
-              typeWidget(TypeFood.International, Icon(Icons.food_bank)),
+              typeWidget(TypeFood.all, Icon(Icons.assignment_turned_in_rounded, color: theme.yellow)),
+              typeWidget(TypeFood.Pizza, Icon(FontAwesomeIcons.pizzaSlice, color: theme.yellow)),
+              typeWidget(TypeFood.Sandwich, Icon(FontAwesomeIcons.hotdog, color: theme.yellow)),
+              typeWidget(TypeFood.Drinks, Icon(FontAwesomeIcons.cocktail, color: theme.yellow)),
+              typeWidget(TypeFood.PersianFood, Icon(Icons.food_bank, color: theme.yellow)),
+              typeWidget(TypeFood.Dessert, Icon(Icons.no_food, color: theme.yellow)),
+              typeWidget(TypeFood.Appetizer, Icon(Icons.fastfood, color: theme.yellow)),
+              typeWidget(TypeFood.Fried, Icon(Icons.local_fire_department, color: theme.yellow)),
+              typeWidget(TypeFood.Steaks, Icon(Icons.set_meal, color: theme.yellow)),
+              typeWidget(TypeFood.Breakfast, Icon(Icons.breakfast_dining, color: theme.yellow)),
+              typeWidget(TypeFood.International, Icon(Icons.food_bank, color: theme.yellow)),
             ]
         ),
       );
