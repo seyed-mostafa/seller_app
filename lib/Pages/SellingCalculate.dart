@@ -8,7 +8,7 @@ import 'package:seller_app/data/Restaurent.dart';
 
 class SellingCalculate extends StatefulWidget {
   Restaurant restaurant;
-  Restaurant currentRestaurent = importRestaurent()[0];
+  Restaurant currentRestaurent = importRestaurent()[7];
 
   SellingCalculate(this.restaurant);
 
