@@ -20,7 +20,7 @@ class Restaurant  {
   num _sendingRangeRadius,_id;
   LatLng _address;
   List<Food> _menu = List.empty(growable: true);
-  List<TypeFood> _type;
+  List<TypeFood> type;
   List<Order> _orders= List.empty(growable: true);
   List<Comment> _comments= List.empty(growable: true);
 
@@ -133,11 +133,11 @@ class Restaurant  {
   }
 
   void addTypeFood(TypeFood typeFood){
-    _type.add(typeFood);
+    type.add(typeFood);
   }
 
   List<TypeFood> getTypeFoods(){
-    return _type;
+    return type;
   }
   void setAddressString(String addressString){
     this._addressString=addressString;

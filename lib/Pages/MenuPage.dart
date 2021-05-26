@@ -42,14 +42,14 @@ class _FoodMenuState extends State<FoodMenu> {
     return Stack(
       children: [
         Container(
-          height: MediaQuery.of(context).size.height/3,
-          width: MediaQuery.of(context).size.width/3,
+          height: MediaQuery.of(context).size.height * 0.3,
+          width: MediaQuery.of(context).size.width * 0.5,
           padding: EdgeInsets.fromLTRB(5, 10, 10, 10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
               'assets/images/'+(index+1).toString()+".jpg",
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
         ),
@@ -69,23 +69,21 @@ class _FoodMenuState extends State<FoodMenu> {
             ):
             Container()
       ],
-
     );
   }
 
   dataFoodWidget(index){
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(widget.currentRestaurant.getMenu()[index].getName()),
-        Text(""),
-        Text("Price : ${widget.currentRestaurant.getMenu()[index].getPrice().toString()}"),
+        Text("${widget.currentRestaurant.getMenu()[index].getPrice().toString()}"),
       ],
     );
   }
 
   iconWidget(index){
-    return Column(
+    return Row(
       children: [
         IconButton(
             icon: Icon(
@@ -118,9 +116,13 @@ class _FoodMenuState extends State<FoodMenu> {
           child: Row(
             children: [
               imageWidget(index),
-              dataFoodWidget(index),
-              Spacer(),
-              iconWidget(index),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  dataFoodWidget(index),
+                  iconWidget(index),
+                ],
+              )
             ],
           ),
           onPressed: (){

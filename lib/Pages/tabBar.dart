@@ -25,12 +25,14 @@ class _tabBarState extends State<tabBar> {
       length: 11,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: theme.white,
           toolbarHeight: 50,
           flexibleSpace: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TabBar(
-                labelColor: Colors.white,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelColor: theme.black,
                 indicatorColor: theme.yellow,
                 isScrollable: true,
                   tabs: [
@@ -51,6 +53,7 @@ class _tabBarState extends State<tabBar> {
             ],
           ),
         ),
+        backgroundColor: theme.black,
         body: TabBarView(
           children: [
             FoodMenu( widget.currentRestaurant),

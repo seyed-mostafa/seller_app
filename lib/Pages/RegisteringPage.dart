@@ -10,9 +10,10 @@ import 'package:seller_app/Objects/Restaurant.dart';
 
 class RegisteringPage extends StatefulWidget {
 
- Function change;
+  Function adding;
+  List<Restaurant> restaurants = [];
 
-  RegisteringPage(this.change);
+  RegisteringPage(this.adding);
 
   @override
   _RegisteringPageState createState() => _RegisteringPageState();
@@ -22,11 +23,10 @@ class _RegisteringPageState extends State<RegisteringPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  String password = "123";
-  String phoneNumber = "456";
+  Restaurant inputRestaurant;
+
   String inputPhoneNumber = '', inputPassword = '',
       inputName = '', inputAddress = '';
-  bool validUser = false;
   bool hidden = true;
   List<String> foodType = [];
 
@@ -52,7 +52,6 @@ class _RegisteringPageState extends State<RegisteringPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         backgroundColor: theme.yellow,
         appBar: appBar(),
@@ -65,7 +64,6 @@ class _RegisteringPageState extends State<RegisteringPage> {
                 children: [
                   TextFormField(
                     cursorColor: theme.black,
-                    autofocus: true,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                         border: new OutlineInputBorder(
@@ -84,6 +82,10 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         labelStyle: TextStyle(fontSize: 18,)
                     ),
                     validator: (String value){
+                      for(Restaurant restaurant in widget.restaurants){
+                        if(restaurant.getName() == inputName)
+                          return "Name already exist";
+                      }
                       if(value.isEmpty){
                         return "Name cannot be empty";
                       }
@@ -94,7 +96,6 @@ class _RegisteringPageState extends State<RegisteringPage> {
                   SizedBox(height: 20,),
                   TextFormField(
                     cursorColor: theme.black,
-                    autofocus: true,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                         suffixIcon: IconButton(
@@ -129,7 +130,43 @@ class _RegisteringPageState extends State<RegisteringPage> {
                   SizedBox(height: 20,),
                   TextFormField(
                     cursorColor: theme.black,
-                    autofocus: true,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.map),
+                          onPressed: (){
+                            //Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
+                          },
+                        ),
+                        border: new OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                            const Radius.circular(10),
+                          ),
+                          borderSide: new BorderSide(
+                            color: theme.black,
+                            width: 1.0,
+                          ),
+                        ),
+                        fillColor: theme.yellow,
+                        filled: true,
+                        icon: Icon(Icons.home_work),
+                        labelText: "Range",
+                        labelStyle: TextStyle(fontSize: 18,)
+                    ),
+                    validator: (String value){
+                      if(!isInteger(value)){
+                        return "Range is number";
+                      }
+                      if(value.isEmpty){
+                        return "Range cannot be empty";
+                      }
+                      return null;
+                    },
+                    onSaved: (String value) => inputAddress = value,
+                  ),
+                  SizedBox(height: 20,),
+                  TextFormField(
+                    cursorColor: theme.black,
                     style: TextStyle(color: Colors.white),
                     autovalidate: true,
                     decoration: InputDecoration(
@@ -149,6 +186,10 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         labelStyle: TextStyle(fontSize: 18,)
                     ),
                     validator: (String value){
+                      for(Restaurant restaurant in widget.restaurants){
+                        if(restaurant.getPhoneNumber() == inputPhoneNumber)
+                          return "PhoneNumber already exist";
+                      }
                       if(value.length != 8 ||
                           !isInteger(value) ||
                           value.contains(' ')){
@@ -161,7 +202,6 @@ class _RegisteringPageState extends State<RegisteringPage> {
                   SizedBox(height: 20,),
                   TextFormField(
                     cursorColor: theme.black,
-                    autofocus: true,
                     style: TextStyle(color: Colors.white),
                     obscureText: hidden,
                     decoration: InputDecoration(
@@ -189,14 +229,14 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         labelText: "Password",
                         labelStyle: TextStyle(fontSize: 18,)
                     ),
-                    onChanged: (String value){
-                      password = value;
+                    onChanged: (String value) {
+                      inputPassword = value;
                       setState(() {
 
                       });
                     },
                     validator: (String value){
-                      if(value.length < 6 || value.contains('a')){
+                      if(value.length < 6 || !value.contains(RegExp(r'[a-zA-Z]')) || !value.contains(RegExp(r'[0-9]'))){
                         return "password at least contains 6 letter and number";
                       }
                       return null;
@@ -229,6 +269,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                                 ])
                             )??[];
                         print(foodType);
+
                       },
                   ),
                   SizedBox(height: 20,),
@@ -245,7 +286,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         print(inputAddress);
                         print(inputPhoneNumber);
                         print(inputPassword);
-                        widget.change(Restaurant(inputName,null,inputPhoneNumber,inputPassword));
+                        widget.adding(Restaurant(inputName,null,inputPhoneNumber,inputPassword));
                         Navigator.pop(context,);
                       }
                       setState(() {});
