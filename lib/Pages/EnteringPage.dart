@@ -17,10 +17,10 @@ class EnteringPage extends StatefulWidget {
 }
 
 class _EnteringPageState extends State<EnteringPage> {
-  List<Restaurant> restaurants = [];
+  List<Restaurant> restaurants1 = [];
   change(Restaurant restaurant, int index){
     setState(() {
-      restaurants[index] = restaurant;
+      widget.restaurants[index] = restaurant;
     });
   }
   adding(Restaurant restaurant){
