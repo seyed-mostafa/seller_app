@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Map.dart';
@@ -11,8 +12,9 @@ import 'package:seller_app/Objects/Restaurant.dart';
 
 class RegisteringPage extends StatefulWidget {
 
-  Function adding;
+  LatLng latLng;
   List<Restaurant> restaurants = [];
+  Function adding;
 
   RegisteringPage(this.adding);
 
@@ -21,6 +23,12 @@ class RegisteringPage extends StatefulWidget {
 }
 
 class _RegisteringPageState extends State<RegisteringPage> {
+
+  change(LatLng latLng){
+    setState(() {
+      widget.latLng=latLng;
+    });
+  }
 
   final _formKey = GlobalKey<FormState>();
 
@@ -102,7 +110,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         suffixIcon: IconButton(
                           icon: Icon(Icons.map),
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Map(change)));
                           },
                         ),
                         border: new OutlineInputBorder(
@@ -281,7 +289,9 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         print(inputAddress);
                         print(inputPhoneNumber);
                         print(inputPassword);
-                        widget.adding(Restaurant(inputName,null,inputPhoneNumber,inputPassword));
+                        Restaurant restaurant=new Restaurant(inputName,null,inputPhoneNumber,inputPassword);
+                        restaurant.setAddress(widget.latLng);
+                        widget.adding(restaurant);
                         Navigator.pop(context,);
                       }
                       setState(() {});
