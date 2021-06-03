@@ -25,8 +25,9 @@ class _CommentsPageState extends State<CommentsPage> {
               height: 40,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(
-                    image: NetworkImage(
+                image:
+                DecorationImage(
+                    image:new NetworkImage(
                         'assets/images/${widget.currentRestaurant.getComments()[index].getCustomerName()}.jpg'),
                     fit: BoxFit.fill),
               ),
