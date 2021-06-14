@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
@@ -10,24 +11,13 @@ import 'RegisteringPage.dart';
 
 class EnteringPage extends StatefulWidget {
 
-  List<Restaurant> restaurants = importRestaurent();
+
 
   @override
   _EnteringPageState createState() => _EnteringPageState();
 }
 
 class _EnteringPageState extends State<EnteringPage> {
-  List<Restaurant> restaurants1 = [];
-  change(Restaurant restaurant, int index){
-    setState(() {
-      widget.restaurants[index] = restaurant;
-    });
-  }
-  adding(Restaurant restaurant){
-    setState(() {
-      widget.restaurants.add(restaurant);
-    });
-  }
 
   //fake Dates
   String password = "123";
@@ -141,7 +131,7 @@ class _EnteringPageState extends State<EnteringPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                              Nav(widget.restaurants[0]) // 0 index just for test
+                              Nav() // 0 index just for test
                           ),
                         );
                       }
@@ -174,13 +164,13 @@ class _EnteringPageState extends State<EnteringPage> {
     );
   }
 
-  void _sendMessage() async {
-    await Socket.connect("192.168.1.5", 8080)
-        .then((serverSocket) {
+  void _sendMessage() {
+      Socket.connect("192.168.1.5", 8080)
+        .then((Socket serverSocket) {
       print('Connected to Server');
       serverSocket.writeln("Phone: " + inputPhoneNumberEnter + ", " + "pass: " + inputPasswordEnter);
-      serverSocket.listen((socket) async {
-        String messageServer = await String.fromCharCodes(socket).trim();
+      serverSocket.listen((Uint8List socket) {
+        String messageServer = String.fromCharCodes(socket).trim();
         setState(() {
           print(messageServer);
           if (messageServer.contains("true")) {
