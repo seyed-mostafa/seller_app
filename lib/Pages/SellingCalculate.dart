@@ -2,21 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/theme.dart';
+import 'package:seller_app/data/Data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
 import 'package:seller_app/data/Restaurent.dart';
 
 class SellingCalculate extends StatefulWidget {
-  Restaurant restaurant;
-  Restaurant currentRestaurent = importRestaurent()[7];
-
-  SellingCalculate(this.restaurant);
-
   @override
   _SellingCalculateState createState() => _SellingCalculateState();
 }
 
 class _SellingCalculateState extends State<SellingCalculate> {
+
+  Restaurant currentRestaurant= Data.restaurants[0];
+
   String dropdownValue = 'Last 7 days sales analysis';
   List<SalesData> _chartData;
   TooltipBehavior _tooltipBehavior;
@@ -27,9 +26,9 @@ class _SellingCalculateState extends State<SellingCalculate> {
     for (int i = 0; i < 7; i++) {
       chartData7[i] = SalesData(
           DateTime(2020, 4, i + 24),
-          widget.currentRestaurent.getOnlineSales()[i + 23],
-          widget.currentRestaurent.getcashSales()[i + 23],
-          widget.currentRestaurent.getTotalSales()[i + 23]);
+         currentRestaurant.getOnlineSales()[i + 23],
+         currentRestaurant.getcashSales()[i + 23],
+         currentRestaurant.getTotalSales()[i + 23]);
     }
     return chartData7;
   }
@@ -39,9 +38,9 @@ class _SellingCalculateState extends State<SellingCalculate> {
     for (int i = 0; i < 30; i++) {
       chartData30[i] = SalesData(
           DateTime(2020, 4, i),
-          widget.currentRestaurent.getOnlineSales()[i],
-          widget.currentRestaurent.getcashSales()[i],
-          widget.currentRestaurent.getTotalSales()[i]);
+          currentRestaurant.getOnlineSales()[i],
+          currentRestaurant.getcashSales()[i],
+          currentRestaurant.getTotalSales()[i]);
     }
     return chartData30;
   }
@@ -163,10 +162,10 @@ class _SellingCalculateState extends State<SellingCalculate> {
       padding: EdgeInsets.all(20),
       child: Column(
         children: [
-          Text("Total cash sales : ${widget.currentRestaurent.getcashSalessum(status)}000 \n"
-                      "Total online sales : ${widget.currentRestaurent.getOnlineSalessum(status)}000"),
+          Text("Total cash sales : ${currentRestaurant.getcashSalessum(status)}000 \n"
+                      "Total online sales : ${currentRestaurant.getOnlineSalessum(status)}000"),
             SizedBox(width: 5,height: 5),
-            Text("Total sale : ${widget.currentRestaurent.getTotalSalessum(status)}000",
+            Text("Total sale : ${currentRestaurant.getTotalSalessum(status)}000",
                     style: TextStyle(color: theme.red2,fontWeight:FontWeight.w500,fontSize: 18)),
         ],
       ),

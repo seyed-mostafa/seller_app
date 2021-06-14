@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
-import 'package:seller_app/Objects/theme.dart';
-import 'AddFoodPage.dart';
 import 'FoodPage.dart';
 
 class MenuType extends StatefulWidget {
@@ -127,10 +125,7 @@ class _MenuTypeState extends State<MenuType> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => FoodPage(
-                    widget.currentRestaurant,
-                    index
-                ),
+                builder: (context) => FoodPage(index)
               ),
             );
           },

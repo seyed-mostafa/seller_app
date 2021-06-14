@@ -3,25 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/appBar.dart';
-import 'package:seller_app/Objects/Order.dart';
 import 'package:intl/intl.dart';
+import 'package:seller_app/data/Data.dart';
 import 'Nav.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-
 import 'OrderPage.dart';
 
 class Orders extends StatefulWidget {
-  Restaurant currentRestaurant;
-
-  Orders(this.currentRestaurant);
 
   @override
   _OrdersState createState() => _OrdersState();
 }
 
 class _OrdersState extends State<Orders> {
-
+  Restaurant currentRestaurant= Data.restaurants[0];
   TextStyle _style=TextStyle(fontSize: 11);
 
   name_date(index){
@@ -37,19 +32,18 @@ class _OrdersState extends State<Orders> {
                 style: TextStyle(fontSize: 10, color: Colors.grey[800]),
                 children: <TextSpan>[
                   TextSpan(
-                    text: widget.currentRestaurant
+                    text: currentRestaurant
                         .getOrders()[index]
                         .getCustomerName(),
                     style: TextStyle(color: Colors.black, fontSize: 11),
                   )
                 ]),
           ),
-          //Padding(padding: EdgeInsets.symmetric(vertical: 1,horizontal: 0)),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
             child: Container(
-              child: Text(DateFormat('EEE d MMM\nkk:mm').format(widget
-                  .currentRestaurant
+              child: Text(DateFormat('EEE d MMM\nkk:mm').format(
+                  currentRestaurant
                   .getOrders()[index]
                   .getOrderTime())),
             ),
@@ -62,8 +56,8 @@ class _OrdersState extends State<Orders> {
   detail1(index) {
     double _width=100;
     Iterable<Food> keys =
-        widget.currentRestaurant.getOrders()[index].getOrder().keys;
-    switch (widget.currentRestaurant.getOrders()[index].getOrder().length) {
+        currentRestaurant.getOrders()[index].getOrder().keys;
+    switch (currentRestaurant.getOrders()[index].getOrder().length) {
       case 1:
         {
           return Container(
@@ -144,8 +138,8 @@ class _OrdersState extends State<Orders> {
   detail2(index) {
     double _width=20;
     Iterable<Food> keys =
-        widget.currentRestaurant.getOrders()[index].getOrder().keys;
-    switch (widget.currentRestaurant.getOrders()[index].getOrder().length) {
+        currentRestaurant.getOrders()[index].getOrder().keys;
+    switch (currentRestaurant.getOrders()[index].getOrder().length) {
       case 1:
         {
           return Container(
@@ -153,7 +147,7 @@ class _OrdersState extends State<Orders> {
             child: Column(
               children: [
                 Row(children: [
-                  Text(widget.currentRestaurant
+                  Text(currentRestaurant
                       .getOrders()[index]
                       .getOrder()[keys.elementAt(0)]
                       .toString(),
@@ -170,14 +164,14 @@ class _OrdersState extends State<Orders> {
           child: Column(
             children: [
               Row(children: [
-                Text(widget.currentRestaurant
+                Text(currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(0)]
                     .toString(),
                     style:_style)
               ]),
               Row(children: [
-                Text(widget.currentRestaurant
+                Text(currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(1)]
                     .toString(),
@@ -193,21 +187,21 @@ class _OrdersState extends State<Orders> {
           child: Column(
             children: [
               Row(children: [
-                Text(widget.currentRestaurant
+                Text(currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(0)]
                     .toString(),
                     style:_style)
               ]),
               Row(children: [
-                Text(widget.currentRestaurant
+                Text(currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(1)]
                     .toString(),
                     style:_style)
               ]),
               Row(children: [
-                Text(widget.currentRestaurant
+                Text(currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(2)]
                     .toString(),
@@ -223,14 +217,14 @@ class _OrdersState extends State<Orders> {
           child: Column(
             children: [
               Row(children: [
-                Text(widget.currentRestaurant
+                Text(currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(0)]
                     .toString(),
                     style:_style)
               ]),
               Row(children: [
-                Text(widget.currentRestaurant
+                Text(currentRestaurant
                     .getOrders()[index]
                     .getOrder()[keys.elementAt(1)]
                     .toString(),
@@ -245,11 +239,10 @@ class _OrdersState extends State<Orders> {
   }
 
   price(index){
-    bool _bool=widget.currentRestaurant.getOrders()[index].getStatus();
     return Container(
       child: Column(
         children: [
-          Text(widget.currentRestaurant
+          Text(currentRestaurant
               .getOrders()[index]
               .getPrice()
               .toString() +
@@ -263,15 +256,15 @@ class _OrdersState extends State<Orders> {
             borderRadius: 10.0,
             inactiveColor: theme.black,
             activeColor: theme.yellow,
-            value:widget.currentRestaurant.getOrders()[index].getStatus(),
+            value:currentRestaurant.getOrders()[index].getStatus(),
             onToggle: (value) {
               setState(() {
-                widget.currentRestaurant.getOrders()[index].setStatus();
-                widget.currentRestaurant.arrange();
+                currentRestaurant.getOrders()[index].setStatus();
+                currentRestaurant.arrange();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Nav(widget.currentRestaurant)
+                    builder: (context) => Nav()
                     ),
                 );
               }
@@ -290,7 +283,7 @@ class _OrdersState extends State<Orders> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: FlatButton(
-          color: widget.currentRestaurant.getOrders()[index].getStatus() == true
+          color: currentRestaurant.getOrders()[index].getStatus() == true
               ? Colors.white
               : theme.yellow,
           child: Row(
@@ -308,7 +301,7 @@ class _OrdersState extends State<Orders> {
               context,
               MaterialPageRoute(
                 builder: (context) => OrderPage(
-                    widget.currentRestaurant,
+                    currentRestaurant,
                     index
                 ),
               ),
@@ -323,7 +316,7 @@ class _OrdersState extends State<Orders> {
   Widget build(BuildContext context) {
     return Container(
         child: ListView(
-      children: List.generate(widget.currentRestaurant.getOrders().length,
+      children: List.generate(currentRestaurant.getOrders().length,
           (index) => showOrder(index)),
     ));
   }

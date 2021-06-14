@@ -149,7 +149,7 @@ class _EnteringPageState extends State<EnteringPage> {
                       onPressed: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => RegisteringPage(adding)),
+                          MaterialPageRoute(builder: (context) => RegisteringPage()),
                         );
                       },
                       child: Text("Sign up", style: TextStyle(fontSize: 18),)

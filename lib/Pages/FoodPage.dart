@@ -3,24 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/Pages/MenuPage.dart';
 import 'package:seller_app/Pages/Nav.dart';
-import 'package:seller_app/Pages/tabBar.dart';
-import 'package:seller_app/appBar.dart';
-import 'AddFoodPage.dart';
+import 'package:seller_app/data/Data.dart';
 
 
 class FoodPage extends StatefulWidget {
-  Restaurant currentRestaurant;
+
   int currentFood;
 
-  FoodPage(this.currentRestaurant, this.currentFood);
+  FoodPage(this.currentFood);
 
   @override
   _FoodPageState createState() => _FoodPageState();
 }
 
 class _FoodPageState extends State<FoodPage> {
+
+  Restaurant currentRestaurant= Data.restaurants[0];
   int state = 1;
   int like = 0;
 
@@ -74,7 +73,7 @@ class _FoodPageState extends State<FoodPage> {
               Container(
                 width: _size.width/3,
                 child: TextFormField(//Food Name
-                  initialValue: widget.currentRestaurant.
+                  initialValue: currentRestaurant.
                     getMenu()[widget.currentFood].getName(),
                   cursorColor: theme.black,
                   decoration: InputDecoration(
@@ -90,7 +89,7 @@ class _FoodPageState extends State<FoodPage> {
                   ),
                   onChanged: (value){
                     setState(() {
-                      widget.currentRestaurant.getMenu()[widget.currentFood].
+                      currentRestaurant.getMenu()[widget.currentFood].
                       setName(value);
                     });
                   },
@@ -118,7 +117,7 @@ class _FoodPageState extends State<FoodPage> {
               Container(
                 width: _size.width/3,
                 child: TextFormField(//Food Price
-                  initialValue: widget.currentRestaurant.
+                  initialValue: currentRestaurant.
                     getMenu()[widget.currentFood].getPrice().toString(),
                   decoration: InputDecoration(
                     suffixText: "T",
@@ -134,7 +133,7 @@ class _FoodPageState extends State<FoodPage> {
                   ),
                   onChanged: (String value) {
                     setState(() {
-                      widget.currentRestaurant.getMenu()[widget.currentFood].
+                      currentRestaurant.getMenu()[widget.currentFood].
                       setPrice(int.tryParse(value));
                     });
                   },
@@ -173,7 +172,7 @@ class _FoodPageState extends State<FoodPage> {
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 Text(
-                  widget.currentRestaurant.getName(),
+                  currentRestaurant.getName(),
                   style:
                   TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
@@ -240,7 +239,7 @@ class _FoodPageState extends State<FoodPage> {
                   )
                 ]),
                 child: TextFormField(//Food Description
-                  initialValue: widget.currentRestaurant.
+                  initialValue: currentRestaurant.
                     getMenu()[widget.currentFood].getDescription(),
                   maxLines: 20,
                   cursorColor: theme.black,
@@ -256,7 +255,7 @@ class _FoodPageState extends State<FoodPage> {
                     ),
                   ),
                   onChanged: (String value) {
-                    widget.currentRestaurant.getMenu()[widget.currentFood].setDescription(value);
+                    currentRestaurant.getMenu()[widget.currentFood].setDescription(value);
                   },
                 ),
                 // child: Text(
@@ -283,7 +282,7 @@ class _FoodPageState extends State<FoodPage> {
                       offset: Offset(0, 0))
                 ]),
                 child: Text(
-                    widget.currentRestaurant
+                   currentRestaurant
                         .getMenu()[widget.currentFood]
                         .getComment(),
                     style: TextStyle(color: theme.black, fontSize: 15)),
@@ -337,7 +336,7 @@ class _FoodPageState extends State<FoodPage> {
             _priceIsValid && _nameIsValid ?
             Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Nav(widget.currentRestaurant))
+                MaterialPageRoute(builder: (context) => Nav())
             ): null;
           },
         ),

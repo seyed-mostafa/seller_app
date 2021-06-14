@@ -9,6 +9,7 @@ import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/FoodPage.dart';
 import 'package:seller_app/Pages/MenuPage.dart';
 import 'package:seller_app/Pages/MenuType.dart';
+import 'package:seller_app/data/Data.dart';
 //
 // class tabBar extends StatefulWidget {
 //
@@ -80,15 +81,13 @@ import 'package:seller_app/Pages/MenuType.dart';
 
 class RestaurantMenu extends StatefulWidget {
 
-  Restaurant currentRestaurant;
-
-  RestaurantMenu(this.currentRestaurant);
 
   @override
   _RestaurantMenuState createState() => _RestaurantMenuState();
 }
 
 class _RestaurantMenuState extends State<RestaurantMenu> {
+  Restaurant currentRestaurant= Data.restaurants[0];
 
   String searchingText = "";
   TypeFood chosenType = TypeFood.all;
@@ -113,7 +112,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
               ),
             ),
           ),
-          widget.currentRestaurant.
+          currentRestaurant.
           getMenu()[index].getDiscount() != null ?
           Center(
             child: Container(
@@ -123,7 +122,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
               ),
               margin: EdgeInsets.fromLTRB(5, 10, 10, 10),
 
-              child: Text("${widget.currentRestaurant.
+              child: Text("${currentRestaurant.
               getMenu()[index].getDiscount()}%", style: TextStyle(color: Colors.white),),
             ),
           ):
@@ -138,8 +137,8 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.currentRestaurant.getMenu()[index].getName()),
-            Text("${widget.currentRestaurant.getMenu()[index].getPrice().toString()} T"),
+            Text(currentRestaurant.getMenu()[index].getName()),
+            Text("${currentRestaurant.getMenu()[index].getPrice().toString()} T"),
           ],
         ),
       );
@@ -150,18 +149,18 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
         children: [
           IconButton(
               icon: Icon(
-                widget.currentRestaurant.getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
-                color: widget.currentRestaurant.getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
+                currentRestaurant.getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
+                color: currentRestaurant.getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
               ),
               onPressed: (){
-                widget.currentRestaurant.getMenu()[index].setAvailable(!widget.currentRestaurant.getMenu()[index].getAvailable());
+                currentRestaurant.getMenu()[index].setAvailable(!currentRestaurant.getMenu()[index].getAvailable());
                 setState(() {});
               }
           ),
           IconButton(
               icon: Icon(Icons.delete),
               onPressed: (){
-                widget.currentRestaurant.getMenu().removeAt(index);
+                currentRestaurant.getMenu().removeAt(index);
                 setState(() {});
               }
           )
@@ -191,7 +190,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
               context,
               MaterialPageRoute(
                 builder: (context) => FoodPage(
-                  widget.currentRestaurant,
+                  currentRestaurant,
                   index
                 ),
               ),
@@ -208,9 +207,9 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
         child: GridView.count(
           crossAxisCount: 2,
           children: [
-            for(int i = 0; i < widget.currentRestaurant.getMenu().length; i++)
-              if(searchingText == "" || widget.currentRestaurant.getMenu()[i].getName().contains(searchingText))
-                if(chosenType == TypeFood.all || widget.currentRestaurant.getMenu()[i].getTypeFood() == chosenType)
+            for(int i = 0; i < currentRestaurant.getMenu().length; i++)
+              if(searchingText == "" || currentRestaurant.getMenu()[i].getName().contains(searchingText))
+                if(chosenType == TypeFood.all || currentRestaurant.getMenu()[i].getTypeFood() == chosenType)
                   showFood(i)
           ],
         ),

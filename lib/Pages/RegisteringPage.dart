@@ -5,6 +5,7 @@ import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Map.dart';
 import 'package:seller_app/appBar.dart';
+import 'package:seller_app/data/Data.dart';
 import 'EnteringPage.dart';
 import '../MultiChoice.dart';
 import 'dart:io';
@@ -13,10 +14,6 @@ import 'package:seller_app/Objects/Restaurant.dart';
 class RegisteringPage extends StatefulWidget {
 
   LatLng latLng;
-  List<Restaurant> restaurants = [];
-  Function adding;
-
-  RegisteringPage(this.adding);
 
   @override
   _RegisteringPageState createState() => _RegisteringPageState();
@@ -291,7 +288,8 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         print(inputPassword);
                         Restaurant restaurant=new Restaurant(inputName,null,inputPhoneNumber,inputPassword);
                         restaurant.setAddress(widget.latLng);
-                        widget.adding(restaurant);
+                        Data.restaurants.add(restaurant);
+                        //TODO:transfer new restaurant to server.
                         Navigator.pop(context,);
                       }
                       setState(() {});

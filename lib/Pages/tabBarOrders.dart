@@ -3,21 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/SellingCalculate.dart';
+import 'package:seller_app/data/Data.dart';
 
 import 'OrdersPage.dart';
 
 class tabBarOrders extends StatefulWidget {
 
-  Restaurant currentRestaurant;
 
-  tabBarOrders(this.currentRestaurant);
 
   @override
   _tabBarOrdersState createState() => _tabBarOrdersState();
 }
 
 class _tabBarOrdersState extends State<tabBarOrders> {
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -41,8 +39,8 @@ class _tabBarOrdersState extends State<tabBarOrders> {
         ),
         body: TabBarView(
           children: [
-            Orders(widget.currentRestaurant),
-            SellingCalculate(widget.currentRestaurant),
+            Orders(),
+            SellingCalculate(),
           ],
         ),
       ),

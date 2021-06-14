@@ -7,6 +7,7 @@ import 'package:seller_app/Pages/OrdersPage.dart';
 import 'package:seller_app/Pages/tabBar.dart';
 import 'package:seller_app/Pages/tabBarOrders.dart';
 import 'package:seller_app/appBar.dart';
+import 'package:seller_app/data/Data.dart';
 
 import 'AddFoodPage.dart';
 
@@ -14,8 +15,7 @@ import 'AddFoodPage.dart';
 
 class Nav extends StatefulWidget {
 
-  Restaurant currentRestaurant;
-  Nav(this.currentRestaurant);
+
 
   @override
   _NavState createState() => _NavState();
@@ -23,13 +23,14 @@ class Nav extends StatefulWidget {
 
 class _NavState extends State<Nav> {
 
+
   int _selectedIndex = 1;
 
   showScreen(){
     if(_selectedIndex == 0){//Menu
       return Stack(
         children: [
-          RestaurantMenu( widget.currentRestaurant),
+          RestaurantMenu(),
 
           //add button
           Positioned(
@@ -44,7 +45,7 @@ class _NavState extends State<Nav> {
                 child: TextButton(
                   child: Icon(Icons.add, color: theme.yellow,),
                   onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood( widget.currentRestaurant)));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood()));
                   },
                 ),
               )
@@ -52,9 +53,9 @@ class _NavState extends State<Nav> {
         ],
       );
     }else if(_selectedIndex == 1){//Orders
-      return tabBarOrders( widget.currentRestaurant);
+      return tabBarOrders();
     }else if(_selectedIndex == 2){//Comments
-      return CommentsPage( widget.currentRestaurant);
+      return CommentsPage();
     }
   }
 

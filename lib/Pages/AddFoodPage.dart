@@ -5,19 +5,19 @@ import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Nav.dart';
 import 'package:seller_app/appBar.dart';
+import 'package:seller_app/data/Data.dart';
 
 
 class AddFood extends StatefulWidget {
 
-Restaurant currentRestaurant;
-
-  AddFood( this.currentRestaurant);
 
   @override
   _AddFoodState createState() => _AddFoodState();
 }
 
 class _AddFoodState extends State<AddFood> {
+
+  Restaurant currentRestaurant= Data.restaurants[0];
 
   String _inputName='', _inputDescription='',
       _inputPrice='', _inputDiscount='0', _inputPath='';
@@ -52,7 +52,7 @@ class _AddFoodState extends State<AddFood> {
           onPressed: (){
             Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Nav( widget.currentRestaurant)))
+                MaterialPageRoute(builder: (context) => Nav()))
             ;
           },
         ),
@@ -196,7 +196,7 @@ class _AddFoodState extends State<AddFood> {
                               print(_inputDescription);
                               print(_inputPrice);
                               print(_inputDiscount);
-                              widget.currentRestaurant.getMenu().add(Food(
+                              currentRestaurant.getMenu().add(Food(
                                   _inputName,
                                   _inputDescription,
                                   int.parse(_inputPrice),
@@ -205,7 +205,7 @@ class _AddFoodState extends State<AddFood> {
                                   true,
                                   TypeFood.Appetizer,
                               ));
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav( widget.currentRestaurant)));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav()));
                             }
                             setState(() {});
                           },

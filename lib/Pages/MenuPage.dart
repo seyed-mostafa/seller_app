@@ -1,21 +1,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
-import 'package:seller_app/Objects/theme.dart';
-import 'AddFoodPage.dart';
+import 'package:seller_app/data/Data.dart';
 import 'FoodPage.dart';
 
 class FoodMenu extends StatefulWidget {
-
-  Restaurant currentRestaurant;
-
-  FoodMenu(this.currentRestaurant);
 
   @override
   _FoodMenuState createState() => _FoodMenuState();
 }
 
 class _FoodMenuState extends State<FoodMenu> {
+
+  Restaurant currentRestaurant= Data.restaurants[0];
 
   bool isInteger(String string) {
     // Null or empty string is not a number
@@ -53,7 +50,7 @@ class _FoodMenuState extends State<FoodMenu> {
             ),
           ),
         ),
-        widget.currentRestaurant.
+        currentRestaurant.
         getMenu()[index].getDiscount() != null ?
             Center(
               child: Container(
@@ -63,7 +60,7 @@ class _FoodMenuState extends State<FoodMenu> {
                 ),
                 margin: EdgeInsets.fromLTRB(5, 10, 10, 10),
 
-                child: Text("${widget.currentRestaurant.
+                child: Text("${currentRestaurant.
                 getMenu()[index].getDiscount()}%", style: TextStyle(color: Colors.white),),
               ),
             ):
@@ -76,8 +73,8 @@ class _FoodMenuState extends State<FoodMenu> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.currentRestaurant.getMenu()[index].getName()),
-        Text("${widget.currentRestaurant.getMenu()[index].getPrice().toString()}"),
+        Text(currentRestaurant.getMenu()[index].getName()),
+        Text("${currentRestaurant.getMenu()[index].getPrice().toString()}"),
       ],
     );
   }
@@ -87,18 +84,18 @@ class _FoodMenuState extends State<FoodMenu> {
       children: [
         IconButton(
             icon: Icon(
-              widget.currentRestaurant.getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
-              color: widget.currentRestaurant.getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
+              currentRestaurant.getMenu()[index].getAvailable()?Icons.check_circle_rounded:Icons.circle,
+              color: currentRestaurant.getMenu()[index].getAvailable()?Colors.greenAccent:Colors.redAccent,
             ),
             onPressed: (){
-              widget.currentRestaurant.getMenu()[index].setAvailable(!widget.currentRestaurant.getMenu()[index].getAvailable());
+              currentRestaurant.getMenu()[index].setAvailable(!currentRestaurant.getMenu()[index].getAvailable());
               setState(() {});
             }
         ),
         IconButton(
             icon: Icon(Icons.delete),
             onPressed: (){
-              widget.currentRestaurant.getMenu().removeAt(index);
+              currentRestaurant.getMenu().removeAt(index);
               setState(() {});
             }
         )
@@ -130,7 +127,6 @@ class _FoodMenuState extends State<FoodMenu> {
               context,
               MaterialPageRoute(
                 builder: (context) => FoodPage(
-                    widget.currentRestaurant,
                     index
                 ),
               ),
@@ -147,7 +143,7 @@ class _FoodMenuState extends State<FoodMenu> {
       children: [
         Container(
           child: ListView(
-            children: List.generate(widget.currentRestaurant.getMenu().length, (index) => showFood(index)),
+            children: List.generate(currentRestaurant.getMenu().length, (index) => showFood(index)),
           )
         ),
       ],
