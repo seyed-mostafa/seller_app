@@ -5,6 +5,7 @@ import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Nav.dart';
 import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/data/SocketConnect.dart';
 
 
 class FoodPage extends StatefulWidget {
@@ -25,6 +26,18 @@ class _FoodPageState extends State<FoodPage> {
 
   //permission for back to menu
   bool _nameIsValid = true, _priceIsValid = true;
+
+  void _sendMessage() { //format: changeFood::foodIndexToChange::name::description::price::discount::available::typeFood
+    SocketConnect.socket.then((value) { //ToDo this calls just user back to menu
+      value.writeln("changeFood::" + widget.currentFood.toString()
+        + "::" + currentRestaurant.getMenu()[widget.currentFood].getName()
+        + "::" + currentRestaurant.getMenu()[widget.currentFood].getDescription()
+        + "::" + currentRestaurant.getMenu()[widget.currentFood].getPrice().toString()
+        + "::" + currentRestaurant.getMenu()[widget.currentFood].getDiscount().toString()
+        + "::" + currentRestaurant.getMenu()[widget.currentFood].getAvailable().toString()
+        + "::" + currentRestaurant.getMenu()[widget.currentFood].getTypeFood().toString());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -333,11 +346,15 @@ class _FoodPageState extends State<FoodPage> {
         leading: IconButton(
           icon: Icon(Icons.keyboard_backspace),
           onPressed: (){
-            _priceIsValid && _nameIsValid ?
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Nav())
-            ): null;
+            if(_priceIsValid && _nameIsValid) {
+              _sendMessage();
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Nav())
+              );
+            } else {
+              null;
+            }
           },
         ),
         backgroundColor:Colors.white ,

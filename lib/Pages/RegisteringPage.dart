@@ -6,6 +6,7 @@ import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Map.dart';
 import 'package:seller_app/appBar.dart';
 import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/data/SocketConnect.dart';
 import 'EnteringPage.dart';
 import '../MultiChoice.dart';
 import 'dart:io';
@@ -31,8 +32,9 @@ class _RegisteringPageState extends State<RegisteringPage> {
 
   Restaurant inputRestaurant;
 
-  String inputPhoneNumber = '', inputPassword = '',
-      inputName = '', inputAddress = '';
+  String _inputPhoneNumber = '', _inputPassword = '',
+      _inputName = '', _inputAddress = '', _inputLongitude = '',
+      _inputLatitude = '', _inputRange = '';
   bool hidden = true;
   List<String> foodType = [];
 
@@ -55,6 +57,18 @@ class _RegisteringPageState extends State<RegisteringPage> {
     return true;
   }
 
+  void _sendMessage() async { //format: Registering::nameRegistering::phoneNumber::password::address(String)::longitude::latitude::range::foodType1,foodType2,...
+    String types = '';
+    for(int i = 0; i < foodType.length; i++) { //ToDo currentRestaurant.type.length
+      types += foodType[i]+",";
+    }
+    await SocketConnect.socket.then((value) {
+      value.writeln("Registering::" + _inputName
+          + "::" + _inputPhoneNumber + "::" + _inputPassword + "::"
+          + _inputAddress + "::" + _inputLongitude + "::" + _inputLatitude
+          + "::" + _inputRange + "::" + types);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,16 +102,16 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         labelStyle: TextStyle(fontSize: 18,)
                     ),
                     validator: (String value){
-                      for(Restaurant restaurant in widget.restaurants){
-                        if(restaurant.getName() == inputName)
-                          return "Name already exist";
-                      }
+                      // for(Restaurant restaurant in widget.restaurants){
+                      //   if(restaurant.getName() == inputName)
+                      //     return "Name already exist";
+                      // }
                       if(value.isEmpty){
                         return "Name cannot be empty";
                       }
                       return null;
                     },
-                    onSaved: (String value) => inputName = value,
+                    onSaved: (String value) => _inputName = value,
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
@@ -131,7 +145,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                       }
                       return null;
                     },
-                    onSaved: (String value) => inputAddress = value,
+                    onSaved: (String value) => _inputAddress = value,
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
@@ -162,7 +176,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                       }
                       return null;
                     },
-                    onSaved: (String value) => inputAddress = value,
+                    onSaved: (String value) => _inputRange = value,
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
@@ -186,10 +200,10 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         labelStyle: TextStyle(fontSize: 18,)
                     ),
                     validator: (String value){
-                      for(Restaurant restaurant in widget.restaurants){
-                        if(restaurant.getPhoneNumber() == inputPhoneNumber)
-                          return "PhoneNumber already exist";
-                      }
+                      // for(Restaurant restaurant in widget.restaurants){
+                      //   if(restaurant.getPhoneNumber() == inputPhoneNumber)
+                      //     return "PhoneNumber already exist";
+                      // }
                       if(value.length != 8 ||
                           !isInteger(value) ||
                           value.contains(' ')){
@@ -197,7 +211,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                       }
                       return null;
                     },
-                    onSaved: (String value) => inputPhoneNumber = value,
+                    onSaved: (String value) => _inputPhoneNumber = value,
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
@@ -230,7 +244,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         labelStyle: TextStyle(fontSize: 18,)
                     ),
                     onChanged: (String value) {
-                      inputPassword = value;
+                      _inputPassword = value;
                       setState(() {
 
                       });
@@ -282,11 +296,11 @@ class _RegisteringPageState extends State<RegisteringPage> {
                     onPressed: () async {
                       if(_formKey.currentState.validate()) {
                         _formKey.currentState.save();
-                        print(inputName);
-                        print(inputAddress);
-                        print(inputPhoneNumber);
-                        print(inputPassword);
-                        Restaurant restaurant=new Restaurant(inputName,null,inputPhoneNumber,inputPassword);
+                        print(_inputName);
+                        print(_inputAddress);
+                        print(_inputPhoneNumber);
+                        print(_inputPassword);
+                        Restaurant restaurant=new Restaurant(_inputName,null,_inputPhoneNumber,_inputPassword);
                         restaurant.setAddress(widget.latLng);
                         Data.restaurants.add(restaurant);
                         //TODO:transfer new restaurant to server.

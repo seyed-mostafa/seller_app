@@ -190,8 +190,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
               context,
               MaterialPageRoute(
                 builder: (context) => FoodPage(
-                  currentRestaurant,
-                  index
+                  0 // ToDo
                 ),
               ),
             );

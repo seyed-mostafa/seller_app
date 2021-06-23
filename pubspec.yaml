@@ -31,6 +31,11 @@ dependencies:
   font_awesome_flutter: ^9.0.0
   syncfusion_flutter_charts: ^19.1.65
 
+human:
+  name: "abbas"
+  lastName: "dlkjf"
+  ...
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

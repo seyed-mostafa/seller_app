@@ -168,6 +168,7 @@ class _EnteringPageState extends State<EnteringPage> {
       Socket.connect("192.168.1.5", 8080)
         .then((Socket serverSocket) {
       print('Connected to Server');
+      serverSocket.writeln("Seller");
       serverSocket.writeln("Phone: " + inputPhoneNumberEnter + ", " + "pass: " + inputPasswordEnter);
       serverSocket.listen((Uint8List socket) {
         String messageServer = String.fromCharCodes(socket).trim();

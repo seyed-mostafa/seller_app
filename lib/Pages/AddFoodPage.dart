@@ -6,6 +6,7 @@ import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Nav.dart';
 import 'package:seller_app/appBar.dart';
 import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/data/SocketConnect.dart';
 
 
 class AddFood extends StatefulWidget {
@@ -17,11 +18,11 @@ class AddFood extends StatefulWidget {
 
 class _AddFoodState extends State<AddFood> {
 
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant = Data.restaurants[0]; //ToDo test
 
-  String _inputName='', _inputDescription='',
-      _inputPrice='', _inputDiscount='0', _inputPath='';
-  bool _inputSizing=false,_inputAvailable=false,_inputIsDiscount=false;
+  String _inputName = '', _inputDescription = '',
+      _inputPrice = '', _inputDiscount = '0', _inputPath = '';
+  bool _inputSizing = false, _inputAvailable = false, _inputIsDiscount = false;
   var _formKey = GlobalKey<FormState>();
 
   bool isInteger(String string) {
@@ -41,6 +42,14 @@ class _AddFoodState extends State<AddFood> {
     }
 
     return true;
+  }
+
+  void _sendMessage() { //format: addFood::name::description::price::discount::typeFood
+    SocketConnect.socket.then((value) {
+      value.writeln("addFood::" + _inputName
+        + "::" + _inputDescription + "::" + _inputPrice
+        + "::" + _inputDiscount + "::" + TypeFood.all.toString()); //ToDo typeFood?
+    });
   }
 
   @override
