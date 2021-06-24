@@ -10,6 +10,7 @@ import 'package:seller_app/Pages/FoodPage.dart';
 import 'package:seller_app/Pages/MenuPage.dart';
 import 'package:seller_app/Pages/MenuType.dart';
 import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/data/Restaurent.dart';
 //
 // class tabBar extends StatefulWidget {
 //
@@ -87,7 +88,7 @@ class RestaurantMenu extends StatefulWidget {
 }
 
 class _RestaurantMenuState extends State<RestaurantMenu> {
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant = importRestaurent()[0];
 
   String searchingText = "";
   TypeFood chosenType = TypeFood.all;
@@ -98,44 +99,23 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
     Size _size = MediaQuery.of(context).size;
 
     imageWidget(index){
-      return Stack(
-        children: [
-          Container(
-            // height: MediaQuery.of(context).size.height * 0.20,
-            // width: MediaQuery.of(context).size.width * 0.40,
-            padding: EdgeInsets.fromLTRB(5, 10, 10, 10),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                "assets/images/food2.jpg",
-                fit: BoxFit.cover,
-              ),
-            ),
+      return Container(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            "assets/images/3.jpg",
+            fit: BoxFit.fitWidth,
           ),
-          currentRestaurant.
-          getMenu()[index].getDiscount() != null ?
-          Center(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(5)
-              ),
-              margin: EdgeInsets.fromLTRB(5, 10, 10, 10),
-
-              child: Text("${currentRestaurant.
-              getMenu()[index].getDiscount()}%", style: TextStyle(color: Colors.white),),
-            ),
-          ):
-          Container()
-        ],
+        ),
       );
     }
 
     dataFoodWidget(index){
       return Container(
         margin: EdgeInsets.only(left: 10),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(currentRestaurant.getMenu()[index].getName()),
             Text("${currentRestaurant.getMenu()[index].getPrice().toString()} T"),
@@ -145,7 +125,8 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
     }
 
     iconWidget(index){
-      return Column(
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconButton(
               icon: Icon(
@@ -163,6 +144,19 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
                 currentRestaurant.getMenu().removeAt(index);
                 setState(() {});
               }
+          ),
+          IconButton(
+              icon: Icon(Icons.edit),
+            onPressed: (){
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FoodPage(
+                      0 // ToDo
+                  ),
+                ),
+              );
+            },
           )
         ],
       );
@@ -170,31 +164,24 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
 
     Widget showFood(index){
       return Container(
-        width: _size.width/2,
-        padding: const EdgeInsets.all(2),
-        child: TextButton(
-          child: Column(
-            children: [
-              imageWidget(index),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  dataFoodWidget(index),
-                  iconWidget(index)
-                ],
-              )
-            ],
-          ),
-          onPressed: (){
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => FoodPage(
-                  0 // ToDo
-                ),
-              ),
-            );
-          },
+        margin: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: theme.yellow,
+          borderRadius: BorderRadius.circular(10),
+
+        ),
+        child: Column(
+          children: [
+            imageWidget(index),
+            SizedBox(height: 10,),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                dataFoodWidget(index),
+                iconWidget(index)
+              ],
+            )
+          ],
         ),
       );
     }
@@ -204,6 +191,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
         height: _size.height,
         width: _size.width,
         child: GridView.count(
+          childAspectRatio: 0.9, //default shape of gridview is square and this change fraction of length and with
           crossAxisCount: 2,
           children: [
             for(int i = 0; i < currentRestaurant.getMenu().length; i++)
@@ -308,6 +296,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
     return ListView(children:[
       searching(),
       chooseType(),
+      SizedBox(height: 10,),
       building()
     ] );
   }

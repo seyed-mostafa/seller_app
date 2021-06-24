@@ -24,7 +24,7 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
 
 
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   showScreen(){
     if(_selectedIndex == 0){//Menu
@@ -105,7 +105,8 @@ class _NavState extends State<Nav> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: theme.black,
+        unselectedItemColor: theme.white,
+        backgroundColor: theme.yellow,
         items:
         const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -122,7 +123,7 @@ class _NavState extends State<Nav> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: theme.yellow,
+        selectedItemColor: theme.black,
         onTap: _onItemTap,
       ),
       body: showScreen(),
