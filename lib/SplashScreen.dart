@@ -14,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool EnteredUser = true;
+  bool EnteredUser = false;
   Restaurant restaurant1 = new Restaurant('akbar jooje',
       LatLng(35.717676891099835, 51.331243399093914), '09123456780', '1234');
 

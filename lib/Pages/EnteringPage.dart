@@ -7,6 +7,7 @@ import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Nav.dart';
 import 'package:seller_app/appBar.dart';
 import 'package:seller_app/data/Restaurent.dart';
+import 'package:seller_app/data/SocketConnect.dart';
 import 'RegisteringPage.dart';
 
 class EnteringPage extends StatefulWidget {
@@ -34,6 +35,28 @@ class _EnteringPageState extends State<EnteringPage> {
 
   //for hide entering password
   bool hidden = true;
+
+  _sendMessage() async { //format: Entering::phone::password
+    String messageServer = "";
+    SocketConnect.socket.then((serverSocket) async {
+      print('Connected to Server in Entering Page');
+      serverSocket.writeln("Customer");
+
+      serverSocket.writeln("Entering::" +
+          inputPhoneNumberEnter +
+          "::" +
+          inputPasswordEnter);
+      serverSocket.listen((socket) {
+        messageServer += String.fromCharCodes(socket).trim();
+      });
+    });
+    await Future.delayed(Duration(seconds: 4)); //stop for listen thread
+    if (messageServer.contains("true")) {
+      validUser = true;
+      messageServer =
+          messageServer.substring(4); // remove true in start message
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,23 +185,5 @@ class _EnteringPageState extends State<EnteringPage> {
         ),
       )
     );
-  }
-
-  void _sendMessage() {
-      Socket.connect("192.168.1.5", 8080)
-        .then((Socket serverSocket) {
-      print('Connected to Server');
-      serverSocket.writeln("Seller");
-      serverSocket.writeln("Phone: " + inputPhoneNumberEnter + ", " + "pass: " + inputPasswordEnter);
-      serverSocket.listen((Uint8List socket) {
-        String messageServer = String.fromCharCodes(socket).trim();
-        setState(() {
-          print(messageServer);
-          if (messageServer.contains("true")) {
-            validUser = true;
-          }
-        });
-      });
-    });
   }
 }

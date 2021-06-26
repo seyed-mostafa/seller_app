@@ -98,10 +98,10 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
 
     Size _size = MediaQuery.of(context).size;
 
-    imageWidget(index){
+    imageWidget(index) {
       return Container(
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           child: Image.asset(
             "assets/images/3.jpg",
             fit: BoxFit.fitWidth,
@@ -167,7 +167,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
         margin: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: theme.yellow,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
 
         ),
         child: Column(
