@@ -107,9 +107,10 @@ class _EnteringPageState extends State<EnteringPage> {
                 },
               ),
               SizedBox(height: 20,),
-              TextField(
+              TextFormField(
                 autofocus: false,
                 cursorColor: theme.black,
+                obscureText: hidden,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     border: new OutlineInputBorder(
@@ -120,6 +121,15 @@ class _EnteringPageState extends State<EnteringPage> {
                         color: theme.black,
                         width: 1.0,
                       ),
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                          !hidden?Icons.visibility:Icons.visibility_off
+                      ),
+                      onPressed: (){
+                        hidden = !hidden;
+                        setState(() {});
+                      },
                     ),
                     fillColor: theme.yellow,
                     filled: true,
