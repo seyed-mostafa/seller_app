@@ -27,10 +27,7 @@ AppBar appBar(){
               });
             });
             await Future.delayed(Duration(seconds: 4)); //stop for listen threading
-            print(messageServer);
             if (messageServer.contains("true")) {
-              print(true);
-              print(messageServer);
               messageServer = messageServer.substring(4); // remove true in start message
               Data.restaurant=null;
               Data.restaurant=null;

@@ -32,7 +32,7 @@ customerAndRestaurantMaker(String messageServer) async {
     }
 
     /////////////////////////////////                       menu            /////////////////////
-
+  if (!(data[11].startsWith("null"))) {
     List<String> foods = data[11].split(":::");
     for (String food in foods) {
       List<String> menu = food.split("::");
@@ -46,9 +46,10 @@ customerAndRestaurantMaker(String messageServer) async {
           TypeFood.values
               .firstWhere((e) => e.toString() == "TypeFood." + menu[5])));
     }
+  }
 
     /////////////////////////////////                   comments           /////////////////////
-
+  if (!(data[12].startsWith("null"))) {
     List<String> comments1 = data[12].split(":::");
     for (String com in comments1) {
       List<String> comment = com.split("::");
@@ -59,51 +60,55 @@ customerAndRestaurantMaker(String messageServer) async {
         restaurant.addComment(
             new Comment.noFull(comment[0], comment[1], comment[2], comment[3]));
     }
+  }
 
 
 
 
   /////////////////////////////////                   orders           /////////////////////
+  if (!(data[13].startsWith("null"))) {
+    List<String> orderss = data[13].split("^^");
+    for (String ord in orderss) {
+      List<String> orders = ord.split(":::");
+      for (String stringOrder in orders) {
+        List<String> stringOrd = stringOrder.split("^");
+        Order order = new Order.full(
+            restaurant.getName(),
+            stringOrd[1],
+            stringOrd[2],
+            new Location(stringOrd[3], double.parse(stringOrd[4]),
+                double.parse(stringOrd[5])),
+            restaurant.getAddress().getLocation(),
+            int.parse(stringOrd[6])
+        );
+        order.Delivered(stringOrd[0] == "true" ? true : false);
+        List<String> string = stringOrd[7].split("::");
+        String foodName = string[0];
+        int number = int.parse(string[1]);
+        for (Food food in restaurant.getMenu())
+          if (food.getName() == foodName)
+            order.addFood(food, number);
 
-  List<String> orderss = data[13].split("^^");
-  for (String ord in orderss) {
-    List<String> orders = ord.split(":::");
-    for(String stringOrder in orders){
-      List<String> stringOrd=stringOrder.split("^");
-     Order order =new Order.full(
-        restaurant.getName(),
-       stringOrd[1],
-       stringOrd[2],
-       new Location(stringOrd[3], double.parse(stringOrd[4]), double.parse(stringOrd[5])),
-       restaurant.getAddress().getLocation(),
-       int.parse(stringOrd[6])
-     );
-     order.Delivered(stringOrd[0]=="true"?true:false);
-      List<String> string=stringOrd[7].split("::");
-      String foodName=string[0];
-      int number=int.parse(string[1]);
-      for(Food food in restaurant.getMenu())
-        if (food.getName()==foodName)
-          order.addFood(food, number);
-
-    restaurant.addOrder(order);
+        restaurant.addOrder(order);
+      }
     }
   }
 
 
   /////////////////////////////////               cash data               //////////////////////////////
-
-  List<String> cash = data[14].split("^");
-    for(String str in cash){
+  if (!(data[14].startsWith("null"))) {
+    List<String> cash = data[14].split("^");
+    for (String str in cash) {
       restaurant.setcashSales(int.parse(str));
     }
-
+  }
 
   /////////////////////////////////               online data               //////////////////////////////
-
-  List<String> online = data[15].split("^");
-  for(String str in online){
-    restaurant.setonlineSales(int.parse(str));
+  if (!(data[15].startsWith("null"))) {
+    List<String> online = data[15].split("^");
+    for (String str in online) {
+      restaurant.setonlineSales(int.parse(str));
+    }
   }
   Data.restaurant=restaurant;
 
