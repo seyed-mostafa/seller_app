@@ -235,6 +235,46 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
         building()
       ] );
     }
-    return body();
+
+    return Scaffold(
+      body: NestedScrollView(
+        headerSliverBuilder: (context, value) {
+          return [
+            SliverAppBar(
+              flexibleSpace: FlexibleSpaceBar(
+                titlePadding: EdgeInsets.only(bottom: 20),
+                collapseMode: CollapseMode.parallax,
+                background: Image.asset("assets/images/restaurant/mostafa va abbas.jpg"),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Spacer(),
+                    Text(currentRestaurant.getName()),
+                    Spacer(),
+                    RatingBarIndicator(
+                      rating: currentRestaurant.getRate(),
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 15,
+                    ),
+                    SizedBox(width: 5,),
+                    Text(currentRestaurant.getRate().toString(), style: TextStyle(color: theme.yellow,fontSize: 10),),
+                    Text('/ 5.0', style: TextStyle(color: Colors.grey[500], fontSize: 10),)
+                  ],
+                ),
+                centerTitle: true,
+              ),
+              expandedHeight: _size.height * 0.25,
+              pinned: true,
+              floating: true,
+            )
+          ];
+        },
+        body: body()
+      ),
+    );
   }
 }
