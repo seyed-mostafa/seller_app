@@ -304,7 +304,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
 
                         Restaurant restaurant=new Restaurant(_inputName,new Location(_inputAddress,widget.latLng.latitude,widget.latLng.longitude),_inputPhoneNumber,_inputPassword);
                         restaurant.setSendingRangeRadius(int.parse(_inputRange));
-                        
+
                         //TODO:transfer new restaurant to server.
                         Navigator.pop(context,);
                       }

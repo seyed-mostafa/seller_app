@@ -5,6 +5,7 @@ import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/appBar.dart';
 import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/data/SocketConnect.dart';
 
 class CommentsPage extends StatefulWidget {
 
@@ -15,6 +16,16 @@ class CommentsPage extends StatefulWidget {
 
 class _CommentsPageState extends State<CommentsPage> {
   Restaurant currentRestaurant= Data.restaurant;
+
+  void _sendMessage(int index) async {
+    await SocketConnect.socket.then((value) async {
+      //format: addReply::comment::reply
+
+      String sendMessage="addReply"+"::"+ currentRestaurant.getComments()[index].getComment()+"::"
+          +currentRestaurant.getComments()[index].getReply();
+      value.writeln(sendMessage);
+    });
+  }
 
   comment(index) {
     return Column(
@@ -98,6 +109,7 @@ class _CommentsPageState extends State<CommentsPage> {
           send = false;
           str = '';
           currentRestaurant.getComments()[index].setReply(value);
+          _sendMessage(index);
         });
       }
     }
