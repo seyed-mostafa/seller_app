@@ -20,7 +20,7 @@ class FoodPage extends StatefulWidget {
 
 class _FoodPageState extends State<FoodPage> {
 
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant= Data.restaurant;
   int state = 1;
   int like = 0;
 
@@ -294,10 +294,8 @@ class _FoodPageState extends State<FoodPage> {
                       blurRadius: 0.5,
                       offset: Offset(0, 0))
                 ]),
-                child: Text(
-                   currentRestaurant
-                        .getMenu()[widget.currentFood]
-                        .getComment(),
+                child: Text("nothing",
+
                     style: TextStyle(color: theme.black, fontSize: 15)),
               ),
             ));

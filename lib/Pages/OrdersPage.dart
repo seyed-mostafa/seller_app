@@ -16,7 +16,7 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant= Data.restaurant;
   TextStyle _style=TextStyle(fontSize: 11);
 
   name_date(index){
@@ -42,10 +42,10 @@ class _OrdersState extends State<Orders> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
             child: Container(
-              child: Text(DateFormat('EEE d MMM\nkk:mm').format(
+              child: Text(
                   currentRestaurant
                   .getOrders()[index]
-                  .getOrderTime())),
+                  .getOrderTime()),
             ),
           ),
         ],
@@ -256,10 +256,10 @@ class _OrdersState extends State<Orders> {
             borderRadius: 10.0,
             inactiveColor: theme.black,
             activeColor: theme.yellow,
-            value:currentRestaurant.getOrders()[index].getStatus(),
+            value:currentRestaurant.getOrders()[index].getDelivered(),
             onToggle: (value) {
               setState(() {
-                currentRestaurant.getOrders()[index].setStatus();
+                currentRestaurant.getOrders()[index].setDelivered();
                 currentRestaurant.arrange();
                 Navigator.pushReplacement(
                   context,
@@ -283,7 +283,7 @@ class _OrdersState extends State<Orders> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: FlatButton(
-          color: currentRestaurant.getOrders()[index].getStatus() == true
+          color: currentRestaurant.getOrders()[index].getDelivered() == true
               ? Colors.white
               : theme.yellow,
           child: Row(

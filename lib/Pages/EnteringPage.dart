@@ -1,13 +1,11 @@
 
-import 'dart:io';
-import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Nav.dart';
 import 'package:seller_app/appBar.dart';
-import 'package:seller_app/data/Restaurent.dart';
 import 'package:seller_app/data/SocketConnect.dart';
+import 'package:seller_app/data/customerAndRestaurantMaker.dart';
 import 'RegisteringPage.dart';
 
 class EnteringPage extends StatefulWidget {
@@ -38,9 +36,9 @@ class _EnteringPageState extends State<EnteringPage> {
 
   _sendMessage() async { //format: Entering::phone::password
     String messageServer = "";
-    SocketConnect.socket.then((serverSocket) async {
+    await SocketConnect.socket.then((serverSocket) async {
       print('Connected to Server in Entering Page');
-      serverSocket.writeln("Customer");
+      serverSocket.writeln("seller");
 
       serverSocket.writeln("Entering::" +
           inputPhoneNumberEnter +
@@ -53,8 +51,8 @@ class _EnteringPageState extends State<EnteringPage> {
     await Future.delayed(Duration(seconds: 4)); //stop for listen thread
     if (messageServer.contains("true")) {
       validUser = true;
-      messageServer =
-          messageServer.substring(4); // remove true in start message
+      messageServer = messageServer.substring(4);// remove true in start message
+      customerAndRestaurantMaker(messageServer);
     }
   }
 

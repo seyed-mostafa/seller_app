@@ -3,7 +3,7 @@ import 'package:seller_app/Objects/Restaurant.dart';
 
 class Data {
   static final Data _data = Data._internal();
-  static List<Restaurant> restaurants=List.empty(growable: true);
+  static Restaurant restaurant;
   static List<Customer> customers=List.empty(growable: true);
 
   factory Data() {

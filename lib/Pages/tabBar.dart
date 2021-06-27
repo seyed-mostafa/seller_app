@@ -88,7 +88,7 @@ class RestaurantMenu extends StatefulWidget {
 }
 
 class _RestaurantMenuState extends State<RestaurantMenu> {
-  Restaurant currentRestaurant = importRestaurent()[0];
+  Restaurant currentRestaurant = Data.restaurant;
 
   String searchingText = "";
   TypeFood chosenType = TypeFood.all;

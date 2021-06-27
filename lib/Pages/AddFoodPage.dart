@@ -18,7 +18,7 @@ class AddFood extends StatefulWidget {
 
 class _AddFoodState extends State<AddFood> {
 
-  Restaurant currentRestaurant = Data.restaurants[0]; //ToDo test
+  Restaurant currentRestaurant = Data.restaurant; //ToDo test
 
   String _inputName = '', _inputDescription = '',
       _inputPrice = '', _inputDiscount = '0', _inputPath = '';

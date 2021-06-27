@@ -14,7 +14,7 @@ class SellingCalculate extends StatefulWidget {
 
 class _SellingCalculateState extends State<SellingCalculate> {
 
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant= Data.restaurant;
 
   String dropdownValue = 'Last 7 days sales analysis';
   List<SalesData> _chartData;

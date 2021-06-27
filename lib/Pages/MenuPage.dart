@@ -12,7 +12,7 @@ class FoodMenu extends StatefulWidget {
 
 class _FoodMenuState extends State<FoodMenu> {
 
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant= Data.restaurant;
 
   bool isInteger(String string) {
     // Null or empty string is not a number

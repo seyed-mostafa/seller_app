@@ -14,7 +14,7 @@ class CommentsPage extends StatefulWidget {
 }
 
 class _CommentsPageState extends State<CommentsPage> {
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant= Data.restaurant;
 
   comment(index) {
     return Column(
@@ -44,10 +44,10 @@ class _CommentsPageState extends State<CommentsPage> {
                   style: TextStyle(fontSize: 18, color: theme.black),
                   children: <TextSpan>[
                     TextSpan(
-                      text: DateFormat('\n d MMM kk:mm').format(
+                      text:
                           currentRestaurant
                           .getComments()[index]
-                          .getTimeComment()),
+                          .getTimeComment(),
                       style: TextStyle(color: Colors.grey, fontSize: 10),
                     )
                   ]),
@@ -192,10 +192,10 @@ class _CommentsPageState extends State<CommentsPage> {
                       style: TextStyle(fontSize: 18, color: theme.black),
                       children: <TextSpan>[
                         TextSpan(
-                          text: DateFormat('\n d MMM kk:mm').format(
+                          text:
                               currentRestaurant
                               .getComments()[index]
-                              .getTimeReply()),
+                              .getTimeReply(),
                           style: TextStyle(color: Colors.grey, fontSize: 10),
                         )
                       ]),

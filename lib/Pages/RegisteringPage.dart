@@ -301,8 +301,8 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         print(_inputPhoneNumber);
                         print(_inputPassword);
                         Restaurant restaurant=new Restaurant(_inputName,null,_inputPhoneNumber,_inputPassword);
-                        restaurant.setAddress(widget.latLng);
-                        Data.restaurants.add(restaurant);
+                        // restaurant.setAddress(widget.latLng);
+                        // Data.restaurant.add(restaurant);
                         //TODO:transfer new restaurant to server.
                         Navigator.pop(context,);
                       }
