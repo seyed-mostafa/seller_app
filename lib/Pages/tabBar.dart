@@ -1,6 +1,7 @@
 //
 //
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:seller_app/Objects/Customer.dart';
 import 'package:seller_app/Objects/Food.dart';
@@ -11,73 +12,6 @@ import 'package:seller_app/Pages/MenuPage.dart';
 import 'package:seller_app/Pages/MenuType.dart';
 import 'package:seller_app/data/Data.dart';
 import 'package:seller_app/data/Restaurent.dart';
-//
-// class tabBar extends StatefulWidget {
-//
-//   Restaurant currentRestaurant;
-//
-//   tabBar(this.currentRestaurant);
-//
-//   @override
-//   _tabBarState createState() => _tabBarState();
-// }
-//
-// class _tabBarState extends State<tabBar> {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return DefaultTabController(
-//       length: 11,
-//       child: Scaffold(
-//         appBar: AppBar(
-//           backgroundColor: theme.white,
-//           toolbarHeight: 50,
-//           flexibleSpace: Column(
-//             mainAxisAlignment: MainAxisAlignment.end,
-//             children: [
-//               TabBar(
-//                 indicatorSize: TabBarIndicatorSize.label,
-//                 labelColor: theme.black,
-//                 indicatorColor: theme.yellow,
-//                 isScrollable: true,
-//                   tabs: [
-//                     Tab(child: Row(children: [Icon(Icons.all_inbox_sharp), Text(" All Food")],),),
-//                     //if(widget.currentRestaurant.getTypeFoods().contains(TypeFood.Pizza))
-//                     Tab(child: Row(children: [Icon(Icons.local_pizza), Text(" Pizza")],),),
-//                     Tab(child: Row(children: [Icon(Icons.fastfood), Text(" Sandwich")],),),
-//                     Tab(child: Row(children: [Icon(Icons.free_breakfast_outlined), Text(" Drinks")],),),
-//                     Tab(child: Row(children: [Icon(Icons.food_bank_rounded), Text(" Persian Food")],),),
-//                     Tab(child: Row(children: [Icon(Icons.no_food_outlined), Text(" Dessert")],),),
-//                     Tab(child: Row(children: [Icon(Icons.fastfood_outlined), Text(" Appetizer")],),),
-//                     Tab(child: Row(children: [Icon(Icons.local_fire_department_outlined), Text(" Fried")],),),
-//                     Tab(child: Row(children: [Icon(Icons.set_meal), Text(" Steak")],),),
-//                     Tab(child: Row(children: [Icon(Icons.breakfast_dining), Text(" Breakfast")],),),
-//                     Tab(child: Row(children: [Icon(Icons.food_bank_rounded), Text(" International")],),),
-//                   ]
-//               )
-//             ],
-//           ),
-//         ),
-//         backgroundColor: theme.black,
-//         body: TabBarView(
-//           children: [
-//             FoodMenu( widget.currentRestaurant),
-//             MenuType(widget.currentRestaurant, TypeFood.Pizza),
-//             MenuType(widget.currentRestaurant, TypeFood.Sandwich),
-//             MenuType(widget.currentRestaurant, TypeFood.Drinks),
-//             MenuType(widget.currentRestaurant, TypeFood.PersianFood),
-//             MenuType(widget.currentRestaurant, TypeFood.Dessert),
-//             MenuType(widget.currentRestaurant, TypeFood.Appetizer),
-//             MenuType(widget.currentRestaurant, TypeFood.Fried),
-//             MenuType(widget.currentRestaurant, TypeFood.Steaks),
-//             MenuType(widget.currentRestaurant, TypeFood.Breakfast),
-//             MenuType(widget.currentRestaurant, TypeFood.International),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 
 class RestaurantMenu extends StatefulWidget {
@@ -103,7 +37,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Image.asset(
-            "assets/images/3.jpg",
+            "assets/images/food/" + Data.restaurant.getMenu()[index].getName() + ".jpg",
             fit: BoxFit.fitWidth,
           ),
         ),
@@ -152,7 +86,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => FoodPage(
-                      0 // ToDo
+                      index // food index in menu
                   ),
                 ),
               );
@@ -162,7 +96,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
       );
     }
 
-    Widget showFood(index){
+    Widget showFood(index) {
       return Container(
         margin: const EdgeInsets.all(5),
         decoration: BoxDecoration(
@@ -293,11 +227,73 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
       );
     }
 
-    return ListView(children:[
-      searching(),
-      chooseType(),
-      SizedBox(height: 10,),
-      building()
-    ] );
+    Widget body() {
+      return ListView(children:[
+        searching(),
+        chooseType(),
+        SizedBox(height: 10,),
+        building()
+      ] );
+    }
+
+    return body();
+    // return Scaffold(
+    //   body: DefaultTabController(
+    //     length: 2,
+    //     child: NestedScrollView(
+    //       headerSliverBuilder: (context, value) {
+    //         return [
+    //           SliverAppBar(
+    //             bottom: TabBar(
+    //               indicatorSize: TabBarIndicatorSize.label,
+    //               tabs: [
+    //                 Tab(icon: Icon(Icons.fiber_manual_record),),
+    //                 Tab(icon: Icon(Icons.food_bank),)
+    //               ],
+    //             ),
+    //             flexibleSpace: FlexibleSpaceBar(
+    //               titlePadding: EdgeInsets.only(bottom: 50),
+    //               collapseMode: CollapseMode.parallax,
+    //               background: Image.asset("assets/images/restaurant/mostafa va abbas.jpg"),
+    //               title: Row(
+    //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //                 children: [
+    //                   Spacer(),
+    //                   Text(currentRestaurant.getName()),
+    //                   Spacer(),
+    //                   RatingBarIndicator(
+    //                     rating: currentRestaurant.getRate(),
+    //                     itemBuilder: (context, index) => Icon(
+    //                       Icons.star,
+    //                       color: Colors.amber,
+    //                     ),
+    //                     itemCount: 5,
+    //                     itemSize: 15,
+    //                   ),
+    //                   SizedBox(width: 5,),
+    //                   Text(currentRestaurant.getRate().toString(), style: TextStyle(color: theme.yellow,fontSize: 10),),
+    //                   Text('/ 5.0', style: TextStyle(color: Colors.grey[500], fontSize: 10),)
+    //                 ],
+    //               ),
+    //               centerTitle: true,
+    //             ),
+    //             expandedHeight: _size.height * 0.25,
+    //             pinned: true,
+    //             leading: IconButton(
+    //                 icon: Icon(Icons.arrow_back),
+    //                 onPressed: () {
+    //
+    //                 }
+    //             ),
+    //             floating: true,
+    //           )
+    //         ];
+    //       },
+    //       body: body()
+    //     ),
+    //   ),
+    // );
+
+
   }
 }

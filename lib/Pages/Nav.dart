@@ -40,7 +40,7 @@ class _NavState extends State<Nav> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.black,
+                  color: Colors.blue[900],
                 ),
                 child: TextButton(
                   child: Icon(Icons.add, color: theme.yellow,),

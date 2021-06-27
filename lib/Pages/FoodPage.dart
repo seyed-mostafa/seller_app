@@ -20,7 +20,7 @@ class FoodPage extends StatefulWidget {
 
 class _FoodPageState extends State<FoodPage> {
 
-  Restaurant currentRestaurant= Data.restaurant;
+  Restaurant currentRestaurant = Data.restaurant;
   int state = 1;
   int like = 0;
 
@@ -67,7 +67,7 @@ class _FoodPageState extends State<FoodPage> {
         height: MediaQuery.of(context).size.height / 3,
         width: MediaQuery.of(context).size.width,
         child: Image.asset(
-          'assets/images/1.jpg',
+          'assets/images/food/' + currentRestaurant.getMenu()[widget.currentFood].getName() + '.jpg',
           fit: BoxFit.cover,
         ),
       );
@@ -117,13 +117,6 @@ class _FoodPageState extends State<FoodPage> {
                   },
                 ),
               ),
-              // Text(
-              //   widget.currentRestaurant
-              //       .getMenu()[widget.currentFood]
-              //       .getName(),
-              //
-              //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              // ),
               Spacer(
                 flex: 10,
               ),
@@ -164,14 +157,6 @@ class _FoodPageState extends State<FoodPage> {
                   },
                 ),
               ),
-              // Text(
-              //   widget.currentRestaurant
-              //       .getMenu()[widget.currentFood]
-              //       .getPrice()
-              //       .toString() +
-              //       ' T',
-              //   style: TextStyle(fontSize: 28),
-              // ),
               Spacer(),
             ]),
             SizedBox(
@@ -302,39 +287,13 @@ class _FoodPageState extends State<FoodPage> {
       }
     }
 
-    foodData() {
+    body() {
       return ListView(
         children: [
           imageWidget(),
           namePriceWidget(),
           DetailsReviewButtonWidget(),
           DetailsOrReviewWidget(),
-          // Positioned(
-          //     height: 100,
-          //     width: MediaQuery.of(context).size.width,
-          //     bottom: 0,
-          //     child: Container(
-          //
-          //       color: theme.yellow,
-          //       height: 50,
-          //       child: TextButton(
-          //
-          //         child: Text(
-          //           "Edit ",
-          //           style: TextStyle(
-          //               color: theme.black,
-          //               fontSize: 18,
-          //               fontWeight: FontWeight.w500),
-          //         ),
-          //         onPressed: () {
-          //           Navigator.pushReplacement(
-          //               context,
-          //               MaterialPageRoute(
-          //                   builder: (context) => AddFood(
-          //                        widget.currentRestaurant)));
-          //         },
-          //       ),
-          //     )),
         ],
       );
     }
@@ -362,7 +321,7 @@ class _FoodPageState extends State<FoodPage> {
         elevation: 10,
         iconTheme: IconThemeData(color:theme.yellow),
       ),
-      body: foodData(),
+      body: body(),
     );
   }
 }
