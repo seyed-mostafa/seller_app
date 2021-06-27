@@ -24,15 +24,17 @@ class Order {
     _restaurantId=restaurantId;
   }
 
-  Order.full(String restaurantName,String customerName,String orderTime,Location customerAddress,Location restaurantAddress,int restaurantId){
+  Order.full(String restaurantName,String customerName,String orderTime,Location customerAddress,Location restaurantAddress,int id){
     _restaurantName=restaurantName;
     _customerName=customerName;
     _orderTime=orderTime;
     _customerAddress=customerAddress;
     _restaurantAddress=restaurantAddress;
-    _restaurantId=restaurantId;
+    _id=id;
   }
-
+  void Delivered(bool status){
+    _delivered=status;
+  }
 
   void setDelivered(){
     _delivered=true;

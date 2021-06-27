@@ -2,6 +2,7 @@
 
 import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Location.dart';
+import 'package:seller_app/Objects/Order.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/Comment.dart';
 import 'package:seller_app/Objects/Customer.dart';
@@ -66,15 +67,28 @@ customerAndRestaurantMaker(String messageServer) async {
 
   /////////////////////////////////                   orders           /////////////////////
 
-  // List<String> orders = data1[13].split("^^");
-  // for (String ord in orders) {
-  //   List<String> order = ord.split("^");
-  //   restaurant.addOrder();
-  //   for (String food in foods1) {
-  //     List<String> menu = food.split("::");
-  //
-  //   }
-  // }
+  List<String> orderss = data[13].split("^^");
+  for (String ord in orderss) {
+    List<String> orders = ord.split("^");
+     Order order =new Order.full(
+        restaurant.getName(),
+       orders[1],
+       orders[2],
+       new Location(orders[3], double.parse(orders[4]), double.parse(orders[5])),
+       restaurant.getAddress().getLocation(),
+       int.parse(data[6])
+     );
+     order.Delivered(data[0]=="true"?true:false);
+     foods=data[7].split(":::");
+    for (String str in foods) {
+      List<String> string=str.split("::");
+      String food=string[0];
+      int number=int.parse(string[1]);
+      for
+
+
+    }
+  }
 
     Data.restaurant=restaurant;
 
