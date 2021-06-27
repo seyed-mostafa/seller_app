@@ -33,7 +33,8 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
     Size _size = MediaQuery.of(context).size;
 
     imageWidget(index) {
-      return Container(
+      return AspectRatio(
+        aspectRatio: 16 / 9,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Image.asset(

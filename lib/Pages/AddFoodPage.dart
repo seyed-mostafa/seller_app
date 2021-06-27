@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:seller_app/MultiChoice.dart';
 import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
@@ -18,12 +19,13 @@ class AddFood extends StatefulWidget {
 
 class _AddFoodState extends State<AddFood> {
 
-  Restaurant currentRestaurant = Data.restaurant; //ToDo test
+  Restaurant currentRestaurant = Data.restaurant;
 
   String _inputName = '', _inputDescription = '',
-      _inputPrice = '', _inputDiscount = '0', _inputPath = '';
+      _inputPrice = '', _inputDiscount = '0', _inputPath = '', _inputTypeFood;
   bool _inputSizing = false, _inputAvailable = false, _inputIsDiscount = false;
   var _formKey = GlobalKey<FormState>();
+  List<String> foodType = [];
 
   bool isInteger(String string) {
     // Null or empty string is not a number
@@ -45,10 +47,12 @@ class _AddFoodState extends State<AddFood> {
   }
 
   void _sendMessage() { //format: addFood::name::description::price::discount::typeFood
+    print('Connect to server in add food page');
+    print(foodType.toString().substring(1, foodType.toString().length - 1));
     SocketConnect.socket.then((value) {
       value.writeln("addFood::" + _inputName
         + "::" + _inputDescription + "::" + _inputPrice
-        + "::" + _inputDiscount + "::" + TypeFood.all.toString()); //ToDo typeFood?
+        + "::" + _inputDiscount + "::" + foodType.toString().substring(1, foodType.toString().length-1)); //ToDo typeFood?
     });
   }
 
@@ -198,6 +202,37 @@ class _AddFoodState extends State<AddFood> {
                         SizedBox(height: 30,),
 
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              onPrimary: theme.yellow,
+                              primary: theme.black,
+                              padding: EdgeInsets.all(20)
+                          ),
+                          child: Text("Click to choose your foodType"),
+                          onPressed: () async {
+                            foodType = await showDialog(
+                                context: context,
+                                builder: (_) => MultiSelectDialog(
+                                    question: Text('Select Your FoodType :'),
+                                    answers: [
+                                      'Pizza',
+                                      'Sandwich',
+                                      'Drinks',
+                                      'Persian Food',
+                                      'Dessert',
+                                      'Appetizer',
+                                      'Fried',
+                                      'Steaks',
+                                      'Breakfast',
+                                      'International'
+                                    ])
+                            )??[];
+                            print(foodType);
+                          },
+                        ),
+
+                        SizedBox(height: 30,),
+
+                        ElevatedButton(
                           onPressed: () {
                             if(_formKey.currentState.validate()){
                               _formKey.currentState.save();
@@ -214,6 +249,7 @@ class _AddFoodState extends State<AddFood> {
                                   true,
                                   TypeFood.Appetizer,
                               ));
+                              _sendMessage();
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav()));
                             }
                             setState(() {});

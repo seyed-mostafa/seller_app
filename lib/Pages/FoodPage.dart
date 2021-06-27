@@ -28,14 +28,15 @@ class _FoodPageState extends State<FoodPage> {
   bool _nameIsValid = true, _priceIsValid = true;
 
   void _sendMessage() { //format: changeFood::foodIndexToChange::name::description::price::discount::available::typeFood
-    SocketConnect.socket.then((value) { //ToDo this calls just user back to menu
+    SocketConnect.socket.then((value) {
+      print('Connect to server');
       value.writeln("changeFood::" + widget.currentFood.toString()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getName()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getDescription()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getPrice().toString()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getDiscount().toString()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getAvailable().toString()
-        + "::" + currentRestaurant.getMenu()[widget.currentFood].getTypeFood().toString());
+        + "::" + currentRestaurant.getMenu()[widget.currentFood].getTypeFood().toString().substring(9, currentRestaurant.getMenu()[widget.currentFood].getTypeFood().toString().length));
     });
   }
 
