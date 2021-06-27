@@ -314,6 +314,7 @@ class _OrdersState extends State<Orders> {
 
   @override
   Widget build(BuildContext context) {
+    print(currentRestaurant.getOrders().toString());
     return Container(
         child: ListView(
       children: List.generate(currentRestaurant.getOrders().length,

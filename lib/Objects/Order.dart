@@ -17,6 +17,11 @@ class Order {
   Map <Food,int> _order=new Map();
 
 
+  @override
+  String toString() {
+    return 'Order{_customerName: $_customerName, _restaurantName: $_restaurantName, _orderTime: $_orderTime, _deliveryTime: $_deliveryTime, _customerAddress: $_customerAddress, _restaurantAddress: $_restaurantAddress, _restaurantId: $_restaurantId, _id: $_id, _price: $_price, _delivered: $_delivered, _order: $_order}';
+  }
+
   Order(Food food, int i,int restaurantId) {
     _order[food]=i;
     _count++;

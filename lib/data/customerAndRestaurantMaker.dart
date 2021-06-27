@@ -5,9 +5,7 @@ import 'package:seller_app/Objects/Location.dart';
 import 'package:seller_app/Objects/Order.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/Comment.dart';
-import 'package:seller_app/Objects/Customer.dart';
 import 'package:seller_app/data/Data.dart';
-
 import 'Data.dart';
 
 customerAndRestaurantMaker(String messageServer) async {
@@ -69,24 +67,26 @@ customerAndRestaurantMaker(String messageServer) async {
 
   List<String> orderss = data[13].split("^^");
   for (String ord in orderss) {
-    List<String> orders = ord.split("^");
+    List<String> orders = ord.split(":::");
+    for(String stringOrder in orders){
+      List<String> stringOrd=stringOrder.split("^");
      Order order =new Order.full(
         restaurant.getName(),
-       orders[1],
-       orders[2],
-       new Location(orders[3], double.parse(orders[4]), double.parse(orders[5])),
+       stringOrd[1],
+       stringOrd[2],
+       new Location(stringOrd[3], double.parse(stringOrd[4]), double.parse(stringOrd[5])),
        restaurant.getAddress().getLocation(),
-       int.parse(data[6])
+       int.parse(stringOrd[6])
      );
-     order.Delivered(data[0]=="true"?true:false);
-     foods=data[7].split(":::");
-    for (String str in foods) {
-      List<String> string=str.split("::");
-      String food=string[0];
+     order.Delivered(stringOrd[0]=="true"?true:false);
+      List<String> string=stringOrd[7].split("::");
+      String foodName=string[0];
       int number=int.parse(string[1]);
-      for
+      for(Food food in restaurant.getMenu())
+        if (food.getName()==foodName)
+          order.addFood(food, number);
 
-
+    restaurant.addOrder(order);
     }
   }
 
