@@ -235,65 +235,6 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
         building()
       ] );
     }
-
     return body();
-    // return Scaffold(
-    //   body: DefaultTabController(
-    //     length: 2,
-    //     child: NestedScrollView(
-    //       headerSliverBuilder: (context, value) {
-    //         return [
-    //           SliverAppBar(
-    //             bottom: TabBar(
-    //               indicatorSize: TabBarIndicatorSize.label,
-    //               tabs: [
-    //                 Tab(icon: Icon(Icons.fiber_manual_record),),
-    //                 Tab(icon: Icon(Icons.food_bank),)
-    //               ],
-    //             ),
-    //             flexibleSpace: FlexibleSpaceBar(
-    //               titlePadding: EdgeInsets.only(bottom: 50),
-    //               collapseMode: CollapseMode.parallax,
-    //               background: Image.asset("assets/images/restaurant/mostafa va abbas.jpg"),
-    //               title: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //                 children: [
-    //                   Spacer(),
-    //                   Text(currentRestaurant.getName()),
-    //                   Spacer(),
-    //                   RatingBarIndicator(
-    //                     rating: currentRestaurant.getRate(),
-    //                     itemBuilder: (context, index) => Icon(
-    //                       Icons.star,
-    //                       color: Colors.amber,
-    //                     ),
-    //                     itemCount: 5,
-    //                     itemSize: 15,
-    //                   ),
-    //                   SizedBox(width: 5,),
-    //                   Text(currentRestaurant.getRate().toString(), style: TextStyle(color: theme.yellow,fontSize: 10),),
-    //                   Text('/ 5.0', style: TextStyle(color: Colors.grey[500], fontSize: 10),)
-    //                 ],
-    //               ),
-    //               centerTitle: true,
-    //             ),
-    //             expandedHeight: _size.height * 0.25,
-    //             pinned: true,
-    //             leading: IconButton(
-    //                 icon: Icon(Icons.arrow_back),
-    //                 onPressed: () {
-    //
-    //                 }
-    //             ),
-    //             floating: true,
-    //           )
-    //         ];
-    //       },
-    //       body: body()
-    //     ),
-    //   ),
-    // );
-
-
   }
 }

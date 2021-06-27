@@ -42,7 +42,7 @@ class Order {
   }
 
   void setDelivered(){
-    _delivered=true;
+    _delivered=!_delivered;
     _deliveryTime= DateFormat('d MMM kk:mm').format( DateTime.now());
   }
   void setRestaurantName(String name){
