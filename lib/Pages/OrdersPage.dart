@@ -5,6 +5,7 @@ import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:intl/intl.dart';
 import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/data/SocketConnect.dart';
 import 'Nav.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'OrderPage.dart';
@@ -18,6 +19,16 @@ class Orders extends StatefulWidget {
 class _OrdersState extends State<Orders> {
   Restaurant currentRestaurant= Data.restaurant;
   TextStyle _style=TextStyle(fontSize: 11);
+
+  void _sendMessage(int index) async {
+    await SocketConnect.socket.then((value) async {
+      //format: setDelivered::orderId::status
+
+      String sendMessage="setDelivered"+"::"+ currentRestaurant.getOrders()[index].getId().toString()+"::"
+          +currentRestaurant.getOrders()[index].getDelivered().toString();
+      value.writeln(sendMessage);
+    });
+  }
 
   name_date(index){
     return Container(
@@ -260,6 +271,7 @@ class _OrdersState extends State<Orders> {
             onToggle: (value) {
               setState(() {
                 currentRestaurant.getOrders()[index].setDelivered();
+                _sendMessage(index);
                 currentRestaurant.arrange();
                 Navigator.pushReplacement(
                   context,
