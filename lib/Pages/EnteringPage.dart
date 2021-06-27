@@ -28,59 +28,62 @@ class _EnteringPageState extends State<EnteringPage> {
   String errorMessage = "Phone number Or Password is wrong";
   bool validUser = false;
 
-  //for first time don't show error of input (red container in top)
-  bool flag = true;
+
 
   //for hide entering password
   bool hidden = true;
 
-  _sendMessage() async { //format: Entering::phone::password
-    String messageServer = "";
-    await SocketConnect.socket.then((serverSocket) async {
-      print('Connected to Server in Entering Page');
-      serverSocket.writeln("Seller");
-
-      serverSocket.writeln("Entering::" +
-          inputPhoneNumberEnter +
-          "::" +
-          inputPasswordEnter);
-      serverSocket.listen((socket) {
-        messageServer += String.fromCharCodes(socket).trim();
-      });
-    });
-    await Future.delayed(Duration(seconds: 4)); //stop for listen thread
-    if (messageServer.contains("true")) {
-      validUser = true;
-      messageServer = messageServer.substring(4);// remove true in start message
-      customerAndRestaurantMaker(messageServer);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+
+    //for first time don't show error of input (red container in top)
+    bool flag = true;
+
+    _sendMessage() async { //format: Entering::phone::password
+      String messageServer = "";
+      await SocketConnect.socket.then((serverSocket) async {
+        print('Connected to Server in Entering Page');
+        serverSocket.writeln("Seller");
+
+        serverSocket.writeln("Entering::" +
+            inputPhoneNumberEnter +
+            "::" +
+            inputPasswordEnter);
+        serverSocket.listen((socket) {
+          messageServer += String.fromCharCodes(socket).trim();
+        });
+      });
+      await Future.delayed(Duration(seconds: 4)); //stop for listen thread
+      if (messageServer.contains("true")) {
+        validUser = true;
+        messageServer = messageServer.substring(4);// remove true in start message
+        customerAndRestaurantMaker(messageServer);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  Nav() // 0 index just for test
+          ),
+        );
+      } else {
+        print('ali');
+        flag = false;
+      }
+      setState(() {
+
+      });
+    }
+
     return Scaffold(
       appBar: appBar(),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
           color: theme.yellow,
-          padding: EdgeInsets.fromLTRB(50, 30, 50, 50),
+          padding: EdgeInsets.fromLTRB(10, 30, 50, 50),
           child: Column(
             children: [
-              SizedBox(height: 20,),
-              validUser||flag ?
-              Container(height: 40,):
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                height: 40,
-                child: Center(
-                  child: Text(errorMessage,
-                    style: TextStyle(color: Colors.white,),),
-                ),
-              ),
+              SizedBox(height: 100,),
               SizedBox(height: 20,),
               TextField(
                 cursorColor: theme.black,
@@ -153,10 +156,10 @@ class _EnteringPageState extends State<EnteringPage> {
                         padding: EdgeInsets.all(20)
                     ),
                     onPressed: () {
-                      flag = false;
                       print(inputPhoneNumberEnter);
                       print(inputPasswordEnter);
                       _sendMessage();
+
                       if (validUser) {
                         Navigator.pushReplacement(
                           context,
