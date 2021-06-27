@@ -242,9 +242,9 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
           return [
             SliverAppBar(
               flexibleSpace: FlexibleSpaceBar(
-                titlePadding: EdgeInsets.only(bottom: 20),
+                titlePadding: EdgeInsets.only(bottom: 15, right: 30),
                 collapseMode: CollapseMode.parallax,
-                background: Image.asset("assets/images/restaurant/mostafa va abbas.jpg"),
+                background: Image.asset("assets/images/restaurant/" + currentRestaurant.getName() + ".jpg"),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -267,7 +267,7 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
                 ),
                 centerTitle: true,
               ),
-              expandedHeight: _size.height * 0.25,
+              expandedHeight: _size.height * 0.30,
               pinned: true,
               floating: true,
             )
