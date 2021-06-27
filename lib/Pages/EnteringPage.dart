@@ -1,5 +1,6 @@
 
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Nav.dart';
@@ -28,10 +29,26 @@ class _EnteringPageState extends State<EnteringPage> {
   String errorMessage = "Phone number Or Password is wrong";
   bool validUser = false;
 
-
+  Widget animationWait() {
+    return SizedBox(
+      width: 250.0,
+      child: TextLiquidFill(
+        text: 'Please Wait',
+        waveColor: Colors.black,
+        boxBackgroundColor: Colors.white,
+        textStyle: TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+        ),
+        boxHeight: 100,
+      ),
+    );
+  }
 
   //for hide entering password
   bool hidden = true;
+
+  bool showWait = false;
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +82,6 @@ class _EnteringPageState extends State<EnteringPage> {
                   Nav() // 0 index just for test
           ),
         );
-      } else {
-        print('ali');
-        flag = false;
       }
       setState(() {
 
@@ -80,10 +94,24 @@ class _EnteringPageState extends State<EnteringPage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           color: theme.yellow,
-          padding: EdgeInsets.fromLTRB(10, 30, 50, 50),
+          padding: EdgeInsets.fromLTRB(20, 30, 50, 50),
           child: Column(
             children: [
-              SizedBox(height: 100,),
+              validUser || flag ? Container(height: 40,) : Container(
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                height: 40,
+                child: Center(
+                  child: Text(
+                    errorMessage,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(height: 20,),
               TextField(
                 cursorColor: theme.black,
@@ -144,53 +172,51 @@ class _EnteringPageState extends State<EnteringPage> {
                   inputPasswordEnter = value;
                 },
               ),
-              SizedBox(height: 40,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(width: 30,),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        onPrimary: theme.yellow,
-                        primary: theme.black,
-                        padding: EdgeInsets.all(20)
-                    ),
-                    onPressed: () {
-                      print(inputPhoneNumberEnter);
-                      print(inputPasswordEnter);
-                      _sendMessage();
-
-                      if (validUser) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                              Nav() // 0 index just for test
-                          ),
-                        );
-                      }
-                      validUser = false;
-                      setState(() {});
-                    },
-                    child: Text("Sign in", style: TextStyle(fontSize: 18),),
-                  ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          onPrimary: theme.yellow,
-                          primary: theme.black,
-                        padding: EdgeInsets.all(20)
+              SizedBox(height: 20,),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    onPrimary: theme.yellow,
+                    primary: theme.black,
+                    padding: EdgeInsets.only(left: 100, right: 100),
+                ),
+                onPressed: () async {
+                  setState(() {
+                    showWait = true;
+                    flag = true;
+                  });
+                  print(inputPhoneNumberEnter);
+                  print(inputPasswordEnter);
+                  _sendMessage();
+                  await Future.delayed(Duration(seconds: 5));
+                  if (validUser) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                          Nav() // 0 index just for test
                       ),
-                      onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => RegisteringPage()),
-                        );
-                      },
-                      child: Text("Sign up", style: TextStyle(fontSize: 18),)
-                  ),
-                  SizedBox(width: 30,)
-                ],
+                    );
+                  }
+                  setState(() {flag = false; showWait = false;});
+                },
+                child: Text("Sign in", style: TextStyle(fontSize: 18),),
               ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      onPrimary: theme.yellow,
+                      primary: theme.black,
+                      padding: EdgeInsets.only(left: 97, right: 97),
+                  ),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisteringPage()),
+                    );
+                  },
+                  child: Text("Sign up", style: TextStyle(fontSize: 18),)
+              ),
+              SizedBox(width: 30,),
+              if(showWait) animationWait(),
             ],
           ),
         ),

@@ -32,6 +32,7 @@ dependencies:
   syncfusion_flutter_charts: ^19.1.65
   flutter_rating_bar: ^4.0.0
   easy_loader: ^1.0.3
+  animated_text_kit: ^4.2.1
 
 
 
