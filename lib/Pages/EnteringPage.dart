@@ -38,7 +38,7 @@ class _EnteringPageState extends State<EnteringPage> {
     String messageServer = "";
     await SocketConnect.socket.then((serverSocket) async {
       print('Connected to Server in Entering Page');
-      serverSocket.writeln("seller");
+      serverSocket.writeln("Seller");
 
       serverSocket.writeln("Entering::" +
           inputPhoneNumberEnter +

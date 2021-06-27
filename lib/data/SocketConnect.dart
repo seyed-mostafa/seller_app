@@ -3,7 +3,7 @@ import 'dart:io';
 class SocketConnect {
 
   static final SocketConnect _socketConnect = SocketConnect._internal();
-  static final socket = Socket.connect('10.0.2.2', 8081);
+  static final socket = Socket.connect('10.0.2.2', 8080);
 
   factory SocketConnect() {
     return _socketConnect;
