@@ -240,15 +240,17 @@ class _AddFoodState extends State<AddFood> {
                               print(_inputDescription);
                               print(_inputPrice);
                               print(_inputDiscount);
-                              currentRestaurant.getMenu().add(Food(
+                              currentRestaurant.addMenu(new Food(
                                   _inputName,
                                   _inputDescription,
                                   int.parse(_inputPrice),
                                   int.parse(_inputDiscount),
                                   true,
                                   true,
-                                  TypeFood.Appetizer,
-                              ));
+                                  TypeFood.values
+                                      .firstWhere((e) => e.toString() == "TypeFood." +  foodType.toString().substring(1, foodType.toString().length - 1)))
+                                 ,
+                              );
                               _sendMessage();
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav()));
                             }

@@ -21,7 +21,7 @@ class Restaurant  {
   num _sendingRangeRadius,_id;
   Location _address;
   List<Food> _menu = List.empty(growable: true);
-  List<TypeFood> type= List.empty(growable: true);
+  List<TypeFood> type = [TypeFood.all];
   List<Order> _orders= List.empty(growable: true);
   List<Comment> _comments= List.empty(growable: true);
   List<double> _rate= List.empty(growable: true);
