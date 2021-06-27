@@ -99,11 +99,11 @@ class _OrderPageState extends State<OrderPage> {
                     color: theme.yellow,
                   ),
                   onPressed: () {
-                    // Navigator.pushReplacement(
-                    //     context, MaterialPageRoute(builder: (context) =>//TODO
-                    //     MapShowOnly(
-                    //         widget.currentRestaurant.getOrders()[widget.index])
-                    // ));
+                    Navigator.pushReplacement(
+                        context, MaterialPageRoute(builder: (context) =>//TODO
+                        MapShowOnly(
+                            widget.currentRestaurant.getOrders()[widget.index])
+                    ));
                   })
             ],
           ),

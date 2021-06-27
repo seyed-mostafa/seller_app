@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:seller_app/Objects/Location.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Map.dart';
@@ -300,9 +301,10 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         print(_inputAddress);
                         print(_inputPhoneNumber);
                         print(_inputPassword);
-                        Restaurant restaurant=new Restaurant(_inputName,null,_inputPhoneNumber,_inputPassword);
-                        // restaurant.setAddress(widget.latLng);
-                        // Data.restaurant.add(restaurant);
+
+                        Restaurant restaurant=new Restaurant(_inputName,new Location(_inputAddress,widget.latLng.latitude,widget.latLng.longitude),_inputPhoneNumber,_inputPassword);
+                        restaurant.setSendingRangeRadius(int.parse(_inputRange));
+                        
                         //TODO:transfer new restaurant to server.
                         Navigator.pop(context,);
                       }

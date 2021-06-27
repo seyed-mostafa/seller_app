@@ -90,7 +90,22 @@ customerAndRestaurantMaker(String messageServer) async {
     }
   }
 
-    Data.restaurant=restaurant;
+
+  /////////////////////////////////               cash data               //////////////////////////////
+
+  List<String> cash = data[14].split("^");
+    for(String str in cash){
+      restaurant.setcashSales(int.parse(str));
+    }
+
+
+  /////////////////////////////////               online data               //////////////////////////////
+
+  List<String> online = data[15].split("^");
+  for(String str in online){
+    restaurant.setonlineSales(int.parse(str));
+  }
+  Data.restaurant=restaurant;
 
 
 }
