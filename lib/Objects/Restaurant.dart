@@ -1,5 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:seller_app/Objects/Comment.dart';
+import 'Location.dart';
 import 'Order.dart';
 import 'Food.dart';
 
@@ -18,15 +19,16 @@ class Restaurant  {
   static int _count=99243000;
   String _name, _phoneNumber, _password, _days, _hour,_addressString;
   num _sendingRangeRadius,_id;
-  LatLng _address;
+  Location _address;
   List<Food> _menu = List.empty(growable: true);
-  List<TypeFood> type;
+  List<TypeFood> type = [TypeFood.all];
   List<Order> _orders= List.empty(growable: true);
   List<Comment> _comments= List.empty(growable: true);
+  List<double> _rate= List.empty(growable: true);
 
 
 
-  Restaurant(String name, LatLng address, String phoneNumber, String password)  {
+  Restaurant(String name, Location address, String phoneNumber, String password)  {
     _count++;
     _id=_count;
     this._name = name;
@@ -35,7 +37,7 @@ class Restaurant  {
     this._phoneNumber = phoneNumber;
   }
 
-//////////////////////////////////////////////                            اینا چرت و پرته بعدا باید درست بشه
+//////////////////////////////////////////////
 
   List <int> cashsales= List.empty(growable: true);
   List<int> onlinesales= List.empty(growable: true);
@@ -83,13 +85,15 @@ class Restaurant  {
     return sum;
   }
 
-  ///////////////////////////////////////////                                تا اینجا
+  ///////////////////////////////////////////
+
+
+  void addRate(double rate){
+    _rate.add(rate);
+  }
 
   void addComment(Comment comment){
     _comments.add(comment);
-  }
-  List<Comment> getComments(){
-    return _comments;
   }
 
   void addOrder(Order order){
@@ -101,7 +105,7 @@ class Restaurant  {
     List <Order> done= List.empty(growable: true);
     List <Order> undone= List.empty(growable: true);
     for(Order ord in _orders){
-      if(ord.getStatus()==true){
+      if(ord.getDelivered()==true){
         done.add(ord);
       }else{
         undone.add(ord);
@@ -116,36 +120,14 @@ class Restaurant  {
     _orders+=undone;
   }
 
-  List<Order> getOrders(){
-    return _orders;
-  }
-
-  List<Food> getMenu() {
-    return _menu;
-  }
 
   void addMenu(Food food){
     _menu.add(food);
   }
 
-  int getId(){
-    return _id;
-  }
-
   void addTypeFood(TypeFood typeFood){
     type.add(typeFood);
   }
-
-  List<TypeFood> getTypeFoods(){
-    return type;
-  }
-  void setAddressString(String addressString){
-    this._addressString=addressString;
-  }
-  String getAddressString(){
-    return _addressString;
-  }
-
 
   void setName(String name) {
     this._name = name;
@@ -159,7 +141,7 @@ class Restaurant  {
     this._hour = hour;
   }
 
-  void setAddress(LatLng address) {
+  void setAddress(Location address) {
     this._address = address;
   }
 
@@ -183,7 +165,7 @@ class Restaurant  {
     return _name;
   }
 
-  LatLng getAddress() {
+  Location getAddress() {
     return _address;
   }
 
@@ -205,6 +187,36 @@ class Restaurant  {
 
   String getHour() {
     return _hour;
+  }
+
+  List<Order> getOrders(){
+    return _orders;
+  }
+
+  List<Food> getMenu() {
+    return _menu;
+  }
+  List<TypeFood> getTypeFoods(){
+    return type;
+  }
+
+  int getId(){
+    return _id;
+  }
+
+  double getRate(){
+    double sum=0;
+    for(double i in _rate)
+      sum+=i;
+    return sum/_rate.length;
+  }
+
+  List<Comment> getComments(){
+    return _comments;
+  }
+
+  void setId(int parse) {
+    _id=parse;
   }
 
 }

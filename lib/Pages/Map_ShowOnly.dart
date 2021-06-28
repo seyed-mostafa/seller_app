@@ -37,7 +37,7 @@ class _MapShowOnlyState extends State<MapShowOnly> {
   }
 
   void first() {
-    LatLng _lastMapPosition = widget.order.getCustomerAddress();
+    LatLng _lastMapPosition = new LatLng(widget.order.getCustomerAddress().getLatitude(), widget.order.getCustomerAddress().getLongitude());
     setState(() {
       _markers.add(
           Marker(
@@ -46,7 +46,7 @@ class _MapShowOnlyState extends State<MapShowOnly> {
             position: _lastMapPosition,
             infoWindow: InfoWindow(
               title: widget.order.getCustomerName(),
-              snippet: widget.order.getCustomerAddressString(),
+              snippet: widget.order.getCustomerAddress().getAddress(),
             ),
             icon: BitmapDescriptor.defaultMarker,
           ));
@@ -54,7 +54,7 @@ class _MapShowOnlyState extends State<MapShowOnly> {
   }
   @override
   Widget build(BuildContext context) {
-    widget.show=widget.order.getCustomerAddress();
+    widget.show=new LatLng(widget.order.getCustomerAddress().getLatitude(), widget.order.getCustomerAddress().getLongitude());
     first();
     return Scaffold(
       appBar: appBar(),
@@ -63,7 +63,7 @@ class _MapShowOnlyState extends State<MapShowOnly> {
             GoogleMap(
               onMapCreated: _onMapCreated,
               initialCameraPosition: CameraPosition(
-                target: widget.order.getCustomerAddress(),
+                target: new LatLng(widget.order.getCustomerAddress().getLatitude(), widget.order.getCustomerAddress().getLongitude()),
                 zoom: 17,
               ),
               mapType: _currentMapType,

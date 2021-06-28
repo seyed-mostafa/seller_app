@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:seller_app/Objects/Food.dart';
+import 'package:seller_app/Objects/Location.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/Pages/Map.dart';
@@ -36,7 +38,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
       _inputName = '', _inputAddress = '', _inputLongitude = '',
       _inputLatitude = '', _inputRange = '';
   bool hidden = true;
-  List<String> foodType = [];
+  List<String> foodType = ["all"];
 
   bool isInteger(String string) {
     // Null or empty string is not a number
@@ -59,13 +61,17 @@ class _RegisteringPageState extends State<RegisteringPage> {
 
   void _sendMessage() async { //format: Registering::nameRegistering::phoneNumber::password::address(String)::longitude::latitude::range::foodType1,foodType2,...
     String types = '';
-    for(int i = 0; i < foodType.length; i++) { //ToDo currentRestaurant.type.length
+    print(foodType);
+    for(int i = 0; i < foodType.length; i++) {
       types += foodType[i]+",";
     }
+    types = types.substring(0, types.length -1);
     await SocketConnect.socket.then((value) {
+      print('Connect to server in Registering page');
+      value.writeln("Seller");
       value.writeln("Registering::" + _inputName
           + "::" + _inputPhoneNumber + "::" + _inputPassword + "::"
-          + _inputAddress + "::" + _inputLongitude + "::" + _inputLatitude
+          + _inputAddress + "::" + widget.latLng.longitude.toString() + "::" + widget.latLng.latitude.toString()
           + "::" + _inputRange + "::" + types);
     });
   }
@@ -273,7 +279,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                                   'Pizza',
                                   'Sandwich',
                                   'Drinks',
-                                  'Persian Food',
+                                  'PersianFood',
                                   'Dessert',
                                   'Appetizer',
                                   'Fried',
@@ -300,10 +306,10 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         print(_inputAddress);
                         print(_inputPhoneNumber);
                         print(_inputPassword);
-                        Restaurant restaurant=new Restaurant(_inputName,null,_inputPhoneNumber,_inputPassword);
-                        restaurant.setAddress(widget.latLng);
-                        Data.restaurants.add(restaurant);
-                        //TODO:transfer new restaurant to server.
+
+                        Restaurant restaurant=new Restaurant(_inputName,new Location(_inputAddress,widget.latLng.latitude,widget.latLng.longitude),_inputPhoneNumber,_inputPassword);
+                        restaurant.setSendingRangeRadius(int.parse(_inputRange));
+                        _sendMessage();
                         Navigator.pop(context,);
                       }
                       setState(() {});

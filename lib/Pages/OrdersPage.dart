@@ -5,6 +5,7 @@ import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:intl/intl.dart';
 import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/data/SocketConnect.dart';
 import 'Nav.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'OrderPage.dart';
@@ -16,8 +17,18 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant= Data.restaurant;
   TextStyle _style=TextStyle(fontSize: 11);
+
+  void _sendMessage(int index) async {
+    await SocketConnect.socket.then((value) async {
+      //format: setDelivered::orderId::status
+
+      String sendMessage="setDelivered"+"::"+ currentRestaurant.getOrders()[index].getId().toString()+"::"
+          +currentRestaurant.getOrders()[index].getDelivered().toString();
+      value.writeln(sendMessage);
+    });
+  }
 
   name_date(index){
     return Container(
@@ -42,10 +53,10 @@ class _OrdersState extends State<Orders> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
             child: Container(
-              child: Text(DateFormat('EEE d MMM\nkk:mm').format(
+              child: Text(
                   currentRestaurant
                   .getOrders()[index]
-                  .getOrderTime())),
+                  .getOrderTime()),
             ),
           ),
         ],
@@ -256,15 +267,16 @@ class _OrdersState extends State<Orders> {
             borderRadius: 10.0,
             inactiveColor: theme.black,
             activeColor: theme.yellow,
-            value:currentRestaurant.getOrders()[index].getStatus(),
+            value:currentRestaurant.getOrders()[index].getDelivered(),
             onToggle: (value) {
               setState(() {
-                currentRestaurant.getOrders()[index].setStatus();
+                currentRestaurant.getOrders()[index].setDelivered();
+                _sendMessage(index);
                 currentRestaurant.arrange();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Nav()
+                    builder: (context) => Nav(1)
                     ),
                 );
               }
@@ -283,7 +295,7 @@ class _OrdersState extends State<Orders> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: FlatButton(
-          color: currentRestaurant.getOrders()[index].getStatus() == true
+          color: currentRestaurant.getOrders()[index].getDelivered() == true
               ? Colors.white
               : theme.yellow,
           child: Row(
@@ -314,6 +326,7 @@ class _OrdersState extends State<Orders> {
 
   @override
   Widget build(BuildContext context) {
+    print(currentRestaurant.getOrders().length);
     return Container(
         child: ListView(
       children: List.generate(currentRestaurant.getOrders().length,

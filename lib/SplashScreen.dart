@@ -14,9 +14,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool EnteredUser = true;
-  Restaurant restaurant1 = new Restaurant('akbar jooje',
-      LatLng(35.717676891099835, 51.331243399093914), '09123456780', '1234');
+  bool EnteredUser = false;
+
 
 
   @override
@@ -26,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Duration(seconds: 2),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: EnteredUser
-                ? (BuildContext context) => Nav()
+                ? (BuildContext context) => Nav(0)
                 : (BuildContext context) => EnteringPage())));
   }
 

@@ -1,20 +1,17 @@
 
+import 'package:seller_app/Objects/Location.dart';
+
 import 'Comment.dart';
-import 'Restaurant.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'Food.dart';
 
 
 
 class Customer{
 String _firstName,_lastName,_phoneNumber,_password;
 num _wallet=0;
-List<LatLng> _address = List.empty(growable: true);
+List<Location> _address = List.empty(growable: true);
 List<Comment> _comments = List.empty(growable: true);
-List<Restaurant> _favoriteRestaurent = List.empty(growable: true);
 
-Map <Food,int> _shoppingCart =new Map();
-List<Food> _previosOrders = List.empty(growable: true); /////   احتمالا باید تغییر کنه
 
 
 
@@ -45,21 +42,21 @@ void setPassword(String password) {
 void setWallet(num wallet) {
   this._wallet = wallet;
 }
-void addAdres(LatLng address) {
+void addAdres(Location address) {
   this._address.add(address);
 }
-void addPreviosOrders(Food food) {
-  this._previosOrders.add(food);
-}
-void addComment(Comment comment) {
-  _comments.add(comment);
-}
-void addFavoriteRestaurent(Restaurant favoriteRestaurent) {
-  this._favoriteRestaurent.add(favoriteRestaurent);
-}
-void addShoppingCart(Food food,int count) {
-  _shoppingCart[food]=count;
-}
+// void addPreviosOrders(Food food) {
+//   this._previosOrders.add(food);
+// }
+// void addComment(Comment comment) {
+//   _comments.add(comment);
+// }
+// void addFavoriteRestaurent(Restaurant favoriteRestaurent) {
+//   this._favoriteRestaurent.add(favoriteRestaurent);
+// }
+// void addShoppingCart(Food food,int count) {
+//   _shoppingCart[food]=count;
+// }
 
 
 
@@ -81,25 +78,25 @@ String getPassword() {
 num getWallet() {
   return _wallet ;
 }
-List<LatLng> getAdres() {
+List<Location> getAdres() {
   return _address;
 }
-List<Food> getPreviosOrders() {
-  return _previosOrders;
-}
-List<Comment> getComment() {
-  return _comments;
-}
-List<Restaurant> getFavoriteRestaurent() {
-  return _favoriteRestaurent;
-}
-Map<Food,int> getShoppingCart() {
-  return _shoppingCart;
-}
-
-void setShoppingCartClear() {               //سبد خرید با این تابع خالی میشه
-   _shoppingCart.clear();                   //پس قبلش باید با تابع بالاییش، سبد خرید رو بگیریم و برای کلاس سفارشات بفرستیم
-}
+// List<Food> getPreviosOrders() {
+//   return _previosOrders;
+// }
+// List<Comment> getComment() {
+//   return _comments;
+// }
+// List<Restaurant> getFavoriteRestaurent() {
+//   return _favoriteRestaurent;
+// }
+// Map<Food,int> getShoppingCart() {
+//   return _shoppingCart;
+// }
+//
+// void setShoppingCartClear() {               //سبد خرید با این تابع خالی میشه
+//    _shoppingCart.clear();                   //پس قبلش باید با تابع بالاییش، سبد خرید رو بگیریم و برای کلاس سفارشات بفرستیم
+//}
 
 
 

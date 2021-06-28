@@ -84,7 +84,7 @@ class _OrderPageState extends State<OrderPage> {
                     TextSpan(
                       text: widget.currentRestaurant
                           .getOrders()[widget.index]
-                          .getCustomerAddressString(),
+                          .getCustomerAddress().getAddress(),
                     ),
                   ]),
                 )
@@ -100,7 +100,7 @@ class _OrderPageState extends State<OrderPage> {
                   ),
                   onPressed: () {
                     Navigator.pushReplacement(
-                        context, MaterialPageRoute(builder: (context) =>
+                        context, MaterialPageRoute(builder: (context) =>//TODO
                         MapShowOnly(
                             widget.currentRestaurant.getOrders()[widget.index])
                     ));
@@ -130,19 +130,15 @@ class _OrderPageState extends State<OrderPage> {
                 ),
                 Padding(padding: EdgeInsets.symmetric(vertical: 7)),
                 Text(
-                  'Order date : ${DateFormat('EEE  d MMM  kk:mm').format(
-                      widget.currentRestaurant.getOrders()[widget.index]
-                          .getOrderTime())}',
+                  'Order date : ${widget.currentRestaurant.getOrders()[widget.index].getOrderTime()}',
                   style: TextStyle(fontSize: 18),
                 ),
                 Padding(padding: EdgeInsets.symmetric(vertical: 2)),
                 widget.currentRestaurant.getOrders()[widget.index]
-                    .getStatus() ==
+                    .getDelivered() ==
                     true
                     ? Text(
-                  'Delivery date : ${DateFormat('EEE  d MMM  kk:mm').format(
-                      widget.currentRestaurant.getOrders()[widget.index]
-                          .getDeliveryTime())}',
+                  'Delivery date : ${widget.currentRestaurant.getOrders()[widget.index].getDeliveryTime()}',
                   style: TextStyle(fontSize: 18),
                 )
                     : Text(

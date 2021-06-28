@@ -20,7 +20,7 @@ class FoodPage extends StatefulWidget {
 
 class _FoodPageState extends State<FoodPage> {
 
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant = Data.restaurant;
   int state = 1;
   int like = 0;
 
@@ -28,14 +28,15 @@ class _FoodPageState extends State<FoodPage> {
   bool _nameIsValid = true, _priceIsValid = true;
 
   void _sendMessage() { //format: changeFood::foodIndexToChange::name::description::price::discount::available::typeFood
-    SocketConnect.socket.then((value) { //ToDo this calls just user back to menu
+    SocketConnect.socket.then((value) {
+      print('Connect to server');
       value.writeln("changeFood::" + widget.currentFood.toString()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getName()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getDescription()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getPrice().toString()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getDiscount().toString()
         + "::" + currentRestaurant.getMenu()[widget.currentFood].getAvailable().toString()
-        + "::" + currentRestaurant.getMenu()[widget.currentFood].getTypeFood().toString());
+        + "::" + currentRestaurant.getMenu()[widget.currentFood].getTypeFood().toString().substring(9, currentRestaurant.getMenu()[widget.currentFood].getTypeFood().toString().length));
     });
   }
 
@@ -67,7 +68,7 @@ class _FoodPageState extends State<FoodPage> {
         height: MediaQuery.of(context).size.height / 3,
         width: MediaQuery.of(context).size.width,
         child: Image.asset(
-          'assets/images/1.jpg',
+          'assets/images/food/' + currentRestaurant.getMenu()[widget.currentFood].getName() + '.jpg',
           fit: BoxFit.cover,
         ),
       );
@@ -117,13 +118,6 @@ class _FoodPageState extends State<FoodPage> {
                   },
                 ),
               ),
-              // Text(
-              //   widget.currentRestaurant
-              //       .getMenu()[widget.currentFood]
-              //       .getName(),
-              //
-              //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              // ),
               Spacer(
                 flex: 10,
               ),
@@ -164,14 +158,6 @@ class _FoodPageState extends State<FoodPage> {
                   },
                 ),
               ),
-              // Text(
-              //   widget.currentRestaurant
-              //       .getMenu()[widget.currentFood]
-              //       .getPrice()
-              //       .toString() +
-              //       ' T',
-              //   style: TextStyle(fontSize: 28),
-              // ),
               Spacer(),
             ]),
             SizedBox(
@@ -294,49 +280,21 @@ class _FoodPageState extends State<FoodPage> {
                       blurRadius: 0.5,
                       offset: Offset(0, 0))
                 ]),
-                child: Text(
-                   currentRestaurant
-                        .getMenu()[widget.currentFood]
-                        .getComment(),
+                child: Text("nothing",
+
                     style: TextStyle(color: theme.black, fontSize: 15)),
               ),
             ));
       }
     }
 
-    foodData() {
+    body() {
       return ListView(
         children: [
           imageWidget(),
           namePriceWidget(),
           DetailsReviewButtonWidget(),
           DetailsOrReviewWidget(),
-          // Positioned(
-          //     height: 100,
-          //     width: MediaQuery.of(context).size.width,
-          //     bottom: 0,
-          //     child: Container(
-          //
-          //       color: theme.yellow,
-          //       height: 50,
-          //       child: TextButton(
-          //
-          //         child: Text(
-          //           "Edit ",
-          //           style: TextStyle(
-          //               color: theme.black,
-          //               fontSize: 18,
-          //               fontWeight: FontWeight.w500),
-          //         ),
-          //         onPressed: () {
-          //           Navigator.pushReplacement(
-          //               context,
-          //               MaterialPageRoute(
-          //                   builder: (context) => AddFood(
-          //                        widget.currentRestaurant)));
-          //         },
-          //       ),
-          //     )),
         ],
       );
     }
@@ -350,7 +308,7 @@ class _FoodPageState extends State<FoodPage> {
               _sendMessage();
               Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Nav())
+                  MaterialPageRoute(builder: (context) => Nav(0))
               );
             } else {
               null;
@@ -364,7 +322,7 @@ class _FoodPageState extends State<FoodPage> {
         elevation: 10,
         iconTheme: IconThemeData(color:theme.yellow),
       ),
-      body: foodData(),
+      body: body(),
     );
   }
 }

@@ -15,7 +15,9 @@ import 'AddFoodPage.dart';
 
 class Nav extends StatefulWidget {
 
+  int index = 0;
 
+  Nav(this.index);
 
   @override
   _NavState createState() => _NavState();
@@ -25,6 +27,12 @@ class _NavState extends State<Nav> {
 
 
   int _selectedIndex = 0;
+
+  @override
+  initState() {
+    super.initState();
+    _selectedIndex = widget.index;
+  }
 
   showScreen(){
     if(_selectedIndex == 0){//Menu
@@ -40,7 +48,7 @@ class _NavState extends State<Nav> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.black,
+                  color: Colors.blue[900],
                 ),
                 child: TextButton(
                   child: Icon(Icons.add, color: theme.yellow,),

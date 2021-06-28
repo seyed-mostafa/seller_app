@@ -5,6 +5,7 @@ import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/appBar.dart';
 import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/data/SocketConnect.dart';
 
 class CommentsPage extends StatefulWidget {
 
@@ -14,43 +15,42 @@ class CommentsPage extends StatefulWidget {
 }
 
 class _CommentsPageState extends State<CommentsPage> {
-  Restaurant currentRestaurant= Data.restaurants[0];
+  Restaurant currentRestaurant= Data.restaurant;
+
+  void _sendMessage(int index) async {
+    await SocketConnect.socket.then((value) async {
+      //format: addReply::comment::reply
+
+      String sendMessage="addReply"+"::"+ currentRestaurant.getComments()[index].getComment()+"::"
+          +currentRestaurant.getComments()[index].getReply();
+      value.writeln(sendMessage);
+    });
+  }
 
   comment(index) {
     return Column(
       children: [
         Row(
           children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image:
-                DecorationImage(
-                    image:new NetworkImage(
-                        'assets/images/${currentRestaurant.getComments()[index].getCustomerName()}.jpg'),
-                    fit: BoxFit.fill),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Image.asset(
+                "assets/images/profile/${currentRestaurant.getComments()[index].getCustomerName()}.jpg",
+                fit: BoxFit.fill,
+                height: 50,
+                width: 50,
               ),
             ),
             SizedBox(
               width: 15,
             ),
-            RichText(
-              text: TextSpan(
-                  text: currentRestaurant
-                      .getComments()[index]
-                      .getCustomerName(),
-                  style: TextStyle(fontSize: 18, color: theme.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: DateFormat('\n d MMM kk:mm').format(
-                          currentRestaurant
-                          .getComments()[index]
-                          .getTimeComment()),
-                      style: TextStyle(color: Colors.grey, fontSize: 10),
-                    )
-                  ]),
+            Column(
+              children: [
+                Text(currentRestaurant.getComments()[index].getCustomerName(),
+                    style: TextStyle(fontSize: 18, color: theme.black)),
+                Text(currentRestaurant.getComments()[index].getTimeComment(),
+                    style: TextStyle(color: Colors.grey, fontSize: 10)),
+              ],
             ),
           ],
         ),
@@ -109,6 +109,7 @@ class _CommentsPageState extends State<CommentsPage> {
           send = false;
           str = '';
           currentRestaurant.getComments()[index].setReply(value);
+          _sendMessage(index);
         });
       }
     }
@@ -171,34 +172,26 @@ class _CommentsPageState extends State<CommentsPage> {
                 SizedBox(
                   width: 15,
                 ),
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: NetworkImage('assets/images/restaurant.jpg'),
-                        fit: BoxFit.fill),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.asset(
+                    "assets/images/restaurant/"+currentRestaurant.getName()+".jpg",
+                    fit: BoxFit.fill,
+                    height: 50,
+                    width: 50,
                   ),
                 ),
+
                 SizedBox(
                   width: 15,
                 ),
-                RichText(
-                  text: TextSpan(
-                      text: currentRestaurant
-                          .getComments()[index]
-                          .getRestaurantName(),
-                      style: TextStyle(fontSize: 18, color: theme.black),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: DateFormat('\n d MMM kk:mm').format(
-                              currentRestaurant
-                              .getComments()[index]
-                              .getTimeReply()),
-                          style: TextStyle(color: Colors.grey, fontSize: 10),
-                        )
-                      ]),
+                Column(
+                  children: [
+                    Text(currentRestaurant.getName(),
+                        style: TextStyle(fontSize: 18, color: theme.black)),
+                    Text(currentRestaurant.getComments()[index].getTimeComment(),
+                        style: TextStyle(color: Colors.grey, fontSize: 10)),
+                  ],
                 ),
               ],
             ),

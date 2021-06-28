@@ -1,21 +1,14 @@
 
 
-import 'package:seller_app/Objects/Comment.dart';
-
-import 'Restaurant.dart';
-
-class Food extends Restaurant{
+class Food {
   String _name, _description;
   num _discount, _price;
   bool _sizing, _available;
   TypeFood _typeFood;
-  var _score = {"behdasht":null,"soratPeik":null,"garmiGhaza":null,"gheimat":null,"keifiat":null};
-  String _com;
 
-
-   Food(String name, String description,num price,num discount,bool sizing,bool available,TypeFood typeFood) : super('', null, '', '')  {
+  Food(String name, String description, num price, num discount, bool sizing, bool available, TypeFood typeFood) {
     this._name = name;
-    if (discount!=null) {
+    if (discount != null) {
       this._discount = discount;
     }
     this._description = description;
@@ -25,103 +18,83 @@ class Food extends Restaurant{
     this._typeFood = typeFood;
   }
 
-  void setComment(String com){
-     _com=com;
-  }
-  String getComment(){
-     return _com;
+  void setName(String name) {
+    this._name = name;
   }
 
+  void setDescription(String description) {
+    this._description = description;
+  }
 
-  void setName(String name){
-    this._name=name;
-  }
-  void setDescription(String description){
-    this._description=description;
-  }
-  void setPrice(num price){
+  void setPrice(num price) {
     this._price = price;
   }
-  void setDiscount(num discount){
-     if (discount!=null) {
-       this._discount = discount;
-     }
+
+  void setDiscount(num discount) {
+    if (discount != null) {
+      this._discount = discount;
+    }
   }
-  void setSizing(bool sizing){
+
+  void setSizing(bool sizing) {
     this._sizing = sizing;
   }
-  void setAvailable(bool available){
+
+  void setAvailable(bool available) {
     this._available = available;
   }
-  void setTypeFood(TypeFood typeFood){
+
+  void setTypeFood(TypeFood typeFood) {
     this._typeFood = typeFood;
   }
-  void setScore(int behdasht,int soratPeik,int garmiGhaza,int gheimat,int keifiat){
-    if (_score["behdasht"]==null) {
-      _score["behdasht"]=behdasht;
-      _score["garmiGhaza"]=garmiGhaza;
-      _score["soratPeik"]=soratPeik;
-      _score["gheimat"]=gheimat;
-      _score["keifiat"]=keifiat;
-    }else{
-      _score["behdasht"]=(behdasht+_score["behdasht"])/2;
-      _score["garmiGhaza"]=(garmiGhaza+_score["garmiGhaza"])/2;
-      _score["soratPeik"]=(soratPeik+_score["soratPeik"])/2;
-      _score["gheimat"]=(gheimat+_score["gheimat"])/2;
-      _score["keifiat"]=(keifiat+_score["keifiat"])/2;
-    }
-  }
 
-
-
-  String getName(){
+  String getName() {
     return _name;
   }
-  String getDescription(){
+
+  String getDescription() {
     return _description;
   }
-  num getPrice(){
-    return _price ;
+
+  num getPrice() {
+    return _price;
   }
-  int getPriceWithDiscount(){
-    if(_discount==null)
-     return _price ;
-    return (_price*_discount/100).ceil();
+
+  int getPriceWithDiscount() {
+    if (_discount == null) return _price;
+    return (_price * _discount / 100).ceil();
   }
-  num getDiscount(){
-    return _discount ;
+
+  num getDiscount() {
+    return _discount;
   }
-  bool getSizing(){
-    return _sizing ;
+
+  bool getSizing() {
+    return _sizing;
   }
-  bool getAvailable(){
-    return _available ;
+
+  bool getAvailable() {
+    return _available;
   }
-  TypeFood getTypeFood(){
-    return _typeFood ;
-  }
-  double getScore(){
-    double score=0;
-    for(double i in _score.values){
-        score+=i;
-    }
-    return score/5;
+
+  TypeFood getTypeFood() {
+    return _typeFood;
   }
 }
 
-
-
-
-enum TypeFood{
-   Pizza
-  ,Sandwich
-  ,Drinks
-  ,PersianFood
-  ,Dessert          //دسر
-  ,Appetizer       //پیش غذا
-  ,Fried           //سوخاری
-  ,Steaks
-  ,Breakfast
-  ,International
-  ,all
+enum TypeFood {
+  Pizza,
+  Sandwich,
+  Drinks,
+  PersianFood,
+  Dessert //دسر
+  ,
+  Appetizer //پیش غذا
+  ,
+  Fried //سوخاری
+  ,
+  Steaks,
+  Breakfast,
+  International,
+  all
 }
