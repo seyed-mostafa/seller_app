@@ -65,7 +65,7 @@ class _AddFoodState extends State<AddFood> {
           onPressed: (){
             Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Nav()))
+                MaterialPageRoute(builder: (context) => Nav(0)))
             ;
           },
         ),
@@ -252,7 +252,7 @@ class _AddFoodState extends State<AddFood> {
                                  ,
                               );
                               _sendMessage();
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav()));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav(0)));
                             }
                             setState(() {});
                           },

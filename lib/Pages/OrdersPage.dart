@@ -276,7 +276,7 @@ class _OrdersState extends State<Orders> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Nav()
+                    builder: (context) => Nav(1)
                     ),
                 );
               }

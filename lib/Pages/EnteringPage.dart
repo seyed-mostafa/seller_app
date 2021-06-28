@@ -79,7 +79,7 @@ class _EnteringPageState extends State<EnteringPage> {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  Nav() // 0 index just for test
+                  Nav(0) // 0 index just for test
           ),
         );
       }
@@ -193,7 +193,7 @@ class _EnteringPageState extends State<EnteringPage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                          Nav() // 0 index just for test
+                          Nav(0) // 0 index just for test
                       ),
                     );
                   }

@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Duration(seconds: 2),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: EnteredUser
-                ? (BuildContext context) => Nav()
+                ? (BuildContext context) => Nav(0)
                 : (BuildContext context) => EnteringPage())));
   }
 

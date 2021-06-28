@@ -308,7 +308,7 @@ class _FoodPageState extends State<FoodPage> {
               _sendMessage();
               Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Nav())
+                  MaterialPageRoute(builder: (context) => Nav(0))
               );
             } else {
               null;
