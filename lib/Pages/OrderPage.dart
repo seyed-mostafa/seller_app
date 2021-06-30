@@ -116,7 +116,7 @@ class _OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar(),
+        appBar: appBar(context),
         body: SingleChildScrollView(
           child: Container(
             alignment: Alignment.bottomCenter,
