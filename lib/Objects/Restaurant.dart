@@ -14,7 +14,7 @@ import 'Food.dart';
 
 class Restaurant {
   static int _count = 99243000;
-  String _name, _phoneNumber, _password, _days, _hour, _addressString;
+  String _name, _phoneNumber, _password, _days, _hour;
   num _sendingRangeRadius, _id;
   Location _address;
   List<Food> _menu = List.empty(growable: true);

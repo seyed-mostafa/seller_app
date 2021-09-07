@@ -32,7 +32,7 @@ class Order {
     _restaurantAddress = restaurantAddress;
     _id = id;
   }
-  void Delivered(bool status) {
+  void delivered(bool status) {
     _delivered = status;
   }
 

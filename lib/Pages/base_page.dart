@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/Pages/comments_pages/CommentsPage.dart';
+import 'package:seller_app/Pages/comments_pages/comments_list_page.dart';
 import 'package:seller_app/Pages/menu_pages/menu_page.dart';
 import 'package:seller_app/Pages/orders_pages/orders_base_page.dart';
 import 'package:seller_app/constants/appbar.dart';

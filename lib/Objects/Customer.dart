@@ -1,12 +1,9 @@
 import 'package:seller_app/Objects/Location.dart';
 
-import 'Comment.dart';
-
 class Customer {
   String _firstName, _lastName, _phoneNumber, _password;
   num _wallet = 0;
   List<Location> _address = List.empty(growable: true);
-  List<Comment> _comments = List.empty(growable: true);
 
   Customer(firstName, lastName, phoneNumber, password) {
     this._firstName = firstName;
