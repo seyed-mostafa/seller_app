@@ -57,7 +57,7 @@ class _MapShowOnlyState extends State<MapShowOnly> {
     widget.show=new LatLng(widget.order.getCustomerAddress().getLatitude(), widget.order.getCustomerAddress().getLongitude());
     first();
     return Scaffold(
-      appBar: appBar(),
+      appBar: appBar(context),
         body: Stack(
           children: <Widget>[
             GoogleMap(

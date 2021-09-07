@@ -7,8 +7,30 @@ import 'package:seller_app/data/Data.dart';
 import 'data/SocketConnect.dart';
 import 'data/customerAndRestaurantMaker.dart';
 
+show(context) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      content: Builder(
+        builder: (context) {
+          // Get available height and width of the build area of this widget. Make a choice depending on the size.
+          var height = MediaQuery.of(context).size.height;
+          var width = MediaQuery.of(context).size.width;
 
-AppBar appBar(){
+          return Container(
+
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+    ),
+  );
+}
+
+
+AppBar appBar(context){
   return  AppBar(
     actions: [
       IconButton(
@@ -26,6 +48,7 @@ AppBar appBar(){
                 messageServer += String.fromCharCodes(socket).trim();
               });
             });
+            show(context);
             await Future.delayed(Duration(seconds: 4)); //stop for listen threading
             if (messageServer.contains("true")) {
               messageServer = messageServer.substring(4); // remove true in start message
@@ -34,6 +57,7 @@ AppBar appBar(){
               customerAndRestaurantMaker(messageServer);
               SocketConnect.socket=socket;
             }
+            Navigator.pop(context, );
           })
     ],
     backgroundColor: theme.yellow,

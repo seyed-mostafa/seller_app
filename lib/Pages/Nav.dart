@@ -102,7 +102,7 @@ class _NavState extends State<Nav> {
     }
 
     return Scaffold(
-      appBar: appBar(),
+      appBar: appBar(context),
       drawer: Drawer(
         child: ListView(
           children: [
