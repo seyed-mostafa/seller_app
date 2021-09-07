@@ -1,31 +1,22 @@
-
 import 'package:flutter/material.dart';
-import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/Pages/CommentsPage.dart';
-import 'package:seller_app/Pages/OrdersPage.dart';
-import 'package:seller_app/Pages/tabBar.dart';
-import 'package:seller_app/Pages/tabBarOrders.dart';
-import 'package:seller_app/appBar.dart';
-import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/Pages/comments_pages/CommentsPage.dart';
+import 'package:seller_app/Pages/menu_pages/menu_page.dart';
+import 'package:seller_app/Pages/orders_pages/orders_base_page.dart';
+import 'package:seller_app/constants/appbar.dart';
 
-import 'AddFoodPage.dart';
+import 'menu_pages/add_food_page.dart';
 
+class BasePage extends StatefulWidget {
+  final int index;
 
-
-class Nav extends StatefulWidget {
-
-  int index = 0;
-
-  Nav(this.index);
+  BasePage(this.index);
 
   @override
-  _NavState createState() => _NavState();
+  _BasePageState createState() => _BasePageState();
 }
 
-class _NavState extends State<Nav> {
-
-
+class _BasePageState extends State<BasePage> {
   int _selectedIndex = 0;
 
   @override
@@ -34,11 +25,11 @@ class _NavState extends State<Nav> {
     _selectedIndex = widget.index;
   }
 
-  showScreen(){
-    if(_selectedIndex == 0){//Menu
+  showScreen() {
+    if (_selectedIndex == 0) {
       return Stack(
         children: [
-          RestaurantMenu(),
+          MenuPage(),
 
           //add button
           Positioned(
@@ -51,23 +42,26 @@ class _NavState extends State<Nav> {
                   color: Colors.blue[900],
                 ),
                 child: TextButton(
-                  child: Icon(Icons.add, color: theme.yellow,),
-                  onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddFood()));
+                  child: Icon(
+                    Icons.add,
+                    color: theme.yellow,
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => AddFood()));
                   },
                 ),
-              )
-          )
+              ))
         ],
       );
-    }else if(_selectedIndex == 1){//Orders
-      return tabBarOrders();
-    }else if(_selectedIndex == 2){//Comments
+    } else if (_selectedIndex == 1) {
+      return OrdersBasePage();
+    } else if (_selectedIndex == 2) {
       return CommentsPage();
     }
   }
 
-  void _onItemTap(int index){
+  void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -75,39 +69,35 @@ class _NavState extends State<Nav> {
 
   @override
   Widget build(BuildContext context) {
-
-    Widget drawerTitleWidget(){
+    Widget drawerTitleWidget() {
       return Container(
         height: 90,
         color: theme.black,
         child: Center(
             child: Text(
-              "Foodina",
-              style: TextStyle(color: theme.yellow, fontSize: 30),
-            )
-        ),
+          "Foodina",
+          style: TextStyle(color: theme.yellow, fontSize: 30),
+        )),
       );
     }
 
-    Widget ConnectUs(){
+    Widget ConnectUs() {
       return Container(
         color: Colors.red,
         child: TextButton(
-            onPressed: (){
-
-            },
-            child: Text("We will happy if connect to us")
-        ),
+            onPressed: () {}, child: Text("We will happy if connect to us")),
       );
     }
 
     return Scaffold(
-      appBar: appBar(context),
+      appBar: appBar(),
       drawer: Drawer(
         child: ListView(
           children: [
             drawerTitleWidget(),
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             ConnectUs(),
           ],
         ),
@@ -115,8 +105,7 @@ class _NavState extends State<Nav> {
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: theme.white,
         backgroundColor: theme.yellow,
-        items:
-        const <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.restaurant_menu),
             label: 'Menu',
