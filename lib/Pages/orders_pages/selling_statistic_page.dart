@@ -4,17 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:seller_app/Objects/theme.dart';
 import 'package:seller_app/data/Data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:intl/intl.dart';
-import 'package:seller_app/data/Restaurent.dart';
 
-class SellingCalculate extends StatefulWidget {
+class SellingStatisticPage extends StatefulWidget {
   @override
-  _SellingCalculateState createState() => _SellingCalculateState();
+  _SellingStatisticPageState createState() => _SellingStatisticPageState();
 }
 
-class _SellingCalculateState extends State<SellingCalculate> {
-
-  Restaurant currentRestaurant= Data.restaurant;
+class _SellingStatisticPageState extends State<SellingStatisticPage> {
+  Restaurant currentRestaurant = Data.restaurant;
 
   String dropdownValue = 'Last 7 days sales analysis';
   List<SalesData> _chartData;
@@ -26,9 +23,9 @@ class _SellingCalculateState extends State<SellingCalculate> {
     for (int i = 0; i < 7; i++) {
       chartData7[i] = SalesData(
           DateTime(2020, 4, i + 24),
-         currentRestaurant.getOnlineSales()[i + 23],
-         currentRestaurant.getcashSales()[i + 23],
-         currentRestaurant.getTotalSales()[i + 23]);
+          currentRestaurant.getOnlineSales()[i + 23],
+          currentRestaurant.getcashSales()[i + 23],
+          currentRestaurant.getTotalSales()[i + 23]);
     }
     return chartData7;
   }
@@ -45,13 +42,13 @@ class _SellingCalculateState extends State<SellingCalculate> {
     return chartData30;
   }
 
-  List<ChartData> chartData7(){
-    List<ChartData> chartData=[
-      ChartData('Excellent', 45,'45%',Colors.green[800]),
-      ChartData('Good', 30,'20%',Colors.green[500]),
-      ChartData('Average',10, '10%',Colors.yellow[700]),
-      ChartData('Poor',10, '10%',Colors.orange),
-      ChartData('Worst',15, '15%',Colors.red),
+  List<ChartData> chartData7() {
+    List<ChartData> chartData = [
+      ChartData('Excellent', 45, '45%', Colors.green[800]),
+      ChartData('Good', 30, '20%', Colors.green[500]),
+      ChartData('Average', 10, '10%', Colors.yellow[700]),
+      ChartData('Poor', 10, '10%', Colors.orange),
+      ChartData('Worst', 15, '15%', Colors.red),
     ];
     return chartData;
   }
@@ -154,45 +151,53 @@ class _SellingCalculateState extends State<SellingCalculate> {
   textdata() {
     int status;
     if (dropdownValue == 'Last 7 days sales analysis')
-      status=7;
+      status = 7;
     else
-      status=30;
-    
+      status = 30;
+
     return Container(
       padding: EdgeInsets.all(20),
       child: Column(
         children: [
-          Text("Total cash sales : ${currentRestaurant.getcashSalessum(status)}000 \n"
-                      "Total online sales : ${currentRestaurant.getOnlineSalessum(status)}000"),
-            SizedBox(width: 5,height: 5),
-            Text("Total sale : ${currentRestaurant.getTotalSalessum(status)}000",
-                    style: TextStyle(color: theme.red2,fontWeight:FontWeight.w500,fontSize: 18)),
+          Text(
+              "Total cash sales : ${currentRestaurant.getcashSalessum(status)}000 \n"
+              "Total online sales : ${currentRestaurant.getOnlineSalessum(status)}000"),
+          SizedBox(width: 5, height: 5),
+          Text("Total sale : ${currentRestaurant.getTotalSalessum(status)}000",
+              style: TextStyle(
+                  color: theme.red2,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18)),
         ],
       ),
     );
   }
 
   circlechart() {
-    chartData=chartData7();
+    chartData = chartData7();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(topRight: Radius.circular(50),topLeft: Radius.circular(50)),
-        color: theme.cream,
-          boxShadow:[
-            BoxShadow(
-              color: Colors.black45,
-              spreadRadius: 0.001,
-              blurRadius: 15,
-            )
-          ]
-        ),
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(50), topLeft: Radius.circular(50)),
+            color: theme.cream,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black45,
+                spreadRadius: 0.001,
+                blurRadius: 15,
+              )
+            ]),
         child: SfCircularChart(
             legend: Legend(isVisible: true),
             title: ChartTitle(
-              text:"Customer satisfaction",
-              textStyle: TextStyle(color: theme.yellow,fontSize: 23,fontWeight: FontWeight.bold,),
+              text: "Customer satisfaction",
+              textStyle: TextStyle(
+                color: theme.yellow,
+                fontSize: 23,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             series: <PieSeries<ChartData, String>>[
               // Render pie chart
@@ -204,11 +209,10 @@ class _SellingCalculateState extends State<SellingCalculate> {
                   yValueMapper: (ChartData data, _) => data.y,
                   dataLabelMapper: (ChartData data, _) => data.z,
                   pointColorMapper: (ChartData data, _) => data.color,
-                  dataLabelSettings:DataLabelSettings(isVisible : true,)
-
-              )
-            ]
-        ),
+                  dataLabelSettings: DataLabelSettings(
+                    isVisible: true,
+                  ))
+            ]),
       ),
     );
   }
@@ -242,8 +246,8 @@ class SalesData {
 }
 
 class ChartData {
-  ChartData(this.x, this.y,this.z, [this.color]);
-  final String x,z;
+  ChartData(this.x, this.y, this.z, [this.color]);
+  final String x, z;
   final double y;
   final Color color;
 }

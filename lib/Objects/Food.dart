@@ -1,12 +1,11 @@
-
-
 class Food {
   String _name, _description;
   num _discount, _price;
   bool _sizing, _available;
   TypeFood _typeFood;
 
-  Food(String name, String description, num price, num discount, bool sizing, bool available, TypeFood typeFood) {
+  Food(String name, String description, num price, num discount, bool sizing,
+      bool available, TypeFood typeFood) {
     this._name = name;
     if (discount != null) {
       this._discount = discount;
@@ -96,5 +95,5 @@ enum TypeFood {
   Steaks,
   Breakfast,
   International,
-  all
+  All
 }

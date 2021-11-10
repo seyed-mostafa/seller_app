@@ -1,28 +1,26 @@
-
 import 'package:flutter/material.dart';
-import 'package:seller_app/MultiChoice.dart';
+import 'package:seller_app/constants/MultiChoice.dart';
 import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/Pages/Nav.dart';
-import 'package:seller_app/appBar.dart';
+import 'package:seller_app/Pages/base_page.dart';
 import 'package:seller_app/data/Data.dart';
 import 'package:seller_app/data/SocketConnect.dart';
 
-
 class AddFood extends StatefulWidget {
-
-
   @override
   _AddFoodState createState() => _AddFoodState();
 }
 
 class _AddFoodState extends State<AddFood> {
-
   Restaurant currentRestaurant = Data.restaurant;
 
-  String _inputName = '', _inputDescription = '',
-      _inputPrice = '', _inputDiscount = '0', _inputPath = '', _inputTypeFood;
+  String _inputName = '',
+      _inputDescription = '',
+      _inputPrice = '',
+      _inputDiscount = '0',
+      _inputPath = '',
+      _inputTypeFood;
   bool _inputSizing = false, _inputAvailable = false, _inputIsDiscount = false;
   var _formKey = GlobalKey<FormState>();
   List<String> foodType = [];
@@ -46,13 +44,23 @@ class _AddFoodState extends State<AddFood> {
     return true;
   }
 
-  void _sendMessage() { //format: addFood::name::description::price::discount::typeFood
+  void _sendMessage() {
+    //format: addFood::name::description::price::discount::typeFood
     print('Connect to server in add food page');
     print(foodType.toString().substring(1, foodType.toString().length - 1));
     SocketConnect.socket.then((value) {
-      value.writeln("addFood::" + _inputName
-        + "::" + _inputDescription + "::" + _inputPrice
-        + "::" + _inputDiscount + "::" + foodType.toString().substring(1, foodType.toString().length-1)); //ToDo typeFood?
+      value.writeln("addFood::" +
+          _inputName +
+          "::" +
+          _inputDescription +
+          "::" +
+          _inputPrice +
+          "::" +
+          _inputDiscount +
+          "::" +
+          foodType
+              .toString()
+              .substring(1, foodType.toString().length - 1)); //ToDo typeFood?
     });
   }
 
@@ -61,20 +69,25 @@ class _AddFoodState extends State<AddFood> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: theme.yellow,),
-          onPressed: (){
+          icon: Icon(
+            Icons.arrow_back,
+            color: theme.yellow,
+          ),
+          onPressed: () {
             Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Nav(0)))
-            ;
+                context, MaterialPageRoute(builder: (context) => BasePage(0)));
           },
         ),
-        backgroundColor:Colors.white ,
-        title: Text('Foodina',style: TextStyle(color: theme.yellow,
-            fontSize: 30, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
+        backgroundColor: Colors.white,
+        title: Text('Foodina',
+            style: TextStyle(
+                color: theme.yellow,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic)),
         centerTitle: true,
         elevation: 10,
-        iconTheme: IconThemeData(color:theme.yellow),
+        iconTheme: IconThemeData(color: theme.yellow),
       ),
       body: Container(
         height: double.maxFinite,
@@ -88,7 +101,8 @@ class _AddFoodState extends State<AddFood> {
                     padding: EdgeInsets.all(40),
                     child: Column(
                       children: [
-                        TextFormField(//Food Name
+                        TextFormField(
+                          //Food Name
                           cursorColor: theme.black,
                           decoration: InputDecoration(
                               border: new OutlineInputBorder(
@@ -104,18 +118,20 @@ class _AddFoodState extends State<AddFood> {
                               filled: true,
                               icon: Icon(Icons.drive_file_rename_outline),
                               labelText: "Food Name",
-                              labelStyle: TextStyle(fontSize: 18)
-                          ),
+                              labelStyle: TextStyle(fontSize: 18)),
                           onSaved: (String value) => _inputName = value,
-                          validator: (String value){
-                            if(value.isEmpty){
+                          validator: (String value) {
+                            if (value.isEmpty) {
                               return "Name cannot be empty";
                             }
                             return null;
                           },
                         ),
-                        SizedBox(height: 10,),
-                        TextFormField(//Food Description
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          //Food Description
                           maxLines: 2,
                           cursorColor: theme.black,
                           decoration: InputDecoration(
@@ -132,12 +148,14 @@ class _AddFoodState extends State<AddFood> {
                               filled: true,
                               icon: Icon(Icons.drive_file_rename_outline),
                               labelText: "Description (optional)",
-                              labelStyle: TextStyle(fontSize: 18)
-                          ),
+                              labelStyle: TextStyle(fontSize: 18)),
                           onSaved: (String value) => _inputDescription = value,
                         ),
-                        SizedBox(height: 10,),
-                        TextFormField(//Food Price
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          //Food Price
                           decoration: InputDecoration(
                               border: new OutlineInputBorder(
                                 borderRadius: const BorderRadius.all(
@@ -152,107 +170,124 @@ class _AddFoodState extends State<AddFood> {
                               filled: true,
                               icon: Icon(Icons.monetization_on),
                               labelText: "Food Price",
-                              labelStyle: TextStyle(fontSize: 18)
-                          ),
+                              labelStyle: TextStyle(fontSize: 18)),
                           onSaved: (String value) => _inputPrice = value,
-                          validator: (String value){
-                            if(value.isEmpty){
+                          validator: (String value) {
+                            if (value.isEmpty) {
                               return "Price cannot be empty";
-                            } else if(!isInteger(value)){
+                            } else if (!isInteger(value)) {
                               return "Price is number";
                             }
                             return null;
                           },
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Row(
                           children: [
                             Text("Do you have any discount?"),
                             IconButton(
                                 icon: Icon(
-                                  _inputIsDiscount?Icons.check_circle_rounded:Icons.circle,
-                                  color: _inputIsDiscount?Colors.greenAccent:Colors.redAccent,
+                                  _inputIsDiscount
+                                      ? Icons.check_circle_rounded
+                                      : Icons.circle,
+                                  color: _inputIsDiscount
+                                      ? Colors.greenAccent
+                                      : Colors.redAccent,
                                 ),
-                                onPressed: (){
+                                onPressed: () {
                                   _inputIsDiscount = !_inputIsDiscount;
                                   setState(() {});
-                                }
-                            ),
+                                }),
                           ],
                         ),
-                        _inputIsDiscount? TextFormField(///Food Discount
-                          validator: (String value){
-                            if(value.isEmpty){
-                              return "Discount cannot be empty";
-                            } else if(!isInteger(value) ||
-                                int.parse(value)<0 ||
-                                int.parse(value)>100){
-                              return "Discount is integer between 0 to 100";
-                            }
-                            return null;
-                          },
-                          onSaved: (String value) => _inputDiscount = value,
-                          decoration: InputDecoration(
-                              icon: Icon(Icons.card_giftcard),
-                              labelText: "Discount Percent",
-                              labelStyle: TextStyle(fontSize: 18,)
-                          ),
-                        ):Container(),
-
-                        SizedBox(height: 30,),
-
+                        _inputIsDiscount
+                            ? TextFormField(
+                                ///Food Discount
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return "Discount cannot be empty";
+                                  } else if (!isInteger(value) ||
+                                      int.parse(value) < 0 ||
+                                      int.parse(value) > 100) {
+                                    return "Discount is integer between 0 to 100";
+                                  }
+                                  return null;
+                                },
+                                onSaved: (String value) =>
+                                    _inputDiscount = value,
+                                decoration: InputDecoration(
+                                    icon: Icon(Icons.card_giftcard),
+                                    labelText: "Discount Percent",
+                                    labelStyle: TextStyle(
+                                      fontSize: 18,
+                                    )),
+                              )
+                            : Container(),
+                        SizedBox(
+                          height: 30,
+                        ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               onPrimary: theme.yellow,
                               primary: theme.black,
-                              padding: EdgeInsets.all(20)
-                          ),
+                              padding: EdgeInsets.all(20)),
                           child: Text("Click to choose your foodType"),
                           onPressed: () async {
                             foodType = await showDialog(
-                                context: context,
-                                builder: (_) => MultiSelectDialog(
-                                    question: Text('Select Your FoodType :'),
-                                    answers: [
-                                      'Pizza',
-                                      'Sandwich',
-                                      'Drinks',
-                                      'Persian Food',
-                                      'Dessert',
-                                      'Appetizer',
-                                      'Fried',
-                                      'Steaks',
-                                      'Breakfast',
-                                      'International'
-                                    ])
-                            )??[];
+                                    context: context,
+                                    builder: (_) => MultiSelectDialog(
+                                            question:
+                                                Text('Select Your FoodType :'),
+                                            answers: [
+                                              'Pizza',
+                                              'Sandwich',
+                                              'Drinks',
+                                              'Persian Food',
+                                              'Dessert',
+                                              'Appetizer',
+                                              'Fried',
+                                              'Steaks',
+                                              'Breakfast',
+                                              'International'
+                                            ])) ??
+                                [];
                             print(foodType);
                           },
                         ),
-
-                        SizedBox(height: 30,),
-
+                        SizedBox(
+                          height: 30,
+                        ),
                         ElevatedButton(
                           onPressed: () {
-                            if(_formKey.currentState.validate()){
+                            if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
                               print(_inputName);
                               print(_inputDescription);
                               print(_inputPrice);
                               print(_inputDiscount);
-                              currentRestaurant.addMenu(new Food(
-                                  _inputName,
-                                  _inputDescription,
-                                  int.parse(_inputPrice),
-                                  int.parse(_inputDiscount),
-                                  true,
-                                  true,
-                                  TypeFood.values
-                                      .firstWhere((e) => e.toString() == "TypeFood." +  foodType.toString().substring(1, foodType.toString().length - 1)))
-                                 ,
+                              currentRestaurant.addMenu(
+                                new Food(
+                                    _inputName,
+                                    _inputDescription,
+                                    int.parse(_inputPrice),
+                                    int.parse(_inputDiscount),
+                                    true,
+                                    true,
+                                    TypeFood.values.firstWhere((e) =>
+                                        e.toString() ==
+                                        "TypeFood." +
+                                            foodType.toString().substring(
+                                                1,
+                                                foodType.toString().length -
+                                                    1))),
                               );
                               _sendMessage();
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav(0)));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => BasePage(0)));
                             }
                             setState(() {});
                           },

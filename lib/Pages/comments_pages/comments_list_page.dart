@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/appBar.dart';
 import 'package:seller_app/data/Data.dart';
 import 'package:seller_app/data/SocketConnect.dart';
 
 class CommentsPage extends StatefulWidget {
-
-
   @override
   _CommentsPageState createState() => _CommentsPageState();
 }
 
 class _CommentsPageState extends State<CommentsPage> {
-  Restaurant currentRestaurant= Data.restaurant;
+  Restaurant currentRestaurant = Data.restaurant;
 
   void _sendMessage(int index) async {
     await SocketConnect.socket.then((value) async {
       //format: addReply::comment::reply
 
-      String sendMessage="addReply"+"::"+ currentRestaurant.getComments()[index].getComment()+"::"
-          +currentRestaurant.getComments()[index].getReply();
+      String sendMessage = "addReply" +
+          "::" +
+          currentRestaurant.getComments()[index].getComment() +
+          "::" +
+          currentRestaurant.getComments()[index].getReply();
       value.writeln(sendMessage);
     });
   }
@@ -65,18 +64,15 @@ class _CommentsPageState extends State<CommentsPage> {
                 child: Container(
                   height: 2,
                   decoration: BoxDecoration(
-                    gradient:
-                        LinearGradient(
-                            colors: [theme.yellow2, theme.white],
-                          stops:[0,0.8]
-                        ),
+                    gradient: LinearGradient(
+                        colors: [theme.yellow2, theme.white], stops: [0, 0.8]),
                   ),
                 ),
               ),
               Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                   currentRestaurant.getComments()[index].getComment(),
+                    currentRestaurant.getComments()[index].getComment(),
                     style: TextStyle(color: theme.black, fontSize: 14),
                   )),
               Padding(
@@ -84,9 +80,8 @@ class _CommentsPageState extends State<CommentsPage> {
                 child: Container(
                   height: 2,
                   decoration: BoxDecoration(
-                    gradient:
-                        LinearGradient( colors: [theme.yellow2, theme.white],
-                            stops:[0,0.8]),
+                    gradient: LinearGradient(
+                        colors: [theme.yellow2, theme.white], stops: [0, 0.8]),
                   ),
                 ),
               )
@@ -175,13 +170,14 @@ class _CommentsPageState extends State<CommentsPage> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.asset(
-                    "assets/images/restaurant/"+currentRestaurant.getName()+".jpg",
+                    "assets/images/restaurant/" +
+                        currentRestaurant.getName() +
+                        ".jpg",
                     fit: BoxFit.fill,
                     height: 50,
                     width: 50,
                   ),
                 ),
-
                 SizedBox(
                   width: 15,
                 ),
@@ -189,7 +185,8 @@ class _CommentsPageState extends State<CommentsPage> {
                   children: [
                     Text(currentRestaurant.getName(),
                         style: TextStyle(fontSize: 18, color: theme.black)),
-                    Text(currentRestaurant.getComments()[index].getTimeComment(),
+                    Text(
+                        currentRestaurant.getComments()[index].getTimeComment(),
                         style: TextStyle(color: Colors.grey, fontSize: 10)),
                   ],
                 ),
@@ -206,18 +203,16 @@ class _CommentsPageState extends State<CommentsPage> {
                     child: Container(
                       height: 2,
                       decoration: BoxDecoration(
-                        gradient:
-                        LinearGradient( colors: [theme.yellow2, theme.white],
-                            stops:[0,0.8]),
+                        gradient: LinearGradient(
+                            colors: [theme.yellow2, theme.white],
+                            stops: [0, 0.8]),
                       ),
                     ),
                   ),
                   Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        currentRestaurant
-                            .getComments()[index]
-                            .getReply(),
+                        currentRestaurant.getComments()[index].getReply(),
                         style: TextStyle(color: theme.black, fontSize: 14),
                       )),
                   Padding(
@@ -225,9 +220,9 @@ class _CommentsPageState extends State<CommentsPage> {
                     child: Container(
                       height: 2,
                       decoration: BoxDecoration(
-                        gradient:
-                        LinearGradient( colors: [theme.yellow2, theme.white],
-                            stops:[0,0.8]),
+                        gradient: LinearGradient(
+                            colors: [theme.yellow2, theme.white],
+                            stops: [0, 0.8]),
                       ),
                     ),
                   )

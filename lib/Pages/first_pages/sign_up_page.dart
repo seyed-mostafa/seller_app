@@ -1,32 +1,24 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:seller_app/Objects/Food.dart';
 import 'package:seller_app/Objects/Location.dart';
 import 'package:seller_app/Objects/Restaurant.dart';
 import 'package:seller_app/Objects/theme.dart';
-import 'package:seller_app/Pages/Map.dart';
-import 'package:seller_app/appBar.dart';
-import 'package:seller_app/data/Data.dart';
+import 'package:seller_app/Pages/first_pages/map_page.dart';
+import 'package:seller_app/constants/appbar.dart';
 import 'package:seller_app/data/SocketConnect.dart';
-import 'EnteringPage.dart';
-import '../MultiChoice.dart';
-import 'dart:io';
-import 'package:seller_app/Objects/Restaurant.dart';
+import '../../constants/MultiChoice.dart';
 
-class RegisteringPage extends StatefulWidget {
-
+class SignUpPage extends StatefulWidget {
   LatLng latLng;
 
   @override
-  _RegisteringPageState createState() => _RegisteringPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _RegisteringPageState extends State<RegisteringPage> {
-
-  change(LatLng latLng){
+class _SignUpPageState extends State<SignUpPage> {
+  change(LatLng latLng) {
     setState(() {
-      widget.latLng=latLng;
+      widget.latLng = latLng;
     });
   }
 
@@ -34,9 +26,13 @@ class _RegisteringPageState extends State<RegisteringPage> {
 
   Restaurant inputRestaurant;
 
-  String _inputPhoneNumber = '', _inputPassword = '',
-      _inputName = '', _inputAddress = '', _inputLongitude = '',
-      _inputLatitude = '', _inputRange = '';
+  String _inputPhoneNumber = '',
+      _inputPassword = '',
+      _inputName = '',
+      _inputAddress = '',
+      _inputLongitude = '',
+      _inputLatitude = '',
+      _inputRange = '';
   bool hidden = true;
   List<String> foodType = ["all"];
 
@@ -59,20 +55,33 @@ class _RegisteringPageState extends State<RegisteringPage> {
     return true;
   }
 
-  void _sendMessage() async { //format: Registering::nameRegistering::phoneNumber::password::address(String)::longitude::latitude::range::foodType1,foodType2,...
+  void _sendMessage() async {
+    //format: Registering::nameRegistering::phoneNumber::password::address(String)::longitude::latitude::range::foodType1,foodType2,...
     String types = '';
     print(foodType);
-    for(int i = 0; i < foodType.length; i++) {
-      types += foodType[i]+",";
+    for (int i = 0; i < foodType.length; i++) {
+      types += foodType[i] + ",";
     }
-    types = types.substring(0, types.length -1);
+    types = types.substring(0, types.length - 1);
     await SocketConnect.socket.then((value) {
       print('Connect to server in Registering page');
       value.writeln("Seller");
-      value.writeln("Registering::" + _inputName
-          + "::" + _inputPhoneNumber + "::" + _inputPassword + "::"
-          + _inputAddress + "::" + widget.latLng.longitude.toString() + "::" + widget.latLng.latitude.toString()
-          + "::" + _inputRange + "::" + types);
+      value.writeln("Registering::" +
+          _inputName +
+          "::" +
+          _inputPhoneNumber +
+          "::" +
+          _inputPassword +
+          "::" +
+          _inputAddress +
+          "::" +
+          widget.latLng.longitude.toString() +
+          "::" +
+          widget.latLng.latitude.toString() +
+          "::" +
+          _inputRange +
+          "::" +
+          types);
     });
   }
 
@@ -105,29 +114,35 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         filled: true,
                         icon: Icon(Icons.food_bank_rounded),
                         labelText: "Restaurant Name",
-                        labelStyle: TextStyle(fontSize: 18,)
-                    ),
-                    validator: (String value){
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                        )),
+                    validator: (String value) {
                       // for(Restaurant restaurant in widget.restaurants){
                       //   if(restaurant.getName() == inputName)
                       //     return "Name already exist";
                       // }
-                      if(value.isEmpty){
+                      if (value.isEmpty) {
                         return "Name cannot be empty";
                       }
                       return null;
                     },
                     onSaved: (String value) => _inputName = value,
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TextFormField(
                     cursorColor: theme.black,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                         suffixIcon: IconButton(
                           icon: Icon(Icons.map),
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Map(change)));
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MapPage(change)));
                           },
                         ),
                         border: new OutlineInputBorder(
@@ -143,17 +158,20 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         filled: true,
                         icon: Icon(Icons.home_work),
                         labelText: "Address",
-                        labelStyle: TextStyle(fontSize: 18,)
-                    ),
-                    validator: (String value){
-                      if(value.isEmpty){
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                        )),
+                    validator: (String value) {
+                      if (value.isEmpty) {
                         return "Address cannot be empty";
                       }
                       return null;
                     },
                     onSaved: (String value) => _inputAddress = value,
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TextFormField(
                     cursorColor: theme.black,
                     style: TextStyle(color: Colors.white),
@@ -171,20 +189,23 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         filled: true,
                         icon: Icon(Icons.cast_sharp),
                         labelText: "Range",
-                        labelStyle: TextStyle(fontSize: 18,)
-                    ),
-                    validator: (String value){
-                      if(!isInteger(value)){
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                        )),
+                    validator: (String value) {
+                      if (!isInteger(value)) {
                         return "Range is number";
                       }
-                      if(value.isEmpty){
+                      if (value.isEmpty) {
                         return "Range cannot be empty";
                       }
                       return null;
                     },
                     onSaved: (String value) => _inputRange = value,
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TextFormField(
                     cursorColor: theme.black,
                     style: TextStyle(color: Colors.white),
@@ -203,33 +224,36 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         filled: true,
                         icon: Icon(Icons.phone),
                         labelText: "Phone Number",
-                        labelStyle: TextStyle(fontSize: 18,)
-                    ),
-                    validator: (String value){
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                        )),
+                    validator: (String value) {
                       // for(Restaurant restaurant in widget.restaurants){
                       //   if(restaurant.getPhoneNumber() == inputPhoneNumber)
                       //     return "PhoneNumber already exist";
                       // }
-                      if(value.length != 8 ||
+                      if (value.length != 8 ||
                           !isInteger(value) ||
-                          value.contains(' ')){
+                          value.contains(' ')) {
                         return "Phone number should be 8 digit";
                       }
                       return null;
                     },
                     onSaved: (String value) => _inputPhoneNumber = value,
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TextFormField(
                     cursorColor: theme.black,
                     style: TextStyle(color: Colors.white),
                     obscureText: hidden,
                     decoration: InputDecoration(
                         suffixIcon: IconButton(
-                          icon: Icon(
-                              !hidden?Icons.visibility:Icons.visibility_off
-                          ),
-                          onPressed: (){
+                          icon: Icon(!hidden
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
                             hidden = !hidden;
                             setState(() {});
                           },
@@ -247,70 +271,80 @@ class _RegisteringPageState extends State<RegisteringPage> {
                         filled: true,
                         icon: Icon(Icons.vpn_key),
                         labelText: "Password",
-                        labelStyle: TextStyle(fontSize: 18,)
-                    ),
+                        labelStyle: TextStyle(
+                          fontSize: 18,
+                        )),
                     onChanged: (String value) {
                       _inputPassword = value;
-                      setState(() {
-
-                      });
+                      setState(() {});
                     },
-                    validator: (String value){
-                      if(value.length < 6 || !value.contains(RegExp(r'[a-zA-Z]')) || !value.contains(RegExp(r'[0-9]'))){
+                    validator: (String value) {
+                      if (value.length < 6 ||
+                          !value.contains(RegExp(r'[a-zA-Z]')) ||
+                          !value.contains(RegExp(r'[0-9]'))) {
                         return "password at least contains 6 letter and number";
                       }
                       return null;
                     },
                   ),
-                  SizedBox(height: 20,),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        onPrimary: theme.yellow,
-                        primary: theme.black,
-                        padding: EdgeInsets.all(20)
-                    ),
-                      child: Text("Click to choose your foodType"),
-                      onPressed: () async {
-                        foodType = await showDialog(
-                            context: context,
-                            builder: (_) => MultiSelectDialog(
-                                question: Text('Select Your FoodType :'),
-                                answers: [
-                                  'Pizza',
-                                  'Sandwich',
-                                  'Drinks',
-                                  'PersianFood',
-                                  'Dessert',
-                                  'Appetizer',
-                                  'Fried',
-                                  'Steaks',
-                                  'Breakfast',
-                                  'International'
-                                ])
-                            )??[];
-                        print(foodType);
-
-                      },
+                  SizedBox(
+                    height: 20,
                   ),
-                  SizedBox(height: 20,),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         onPrimary: theme.yellow,
                         primary: theme.black,
-                        padding: EdgeInsets.all(20)
-                    ),
+                        padding: EdgeInsets.all(20)),
+                    child: Text("Click to choose your foodType"),
                     onPressed: () async {
-                      if(_formKey.currentState.validate()) {
+                      foodType = await showDialog(
+                              context: context,
+                              builder: (_) => MultiSelectDialog(
+                                      question: Text('Select Your FoodType :'),
+                                      answers: [
+                                        'Pizza',
+                                        'Sandwich',
+                                        'Drinks',
+                                        'PersianFood',
+                                        'Dessert',
+                                        'Appetizer',
+                                        'Fried',
+                                        'Steaks',
+                                        'Breakfast',
+                                        'International'
+                                      ])) ??
+                          [];
+                      print(foodType);
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        onPrimary: theme.yellow,
+                        primary: theme.black,
+                        padding: EdgeInsets.all(20)),
+                    onPressed: () async {
+                      if (_formKey.currentState.validate()) {
                         _formKey.currentState.save();
                         print(_inputName);
                         print(_inputAddress);
                         print(_inputPhoneNumber);
                         print(_inputPassword);
 
-                        Restaurant restaurant=new Restaurant(_inputName,new Location(_inputAddress,widget.latLng.latitude,widget.latLng.longitude),_inputPhoneNumber,_inputPassword);
-                        restaurant.setSendingRangeRadius(int.parse(_inputRange));
+                        Restaurant restaurant = new Restaurant(
+                            _inputName,
+                            new Location(_inputAddress, widget.latLng.latitude,
+                                widget.latLng.longitude),
+                            _inputPhoneNumber,
+                            _inputPassword);
+                        restaurant
+                            .setSendingRangeRadius(int.parse(_inputRange));
                         _sendMessage();
-                        Navigator.pop(context,);
+                        Navigator.pop(
+                          context,
+                        );
                       }
                       setState(() {});
                     },
@@ -320,9 +354,6 @@ class _RegisteringPageState extends State<RegisteringPage> {
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }
-
-
